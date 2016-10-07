@@ -1,0 +1,51 @@
+Cl folder selections:
+---------------------
+1) MAPS_MUS-mz_311_1_ENSTDkCl = Mozart, Sonata No. 8 D major, KV 311 (1777), Movement 1, 4:22
+2) MAPS_MUS-mz_570_1_ENSTDkCl = Mozart, Sonata No. 17 Bb major, KV 570 (1789), Movement 1, 7:58
+3) MAPS_MUS-pathetique_1_ENSTDkCl = Beethoven, Sonata No. 8 C minor (Pathetique), Opus 13 (1799), Movement 1, 9:21
+4) MAPS_MUS-mz_331_2_ENSTDkCl = Mozart, Sonata No. 8 D major, KV 311 (1777), Movement 2, 6:07
+5) MAPS_MUS-mz_332_2_ENSTDkCl = Mozart, Sonata No. 12 F major, KV 332 (1783), Movement 2, 4:27
+6) MAPS_MUS-mz_333_2_ENSTDkCl = Mozart, Sonata No. 13 Bb major, KV 333 (1783), Movement 2, 8:44
+7) MAPS_MUS-mz_331_3_ENSTDkCl = Mozart, Sonata No. 8 D major, KV 311 (1777), Movement 3, 3:12
+8) MAPS_MUS-mz_333_3_ENSTDkCl = Mozart, Sonata No. 13 Bb major, KV 333 (1783), Movement 3, 5:49
+9) MAPS_MUS-mz_545_3_ENSTDkCl = Mozart, Sonata No. 16 C major (Sonata facile), KV 545 (1788), Movement 3, 1:47
+10) MAPS_MUS-schu_143_3_ENSTDkCl = Schubert, Piano Sonata in A minor, D 784, Opus 143 (1823), Movement 3, 5:29
+
+11) MAPS_MUS-deb_menu_ENSTDkCl = Debussy, Suite bergamasque, Menuet (1905), 4:11
+12) MAPS_MUS-deb_clai_ENSTDkCl = Debussy, Suite bergamasque, Claire de lune (1905), 4:10
+13) MAPS_MUS-liz_et6_ENSTDkCl = Lizst, Grandes Etudes de Paganini, No.6 (1851), 5:27
+14) MAPS_MUS-liz_rhap09_ENSTDkCl = Lizst, 19 Hungarian Rhapsodies, No. 9 (1885), 10:35
+15) MAPS_MUS-schuim-1_ENSTDkCl = Schubert, 4 Impromptus, D 899, Opus 90 (1827), No.1, 7:46
+16) MAPS_MUS-scn16_3_ENSTDkCl = Schumann, Kreisleriana, Opus 16 (1838), No.3, 4:16
+17) MAPS_MUS-scn16_4_ENSTDkCl = Schumann, Kreisleriana, Opus 16 (1838), No.4, 3:29
+18) MAPS_MUS-ty_maerz_ENSTDkCl = Tchaikovsky, The Seasons, Opus 37a, March, Song of the Lark (1876), 2:17
+19) MAPS_MUS-ty_mai_ENSTDkCl = Tchaikovsky, The Seasons, Opus 37a, May, Song of the Lark (1876), 3:14
+ 
+
+Am folder selections:
+---------------------
+1) MAPS_MUS-pathetique_2_ENSTDkAm = Beethoven, Sonata No. 8 C minor (Pathetique), Opus 13 (1799), Movement 2, 5:06
+2) MAPS_MUS-pathetique_3_ENSTDkAm = Beethoven, Sonata No. 8 C minor (Pathetique), Opus 13 (1799), Movement 3, 4:18
+3) MAPS_MUS-waldstein_1_ENSTDkAm = Beethoven, Sonata No. 21 C major (Waldstein), Opus 53 (1804), Movement 1, 10:21
+4) MAPS_MUS-chpn_op35_1_ENSTDkAm = Chopin, Piano sonata No. 2 Bb minor, Opus 35 (1839), Movement 1, 6:34
+5) MAPS_MUS-chpn_op66_ENSTDkAm = Chopin, Fantasie-Impromptu, Opus 66 (1834), Fantasie-Impromptu, 4:37
+6) MAPS_MUS-chpn_op7_1_ENSTDkAm = Chopin, 5 Mazurkas, Opus 7 (1831), No. 1 (there’s a lot of repetition in this one, but adheres to the mazurka musical form), 2:17
+7) MAPS_MUS-chpn_op33_2_ENSTDkAm = Chopin, 4 Mazurkas, Opus 33 (1838), No. 2 (this piece is a little…annoying, but it follows the mazurka musical form, but it’s also fairly repetitive in structure), 2:22
+8) MAPS_MUS-chpn-p4_ENSTDkAm = Chopin, Préludes, Opus 28 (1838), No. 4    (ternary form A-B-A, I think? Not sure, potential coda/conclusion thing at the end), 1:44
+9) MAPS_MUS-liz_rhap02_ENSTDkAm = Lizst, 19 Hungarian Rhapsodies (1885), No. 2 (according to wiki Liszt’s tonal/key selection for systematic for this piece), 8:47
+10) MAPS_MUS-ty_november_ENSTDkAm = Tchaikovsky, The Seasons, Opus 37a (1876), November - Troika Ride  (? unsure of this one, alternative was MAPS_MUS-schub_d760_3_ENSTDkAm = Schubert, Fantasia C major (Wanderer), D 760, Opus 15 (1822), Movement 3; I think preference went with Tchaikovsky, but it felt like less, for lack of a better word, was happening in that recording, so feature extraction might be easier; not sure), 2:57
+
+11) MAPS_MUS-ty_maerz_ENSTDkAm = Tchaikovsky, The Seasons, Opus 37a (1876), March - Song of the Lark, 2:17
+12) MAPS_MUS-ty_mai_ENSTDkAm = Tchaikovsky, The Seasons, Opus 37a (1876), May - Starlight Nights, 3:14
+13) MAPS_MUS-liz_rhap09_ENSTDkAm = Lizst, 19 Hungarian Rhapsodies (1885), No. 9 - Carnival in Pest, 10:34
+14) MAPS_MUS-liz_rhap12_ENSTDkAm = Lizst, 19 Hungarian Rhapsodies (1885), No. 12, 8:44
+
+
+---------------------- COMMENTS ----------------------------------------
+Fun fact I read online, apparently Fantasie-Impromptu is supposed to be related in form to Beethoven’s moonlight :O (granted this is also wikipedia, http://en.wikipedia.org/wiki/Fantaisie-Impromptu#Form, but still).  That’s why I picked it. Some of the musical analysis online is pretty cool.
+
+FI: 2015/01/06
+Some of the pieces are too short. Either we find others that are longer (~7-10 min) or some runs will be just few pieces put together.
+I added additional alternative pieces (e.g. all tchaikovsky's from the Am collection, which we could put together, similarly with Lizst's rhapsody).
+
+-------------------------------------------------------------------------
