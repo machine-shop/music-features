@@ -41,7 +41,7 @@ def averageDownsample(vals, newlen=None, overlapsize=1):
                            Default is 1.
         """
         if newlen is None:
-            print 'New length value not provided, will not average and downsample...'
+            print('New length value not provided, will not average and downsample...')
             return vals
         newarr = np.zeros((newlen, vals.shape[1]))
         winsize = vals.shape[0]//newlen + overlapsize
