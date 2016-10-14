@@ -769,7 +769,7 @@ def fluctuationEntropy(y=None, sr=44100, all_fp=None, decomposition=True,
             - float: if decomposition == False
     '''
     if all_fp is None and y is None:
-        print 'Invalid paramters: need either audio or fluctuation patterns'
+        print('Invalid paramters: need either audio or fluctuation patterns')
     if all_fp is None:
         all_fp = fluctuationPatterns(y, sr=sr, n_fft=n_fft, hop_length=hop_length,
                         mel_count=mel_count, seconds=seconds, band_num=band_num,
@@ -855,7 +855,7 @@ def fluctuationFocus(y=None, sr=44100, all_fp=None, n_fft=512, hop_length=512,
             - float: if decomposition == False
     '''
     if all_fp is None and y is None:
-        print 'Invalid args: need either audio file or fluctuation patterns'
+        print('Invalid args: need either audio file or fluctuation patterns')
     if all_fp is None:
         all_fp = fluctuationPatterns(y, sr=sr, n_fft=n_fft, hop_length=hop_length,
                         mel_count=mel_count, seconds=seconds, band_num=band_num,
@@ -933,7 +933,7 @@ def fluctuationCentroid(y=None, sr=44100, all_fp=None, n_fft=512,
             - float: if decomposition == False
     '''
     if all_fp is None and y is None:
-        print 'Invalid args: need either audio file or fluctuation patterns'
+        print('Invalid args: need either audio file or fluctuation patterns')
     if all_fp is None:
         all_fp = fluctuationPatterns(y, sr=sr, n_fft=n_fft, hop_length=hop_length,
                         mel_count=mel_count, seconds=seconds, band_num=band_num,
