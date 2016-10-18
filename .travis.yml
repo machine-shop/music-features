@@ -8,7 +8,8 @@ before_install:
 
 #command to install dependencies
 install:
-  - pip install librosa
+  - sudo apt-get install ffmpeg
+  - "pip install -r requirements.txt"
 
 #command to run tests
 script: nosetests --exe --with-coverage
