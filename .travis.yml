@@ -3,7 +3,7 @@ python:
   - "3.5"
 
 before_install:
-  - pip install --no-index --trusted-host travis-wheels.scikit-image.org --find-links=https://travis-wheels.scikit-image.org numpy scipy
+  - pip install numpy scipy coverage
   - sudo apt-get install ffmpeg
 
 #command to install dependencies
@@ -11,6 +11,6 @@ install:
   - pip install librosa
 
 #command to run tests
-script: nosetests
+script: nosetests --exe --with-coverage
 
 sudo: required
