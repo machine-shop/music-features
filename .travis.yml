@@ -2,15 +2,13 @@ language: python
 python:
 - "3.5"
   
-before_install:
-- pip install --no-index --trusted-host travis-wheels.scikit-image.org --find-links=http://travis-wheels.scikit-image.org numpy scipy
+#before_install:
+#- pip install --no-index --trusted-host travis-wheels.scikit-image.org --find-links=http://travis-wheels.scikit-image.org numpy scipy
   
 # command to install dependencies
 # install: "pip install -r requirements.txt"
 install: 
-# - pip install numpy
-# - pip install scikit
-- pip install librosa
+- pip install numpy scipy librosa
 
 # command to run tests
 script: nosetests
