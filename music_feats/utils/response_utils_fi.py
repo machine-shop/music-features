@@ -15,10 +15,22 @@ logger = logging.getLogger("song.util.response_utils")
 
 
 def load_response_imagedocs(experiments, fromaction="DetrendSGolay"):
-    """Loads music responses from the given [experiments]. All images generated
+"""Loads music responses from the given [experiments]. All images generated
     by the action [fromaction] will be used.
 
-    This function creates a dictionary of (song name : list of responses).
+    Parameters
+    ----------
+    experiments : experiments
+        Experiment name. Used to name output files
+        or to query bold responses in the scramble method.
+    fromaction : str
+        Action that will be used. Defaulted at "DetrendGolay"
+
+    Returns
+    -------
+    dict
+        dictionary of (song name : list of responses)
+
     """
     # Get the interface to the database
     docdbi = docdb.getclient()
@@ -43,7 +55,21 @@ def load_response_imagedocs(experiments, fromaction="DetrendSGolay"):
 
 # Following are FI's song data
 def load_response_imagedocs_music_AN(sessions=1, usesg=True, unwarp=False):
-    """Loads response images for AN."""
+    """Loads response images for AN.
+
+    Parameters
+    ----------
+    session : int
+    usesg : bool
+    unwarp : bool
+
+    Returns
+    -------
+    dict
+        dictionary of (song name : list of responses)
+
+    """
+
     if sessions == 1:
         exps = ["20150608AN"]
     elif sessions == 2:
@@ -60,7 +86,20 @@ def load_response_imagedocs_music_AN(sessions=1, usesg=True, unwarp=False):
 
 # Following are FI's song data
 def load_response_imagedocs_speech_AN(sessions=1, usesg=True, unwarp=False):
-    """Loads response images for AN."""
+    """Loads response images for AN.
+
+    Parameters
+    ----------
+    session : int
+    usesg : bool
+    unwarp : bool
+
+    Returns
+    -------
+    dict
+        dictionary of (song name : list of responses)
+
+    """
     if sessions == 1:
         exps = ["20150801AN"]
     elif sessions == 2:
@@ -77,7 +116,20 @@ def load_response_imagedocs_speech_AN(sessions=1, usesg=True, unwarp=False):
 
 # Following is for tonotopy pilot
 def load_response_imagedocs_tonotopy_LO(sessions=1, usesg=True, unwarp=False):
-    """Load response images for LO"""
+    """Loads response images for LO
+
+    Parameters
+    ----------
+    session : int
+    usesg : bool
+    unwarp : bool
+
+    Returns
+    -------
+    dict
+        dictionary of (song name : list of responses)
+
+    """
     if sessions == 1:
         exps = ["20160330LO"]
 
@@ -89,7 +141,20 @@ def load_response_imagedocs_tonotopy_LO(sessions=1, usesg=True, unwarp=False):
     return load_response_imagedocs(exps, fromaction)
 
 def load_response_imagedocs_tonotopy_AN(sessions=1, usesg=True, unwarp=False):
-    """Load response images for AN"""
+    """Loads response images for AN.
+
+    Parameters
+    ----------
+    session : int
+    usesg : bool
+    unwarp : bool
+
+    Returns
+    -------
+    dict
+        dictionary of (song name : list of responses)
+
+    """
     if sessions == 1:
         exps = ["20160601AN"]
 
@@ -116,8 +181,19 @@ def load_response_imagedocs_test(reading_dir, fnames, validation=None):
 def dilate_mask(mask, ktype):
     """Dilates the given binary [mask] with the specified type of [kernel],
     which should be an integer [1, 2, 3] that is passed as the connectivity
-    argument to scipy.ndimage.morphology.generate_binary_structure. See the
-    docs of that function for details.
+    argument to scipy.ndimage.morphology.generate_binary_structure. 
+
+    See the docs of that function for details.
+
+    Parameters
+    ----------
+    mask : mask
+    kytpe : ktype
+
+    Returns
+    -------
+    returntype
+
     """
     import scipy.ndimage.morphology as mo
     kernel = mo.generate_binary_structure(3, ktype)
@@ -125,8 +201,18 @@ def dilate_mask(mask, ktype):
 
 
 def load_mcparams(respdict):
-    """This function loads motion correction parameter estimates for the listed
-    images."""
+"""This function loads motion correction parameter estimates for the listed
+    images.
+
+    Parameters
+    ----------
+    respdict : dict
+
+    Returns
+    -------
+    dict
+    
+    """
     mcparams = dict()
     for song, docs in respdict.items():
         logger.info("Loading mcparams for song {}..".format(song))
@@ -149,12 +235,26 @@ def load_mcparams(respdict):
 
 def load_responses(respdict, mask, cachedir="/auto/k8/loganesian/respcache/",
                    force_reload=True, multiseries="mean"):
-    """This function caches the responses in an HDF5 file and reads them if the
+"""This function caches the responses in an HDF5 file and reads them if the
     image IDs haven't changed.
 
     If there are multiple image series for a given stimulus, the images will
     either be averaged, if [multiseries] is "mean", or concatenated, if
     [multiseries] is "cat".
+
+    Parameters
+    ----------
+    respdict : dict
+    mask : mask
+    cachedir : str
+        Cache directory
+    force_readlload : bool
+    multiseries : str
+
+    Returns
+    -------
+    dict
+    
     """
     # Generate cache filename for this set of responses
     songnames = "".join(sorted(respdict.keys()))
@@ -191,8 +291,22 @@ def load_responses(respdict, mask, cachedir="/auto/k8/loganesian/respcache/",
 
 def load_responses_test(respdict, mask, cachedir="/auto/k8/loganesian/respcache/",
                    force_reload=True, multiseries="mean"):
-    """This is a version of load_responses() from above, modified to work with
+"""This is a version of load_responses() from above, modified to work with
     fake data. Only difference is that experimentnames is omitted.
+
+    Parameters
+    ----------
+    respdict : dict
+    mask : mask
+    cachedir : str
+        Cache directory
+    force_readlload : bool
+    multiseries : str
+
+    Returns
+    -------
+    dict
+    
     """
     # # Generate cache filename for this set of responses
     songnames = "".join(sorted(respdict.keys()))
@@ -227,8 +341,21 @@ def load_responses_test(respdict, mask, cachedir="/auto/k8/loganesian/respcache/
 
 
 def _load_responses(respdict, mask, multiseries):
-    """Loads actual response data from the dictionary of lists of response image
+"""Loads actual response data from the dictionary of lists of response image
     documents, [respdict].
+
+    Parameters
+    ----------
+    respdict : dict
+        response image documents
+    mask : mask
+    multiseries : str
+
+    Returns
+    -------
+    dict
+        actiual response data
+
     """
     # Generate cache filename for this set of responses
 
@@ -244,7 +371,24 @@ def _load_responses(respdict, mask, multiseries):
     return resps
 
 def selectROI(respdict, ROIS, surface, experiment, mask, multiseries="mean"):
-    """Select a particular ROI to do the regression on"""
+"""Select a particular ROI to do the regression on
+
+    Parameters
+    ----------
+    respdict : dict
+        response image documents
+    ROIS : ROIS
+    surface : surface
+    experiment : experiment
+    mask : mask
+    multiseries : str
+
+    Returns
+    -------
+    dict
+        actiual response data
+
+    """
 
     # selected = dict()
     # for song, data in respdict.items():

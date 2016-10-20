@@ -2,10 +2,24 @@ import numpy as np
 import operator
 
 def separate_voxel_model_weights(vwt, ndelays, modeldims):
-    """Takes a voxel weight vector [vwt] and separates out the
+    """ Takes a voxel weight vector [vwt] and separates out the
     weights for each model. Returns a list of DxNi matrices, where
     D is [ndelays] and Ni is the number of dimensions in model i,
     given in [modeldims].
+
+    Parameters
+    ----------
+    vwt : np.ndarray
+        weight vector
+    ndelays : int
+        number of delays
+    modeldims : modeldims
+    
+    Returns
+    -------
+    np.ndarray
+        List of DxNi matrices
+
     """
     rwt = vwt.reshape((ndelays, -1)) ## Separate delays
     srwt = np.split(rwt, np.cumsum(modeldims)[:-1], 1) ## Split models
@@ -17,7 +31,18 @@ def separate_model_weights(vwts, ndelays, modeldims):
     total number of features and M is the number of voxels) and
     separates out the weights for each separate model.
 
-    Returns a list of (D*Ni) x M matrices, where D is the number of
+    Parameters
+    ----------
+    vwt : np.ndarray
+        weight vector
+    ndelays : int
+        number of delays
+    modeldims : modeldims
+    
+    Returns
+    -------
+    np.ndarray
+        List of (D*Ni) x M matrices, where D is the number of
     delays and Ni is the number of features in model i.
     """
     ## Modelnums is an array of length N, where the i'th entry contains

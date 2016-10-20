@@ -16,24 +16,35 @@ import nibabel as ni
 
 def generateTestR(exp, method='boldlike', fname=None,
 				fpath='/auto/k7/lucine/projects/music/tmp', **kwargs):
-	"""
-	Generate fake data to test pipeline with. Will call a sub function to
+    """Generate fake data to test pipeline with. Will call a sub function to
 	generate fake data in a particular way.
-		:parameters:
-			- exp: string. Experiment name. Used to name output files
-				or to query bold responses in the scramble method.
-			- method: string. Method used to generate fake data.
-				:Options: 
-					- 'boldlike' uses weights to create fake data from
-						feature matrices. Calls boldlike(). Default.
-					- 'scramble' scrambles existing bold responses.
-						calls scramble()
-			- fname : string. The name to save the NIFTI files as.
-				Default is None.
-			- fpath : string. The path where to store the resulting NIFTI files.
-			- kwargs : the arguments for boldlike() or scramble(), depending on
-				which method is used
+
+    Parameters
+    ----------
+    exp : str
+        Experiment name. Used to name output files
+		or to query bold responses in the scramble method.
+    method : str
+        Options:
+        -'boldlike' uses weights to create fake data from
+		feature matrices. Calls boldlike(). Default.
+		-'scramble' scrambles existing bold responses.
+		calls scramble()
+    fname : str
+    	The name to save the NIFTI files as. Default is None.
+    fpath : str
+    	The path where to store the resulting NIFTI files.
+    kwargs : 
+    	The arguments for boldlike() or scramble(), depending on
+    	which method is used
+
+    Returns
+    -------
+    np.ndarray
+        Fake data to test pipeline with
+
 	"""
+	
 	if not os.path.exists(fpath):
 		os.mkdir(fpath)
 	if method == 'scramble':
@@ -46,24 +57,37 @@ def generateTestR(exp, method='boldlike', fname=None,
 
 def scramble(exp, fname, fpath, chunklen=1, action='DetrendSGolay',
 			validation=None, valreps=2):
-	""" 
-	Scramble actual BOLD responses to get fake responses.
-		:parameters:
-			- exp: string. Experiment name. Used to name output files
-				or to query bold responses in the scramble method.
-			- fname : string. The name to save the NIFTI files as.
-				Default is None.
-			- fpath : string. The path where to store the resulting NIFTI files.
-			- chunklen : integer. The chunk size (in TRs) to scramble around.
-				Default is 1 TR.
-			- action : string. Which action to query the original bold responses.
-				Default is 'DetrendSGolay'
-			- validation : string. The stimulus/stimuli used to create the
-				validation responses. Default is None.
-			- valreps : integer. The number of validation responses to create.
-				Default is 2 responses.
+    """Scramble actual BOLD responses to get fake responses.
+
+    Parameters
+    ----------
+    exp : str
+        Experiment name. Used to name output files
+		or to query bold responses in the scramble method.
+    fname : str
+    	The name to save the NIFTI files as. Default is None.
+    fpath : str
+    	The path where to store the resulting NIFTI files.
+    chunklen : int
+    	The chunk size (in TRs) to scramble around. 
+    	Default is 1 TR.
+	action : str
+		Which action to query the original bold responses.
+		Default is 'DetrendSGolay'
+	validation: str
+		The stimulus/stimuli used to create the validation responses. 
+		Default is None.
+	valreps : int
+		The number of validation responses to create.
+		Default is 2 responses.
+
+    Returns
+    -------
+    np.ndarray
+        Scrambled bold responses
 
 	"""
+
 	newBRs = defaultdict(list)
 	# Create the filename to save the files as
 	if fname is None:
@@ -97,40 +121,64 @@ def scramble(exp, fname, fpath, chunklen=1, action='DetrendSGolay',
 def boldlike(exp, fname, fpath, rois=['V1'], featurematrices=None, valreps=2,
 			valind=0, subj='S1', xfms='fullhead', wts=None, rho=0.8, std=1.0,
 			ave=0.0, norm=True):
+    """Creates a response using a feature matrix from a particular stimulus. Puts activity
+        in a particular ROI of a noisy brain. 
+
+    Parameters
+    ----------
+    exp : str
+        Experiment name. Used to name output files
+		or to query bold responses in the scramble method.
+    fname : str
+    	The name to save the NIFTI files as. Default is None.
+    fpath : str
+    	The path where to store the resulting NIFTI files.
+    rois : str[]
+    	All the ROIs where the fake activity should 
+    	be happening. Default is ['V1'].
+	featurematrices : list of feature matrices 
+		The feature matrices to use when creating the fake responses 
+		(e.g feature matrix of each stimuli). Default is None.
+	valreps : int
+		The number of validation responses to create. Default 
+		is 2 responses.
+	valind : int
+		The index of the feature matrix in featurematrices 
+		that corresponds to the validation stimuli. Default 
+		is 0.
+	subj : str
+		The subject whose flatmap (in pycortex) to use.
+		Default is 'S1'
+	xfms : str
+		The pycortex transform to use. Default is 'fullhead.'
+	wts : np.ndarray
+		The weights used to construct the fake response.
+		Default is None.
+	rho : float
+		Correlation amount between the expected and actual 
+		response in the fake data. Default is 0.8.
+	std : float
+		The standard deviation of the gaussian noise in the 
+		brain outside the ROI of activity. Default is 1.0.
+	ave : float
+		The average of the gaussian noise in the brain 
+		outside the ROI of activity. Default is 0.0
+	norm : bool
+		Indicates whether or not to normalize the 
+		activity created inthe ROI. 
+
+    Returns
+    -------
+    np.ndarray, np.ndarray
+        Bold responses and weight vectors used for response
+
+	References
+    ----------
+    Source provided by Mark L; also referenced his source code 
+    for generating fake data. github.com/marklescroart/fakedata
+            
 	"""
-            Creates a response using a feature matrix from a particular stimulus. Puts activity
-            in a particular ROI of a noisy brain. 
-            Source provided by Mark L; also referenced his source code for generating fake data.
-            github.com/marklescroart/fakedata
-		:parameters:
-			- exp: string. Experiment name. Used to name output files
-				or to query bold responses in the scramble method.
-			- fname : string. The name to save the NIFTI files as.
-				Default is None.
-			- fpath : string. The path where to store the resulting NIFTI files.
-			- rois : list of strings. All the ROIs where the fake activity should be
-				happening. Default is ['V1'].
-			- featurematrices : list of feature matrices. The feature matrices to use
-				when creating the fake responses (e.g feature matrix of each stimuli).
-				Default is None.
-			- valreps : integer. The number of validation responses to create.
-				Default is 2 responses.
-			- valind : integer. The index of the feature matrix in featurematrices
-				that corresponds to the validation stimuli. Default is 0.
-			- subj : string. The subject whose flatmap (in pycortex) to use.
-				Default is 'S1'
-			- xfms : string. The pycortex transform to use. Default is 'fullhead.'
-			- wts : np.ndarray. The weights used to construct the fake response.
-				Default is None.
-			- rho : float. Correlation amount between the expected and actual response
-				in the fake data. Default is 0.8.
-			- std : float. The standard deviation of the gaussian noise in the brain outside
-				the ROI of activity. Default is 1.0.
-			- ave : flaot. The average of the gaussian noise in the brain outside the
-				ROI of activity. Default is 0.0
-			- norm : boolean. Indicates whether or not to normalize the activity created in
-				the ROI. 
-	"""
+	
 	newBRs = defaultdict(list)
 	# Create the filename
 	if fname is None:
@@ -164,12 +212,23 @@ def boldlike(exp, fname, fpath, rois=['V1'], featurematrices=None, valreps=2,
 	return newBRs, wts
 
 def scrambleHelper(BR, chunklen):
+	"""Scramble helper does the actually scrambling for scrambled fake data.
+
+    Parameters
+    ----------
+    BR : np.ndarray
+        Bold response to scramble.
+    chunklen : int
+    	The chunk size (in TRs) to scramble around. 
+    	Default is 1 TR.
+
+    Returns
+    -------
+    np.ndarray
+        Scrambled data
+
 	"""
-	Scramble helper does the actually scrambling for scrambled fake data.
-		:parameters:
-			- BR : np.ndarray. Bold response to scramble.
-			- chunklen : int. The chunk sizes to scramble
-	"""
+
 	allinds = range(BR.shape[0])
 	# Find chunk length that divides the signal evenly
 	while BR.shape[0] % chunklen != 0:
@@ -182,15 +241,26 @@ def scrambleHelper(BR, chunklen):
 	return BR[indchunks,:,:,:]
 
 def savenewBR(BRnew, fpath, fname, cnt=None):
+	"""Saves the newly created fake bold response
+
+    Parameters
+    ----------
+    BRnew : np.ndarray
+    	Fake bold data.
+	fpath : str
+		Directory to save fake data.
+	fname : str 
+		Filename to save fake data under.
+	cnt: int
+		If filenames are numbered. Default is None. 
+
+    Returns
+    -------
+    np.ndarray
+        New bold response
+
 	"""
-	Saves the newly created fake bold response.
-		:parameters:
-			- BRnew : np.ndarray. Fake bold data.
-			- fpath : string. Directory to save fake data.
-			- fname : string. Filename to save fake data under.
-			- cnt : integer. If filenames are numbered.
-				Default is None. 
-	"""
+
 	BRnewI = ni.Nifti1Image(BRnew, np.eye(4))
 	if cnt:
 		BRnewI.to_filename(os.path.join(fpath, fname.format(cnt)))
@@ -199,15 +269,27 @@ def savenewBR(BRnew, fpath, fname, cnt=None):
 	return BRnewI
 
 def addnoise(sig, std=None, use_sig=False):
+
+	"""Adds noise to a signal
+
+    Parameters
+    ----------
+    sig : np.ndarray
+    	A signal to add noise to.
+	std : float
+		Standard deviation of the gaussian noise. Default is None.
+	use_sig : bool
+		Whether or not to use the input signal's standard 
+		deviation value. Default is False.
+
+    Returns
+    -------
+    np.ndarray
+       Signal with noise
+	
 	"""
-	Adds noise to a signal.
-		:parameters:
-			- sig : np.ndarray. A signal to add noise to.
-			- std : float. Standard deviation of the gaussian noise.
-				Default is None.
-			- use_sig : boolean. Whether or not to use the input signal's
-				standard deviation value. Default is False.
-	"""
+
+
 	if std is None:
 		if use_sig:
 			std = np.std(sig, axis=0)
@@ -218,12 +300,21 @@ def addnoise(sig, std=None, use_sig=False):
 	return new
 
 def loadShuffledIMS(exp, action):
+	"""Queries and returns bold responses from docdb, after shuffling them
+
+    Parameters
+    ----------
+    exp : str
+    	Which experiment to query.
+	action : str
+		Which action to use in the query.
+
+    Returns
+    -------
+   	Array of bold responses
+
 	"""
-	Queries and returns bold responses from docdb, after shuffling them.
-		:parameters:
-			- exp : string. Which experiment to query.
-			- action : string. Which action to use in the query.
-	"""
+
 	dbi = docdb.getclient()
 	ims = dbi.query(experiment_name=exp, generated_by_name=action)
 	inds = range(len(ims))
@@ -232,12 +323,21 @@ def loadShuffledIMS(exp, action):
 	return shuffIms
 
 def retrieveMasks(subj, xfms, rois):
-	"""
-	Retrieve the ROI mask that will be used.
-		:parameters:
-			- subj : string. Which subject's pycortex surface.
-			- xfms : string. Which transforms for that subject.
-			- rois : string list. Which ROI masks to retrieve. 
+	"""Retrieve the ROI mask that will be used
+
+    Parameters
+    ----------
+    subj : str
+    	Which subject's pycortex surface.
+	xfms : str
+		Which transforms for that subject.
+	rois : list of str
+		Which ROI masks to retrieve.
+
+    Returns
+    -------
+   	ROI mask
+
 	"""
 	masks = get_roi_mask(subj, xfms, roi=rois)
 	allM = [masks[r] for r in rois]
@@ -245,19 +345,29 @@ def retrieveMasks(subj, xfms, rois):
 	return reduce(lambda x, y: x+y, allM)
 
 def createResponse(stim, nVox, wts=None, rho=0.8, norm=True):
-	"""
-	Creates a response using a feature matrix from a particular stimulus.
-		:parameters:
-			- stim : np.ndarray. Feature matrix.
-			- nVox : integer. The number of voxels the response needs
-				to be.
-			- wts : np.ndarray. The weights used to linearly combine
-				the features (i.e. columns) of stim. Default is
-				randomly generated weights.
-			- rho : float. The correlation value between expected and
-				actual signal. Default is 0.8.
-			- norm : boolean. Indicates whether or not to normalize the neural
-				activity. Default is True.
+	"""Creates a response using a feature matrix from a particular stimulus.
+
+    Parameters
+    ----------
+    stim : np.ndarray
+    	Feature matrix.
+   	nVox : int
+   		The number of voxels the response needs to be.
+	wts : np.ndarray
+		The weights used to linearly combine the features 
+		(i.e. columns) of stim. Default is randomly generated weights.
+	rho : float
+		The correlation value between expected and 
+		actual signal. Default is 0.8.
+	norm : bool
+		Indicates whether or not to normalize the neural
+		activity. Default is True.
+
+    Returns
+    -------
+   	np.ndarray, np.ndarray
+   		Response and weight
+
 	"""
 	t, nF = stim.shape[0], stim.shape[1]
 	# If no weights or wrong sized weights, randomly generate weights
@@ -277,19 +387,33 @@ def createResponse(stim, nVox, wts=None, rho=0.8, norm=True):
 	return R, wts
 
 def applyMask(sig, mask, std=1.0, ave=0.0, zdim=30, ydim=100, xdim=100):
-	"""
-	Create a full brain response.
-		:parameters:
-			- sig : np.ndarray. Neural response to go into a ROI.
-				Correlated to a weighted version of a feature matrix.
-			- mask : np.ndarray. Mask of the ROI where the signal will be going into.
-			- std : float. The standard deviation of the gaussian noise in
-				the baseline neural activity. Default is 1.0.
-			- ave : float. The average of the gaussian noise in the baseline neural
-				activity. Default is 0.0
-			- zdim : interger. Z dimension size of the BOLD activity. Default is 30.
-			- ydim : integer. Y dimension size of the BOLD activity. Default is 100.
-			- xdim : integer. X dimension size of the BOLD activity. Default is 100.
+	"""Create a full brain response.
+
+    Parameters
+    ----------
+    sig : np.ndarray
+    	Neural response to go into a ROI.
+    	Correlated to a weighted version of a feature matrix.
+ 	mask : np.ndarray
+ 		Mask of the ROI where the signal will be going into.
+	std : float
+		The standard deviation of the gaussian noise in
+		the baseline neural activity. Default is 1.0.
+	ave : float
+		The average of the gaussian noise in the baseline neural
+		activity. Default is 0.0
+	zdim : int
+		Z dimension size of the BOLD activity. Default is 30.
+	ydim : int
+		Y dimension size of the BOLD activity. Default is 100.
+	xdim : int
+		X dimension size of the BOLD activity. Default is 100.
+
+    Returns
+    -------
+   	np.ndarray
+   		Full brain response
+   		
 	"""
 	# generate a noisy brain
 	newSig = np.random.randn(sig.shape[0], zdim, ydim, xdim) * std
