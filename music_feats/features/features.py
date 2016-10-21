@@ -1,8 +1,9 @@
 from __future__ import division
 import librosa
 import numpy as np
-from music.features import extractor
-from music.features.util.utils import *
+import music_feats
+from music_feats.features import extractor
+from music_feats.utils import *
 
 __all__ = ['Features']
 
@@ -411,23 +412,23 @@ class Features(object):
         return tmp
 
     def spectralRolloff(self, n_fft=None, hop_length=None, roll_percent=0.85):
-    """ Get spectral rollof feature.
+        """ Get spectral rollof feature.
 
-    Parameters
-    ----------
-    n_fft : int 
-        The window length [samples]. For using with librosa. Default 2048 [samples].
-    hop_length : int
-        Hop length (i.e. overlap) between the frames in the time series analysis [samples].
-        Default is 1024 [samples].
-    roll_percent : float. 
-        Roll-off percentage (between 0 and 1). Default is 0.85.
+        Parameters
+        ----------
+        n_fft : int 
+            The window length [samples]. For using with librosa. Default 2048 [samples].
+        hop_length : int
+            Hop length (i.e. overlap) between the frames in the time series analysis [samples].
+            Default is 1024 [samples].
+        roll_percent : float. 
+            Roll-off percentage (between 0 and 1). Default is 0.85.
 
-    Returns
-    -------
-    tmp
+        Returns
+        -------
+        tmp
 
-    """
+        """
         if n_fft is None:
             n_fft = self.n_fft
         if hop_length is None:
@@ -443,21 +444,21 @@ class Features(object):
         return tmp
 
     def mfcc(self, n_mfcc=20, n_fft=None, hop_length=None):
-    """ Get the mel-frequency cepstral coefficients.
+        """ Get the mel-frequency cepstral coefficients.
 
-    Parameters
-    ----------
-    n_mfcc : int
-        Number of MFCCs to return.
-    n_fft : int
-        Window size in [samples].Default is self.n_fft.
-    hop_length : int
-        Overlap amount in [samples]. Default is half overlap.
+        Parameters
+        ----------
+        n_mfcc : int
+            Number of MFCCs to return.
+        n_fft : int
+            Window size in [samples].Default is self.n_fft.
+        hop_length : int
+            Overlap amount in [samples]. Default is half overlap.
 
-    Returns
-    -------
-    tmp
-    """
+        Returns
+        -------
+        tmp
+        """
 
         if n_fft is None:
             n_fft = self.n_fft
@@ -472,24 +473,24 @@ class Features(object):
         return tmp
 
     def melspectrogram(self, dB=True, n_fft=None, hop_length=None, n_mels=128):
-    """Get the melspectrogram of the audiofile
+        """Get the melspectrogram of the audiofile
 
-    Parameters
-    ----------
-    n_fft : int
-        The window length [samples]. For using with librosa. Default 2048 [samples].
-    dB : bool
-        Whether or not to output in log (dB) scale. Default is True.
-    hop_length : int
-        Hop length (i.e. overlap) between the frames in the time series analysis [samples].
-        Default is 1024 [samples].
-    n_mels : int
-        Number of mel frequency bands. Default is 128.
-    Returns
-    -------
-    tmp
+        Parameters
+        ----------
+        n_fft : int
+            The window length [samples]. For using with librosa. Default 2048 [samples].
+        dB : bool
+            Whether or not to output in log (dB) scale. Default is True.
+        hop_length : int
+            Hop length (i.e. overlap) between the frames in the time series analysis [samples].
+            Default is 1024 [samples].
+        n_mels : int
+            Number of mel frequency bands. Default is 128.
+        Returns
+        -------
+        tmp
 
-    """
+        """
 
         if n_fft is None:
             n_fft = self.n_fft
@@ -507,22 +508,22 @@ class Features(object):
         return tmp
 
     def stft(self, dB=True, n_fft=None, hop_length=None):
-    """Get the STFT of the audio file.
+        """Get the STFT of the audio file.
 
-    Parameters
-    ----------
-    dB : bool
-        Whether or not to output power spectrogram. Default is True.
-    n_fft : int
-        The window length [samples]. For using with librosa. Default 2048 [samples]. 
-    hop_length : int
-        The amount of overlap between windows in [samples]. Default is half overlap.
+        Parameters
+        ----------
+        dB : bool
+            Whether or not to output power spectrogram. Default is True.
+        n_fft : int
+            The window length [samples]. For using with librosa. Default 2048 [samples]. 
+        hop_length : int
+            The amount of overlap between windows in [samples]. Default is half overlap.
 
-    Returns
-    -------
-    tmp
-    
-    """
+        Returns
+        -------
+        tmp
+        
+        """
         if n_fft is None:
             n_fft = self.n_fft
         if hop_length is None:
@@ -538,35 +539,35 @@ class Features(object):
     
     def CQT(self, cqt_hop=None, seconds=2.0, n_bins=30, bins_per_octave=4, fmin=27.5,
         	use_han=False):
-    """Get the constant-q transform of the audio file.
+        """Get the constant-q transform of the audio file.
 
-    Parameters
-    ----------
-    cqt_hop : int
-        The hop length between adjacent frames for when extracting the cqt feature.
-    seconds : float
-        The time window to intially chunk the audio file into before
-        feeding into the librosa cqt function.
-    n_bins : int
-        The number of cqt frequency bands to extract.
-    bins_per_octave : int
-        The number of cqt frequency bands that comprise
-        an octave. The number of octaves is n_bins/float(bins_per_octave).
-    fmin : int
-        The lowest frequency in the range of frequencies covered by the constant
-        q transform.
-    use_han : bool
-        True, window each frame with a hanning window before extracting CQT.
+        Parameters
+        ----------
+        cqt_hop : int
+            The hop length between adjacent frames for when extracting the cqt feature.
+        seconds : float
+            The time window to intially chunk the audio file into before
+            feeding into the librosa cqt function.
+        n_bins : int
+            The number of cqt frequency bands to extract.
+        bins_per_octave : int
+            The number of cqt frequency bands that comprise
+            an octave. The number of octaves is n_bins/float(bins_per_octave).
+        fmin : int
+            The lowest frequency in the range of frequencies covered by the constant
+            q transform.
+        use_han : bool
+            True, window each frame with a hanning window before extracting CQT.
+            
+        Notes
+        -------
+        As of 06/22/2016, librosa's util.frame() function already applies a hanning window.
+
+        Returns
+        -------
+        tmp
         
-    Notes
-    -------
-    As of 06/22/2016, librosa's util.frame() function already applies a hanning window.
-
-    Returns
-    -------
-    tmp
-    
-    """
+        """
         # cqt hop length needs to ~1024/44100 seconds by default; varies by sampling rate
         if cqt_hop is None:
         	cqt_hop = 2**(prevPow((1024/44100)*self.sr))
@@ -583,49 +584,49 @@ class Features(object):
     def chromagram(self, stft=True, S=None, n_fft=None, hop_length=None,
                         norm=np.inf, n_octaves=7, tuning=None, seconds=4,
                         center=True, use_librosa=True, **kwargs):
-    """Get the chroma of the audio file.
+        """Get the chroma of the audio file.
 
-    Parameters
-    ----------
-    stft : bool
-        Whether to calculate chroma using the short
-        time fourier transform or constant-q. Default is True.
-    S : np.ndarray
-        Spectrogram output (to calculate from here), 
-        rather than from audiofile. Only for STFT based method.
-        Default is None.
-    n_fft : int
-        The window length [samples] of the STFT.
-        Default 2048 [samples].
-    hop_length : int
-        Hop length (i.e. overlap) between the
-        frames in the STFT analysis [samples].
-        Default is 1024 [samples].
-    norm : float or None
-        Column-wise normalization. Default is np.inf.
-    n_octaves : int
-        The number of octaves to analyze.
-        Only for constant-q method. Default is 7.
-    tuning : float
-        Deviation in cents from A440 tuning. Default is
-        None. Can be used with both methods.
-    seconds : int
-        For extractor.chromagram(). The bin size
-        for the spectrogram before calculating the chromagram.
-    center : boo
-        For extractor.chromagram(). Whether or not
-        to center the spectrogram before calculating the chromagram.
-        Default is True.
-    librosa : bool
-        Whether to use librosa's chromagram or
-        extractor's chromagram. Default is True (librosa's).
-    kwargs : the arguments for librosa.filter.chroma()
+        Parameters
+        ----------
+        stft : bool
+            Whether to calculate chroma using the short
+            time fourier transform or constant-q. Default is True.
+        S : np.ndarray
+            Spectrogram output (to calculate from here), 
+            rather than from audiofile. Only for STFT based method.
+            Default is None.
+        n_fft : int
+            The window length [samples] of the STFT.
+            Default 2048 [samples].
+        hop_length : int
+            Hop length (i.e. overlap) between the
+            frames in the STFT analysis [samples].
+            Default is 1024 [samples].
+        norm : float or None
+            Column-wise normalization. Default is np.inf.
+        n_octaves : int
+            The number of octaves to analyze.
+            Only for constant-q method. Default is 7.
+        tuning : float
+            Deviation in cents from A440 tuning. Default is
+            None. Can be used with both methods.
+        seconds : int
+            For extractor.chromagram(). The bin size
+            for the spectrogram before calculating the chromagram.
+        center : bool
+            For extractor.chromagram(). Whether or not
+            to center the spectrogram before calculating the chromagram.
+            Default is True.
+        librosa : bool
+            Whether to use librosa's chromagram or
+            extractor's chromagram. Default is True (librosa's).
+        kwargs : the arguments for librosa.filter.chroma()
 
-    Returns
-    -------
-    tmp
+        Returns
+        -------
+        tmp
 
-    """
+        """
 
         if n_fft is None:
             n_fft = self.n_fft
@@ -657,19 +658,19 @@ class Features(object):
         return chroma
 
     def tonalCentroid(self, chroma=None):
-    """Get the tonal centroid feature.
+        """Get the tonal centroid feature.
 
-    Parameters
-    ----------
-    chroma : chroma
-        Normalized energy for each chroma bin at each frameself.
-        Default is None or self.returnFeature('chroma') if it exists.
-        
-    Returns
-    -------
-    tmp
+        Parameters
+        ----------
+        chroma : chroma
+            Normalized energy for each chroma bin at each frameself.
+            Default is None or self.returnFeature('chroma') if it exists.
+            
+        Returns
+        -------
+        tmp
 
-    """
+        """
         if (chroma is None) and self.featureExists('chroma'):
             chroma = self.returnFeature('chroma')
         tmp = \
@@ -682,45 +683,45 @@ class Features(object):
 
     def tonality(self, n_fft=None, hop_length=None, profiles='gomez',
                     seconds=4, center=True, use_librosa=True, full=False):
-    """Get the chroma of the audio file.
+        """Get the chroma of the audio file.
 
-    Parameters
-    ----------
-    n_fft : int
-        The window length [samples] for calculating
-        the STFT. Default 2048 [samples].
-    hop_length : int
-        Hop length (i.e. overlap) between the
-        frames in the STFT analysis [samples].
-        Default is 1024 [samples].
-    profiles : str
-        Which key profile to use
-        Profiles available:
-        - Gomez, 2006; Krumhansl, Cognitive Foundations of Pitch;
-        Temperley The Krumhansl-Schmuckler Key-Finding Algorithm
-        Revisted; Temperley, MIREX; Wei Chai MIT PhD Thesis
-    seconds : int
-        For extractor.chromagram(). The bin size to
-        bin the spectrogram frames with before calculating the chroma.
-        Default is 4 seconds (rounded down to the nearest power of 2,
-        ~ 3 seconds)
-    center : bool
-        For extractor.chromagram(). Whether or not to
-        center the spectrogram before calculating the chromagram.
-        Default is True.
-    librosa : bool
-        Whether to use librosa.chromagram() or
-        extractor.chromagram(). Default is True.
-    full : bool
-        Whether or not to also return key strengths
-        for the entire piece vs. just the windowed/time-series analysis
-        of the audio.
-        
-    Returns
-    -------
-    tmp        
+        Parameters
+        ----------
+        n_fft : int
+            The window length [samples] for calculating
+            the STFT. Default 2048 [samples].
+        hop_length : int
+            Hop length (i.e. overlap) between the
+            frames in the STFT analysis [samples].
+            Default is 1024 [samples].
+        profiles : str
+            Which key profile to use
+            Profiles available:
+            - Gomez, 2006; Krumhansl, Cognitive Foundations of Pitch;
+            Temperley The Krumhansl-Schmuckler Key-Finding Algorithm
+            Revisted; Temperley, MIREX; Wei Chai MIT PhD Thesis
+        seconds : int
+            For extractor.chromagram(). The bin size to
+            bin the spectrogram frames with before calculating the chroma.
+            Default is 4 seconds (rounded down to the nearest power of 2,
+            ~ 3 seconds)
+        center : bool
+            For extractor.chromagram(). Whether or not to
+            center the spectrogram before calculating the chromagram.
+            Default is True.
+        librosa : bool
+            Whether to use librosa.chromagram() or
+            extractor.chromagram(). Default is True.
+        full : bool
+            Whether or not to also return key strengths
+            for the entire piece vs. just the windowed/time-series analysis
+            of the audio.
+            
+        Returns
+        -------
+        tmp        
 
-    """
+        """
         if n_fft is None:
             n_fft = self.n_fft
         if hop_length is None:
@@ -760,41 +761,41 @@ class Features(object):
     def fluctuationPatterns(self, n_fft=None, hop_length=None, mel_count=36,
                         seconds=None, band_num=12, max_freq=10, center=True,
                         padAmt=0.25, Pampalk=True, terhardt=False):
-    """Extract the fluctuation patterns feature.
+        """Extract the fluctuation patterns feature.
 
-    Parameters
-    ----------
-    n_fft : int
-        The window length for the STFT [samples].
-        For using with librosa. Default 2048 [samples].
-    hop_length : int
-        Hop length (i.e. overlap) between the
-        frames for the STFT calculation [samples].
-        Default is 2048 [samples] (i.e. no overlap).
-    mel_count : int
-        The number of mel frequency bands to
-        consider in the STFT. Default is 36.
-    seconds : int
-        The segment length for taking the second
-        FFT in calculating the fluctuation patterns. Default is TR.
-    band_num : int
-        The number of bands to merge the frequency
-        bands in the STFT into for the second FFT. Default is 12.
-    max_freq : int
-        The maximum fluctuation frequency to
-        consider. Default is 10 Hz.
-    Pampalk : bool
-        Whether or not to use Pampalk's method
-        (i.e. hardcoded gaussian values) or to use the gaussian
-        built in filter. Default is True.
-    terhardt : bool
-        Whether or not to use terhardt's perception
-        model weights. Default is False.
-        
-    Returns
-    -------
-    tmp        
-    """
+        Parameters
+        ----------
+        n_fft : int
+            The window length for the STFT [samples].
+            For using with librosa. Default 2048 [samples].
+        hop_length : int
+            Hop length (i.e. overlap) between the
+            frames for the STFT calculation [samples].
+            Default is 2048 [samples] (i.e. no overlap).
+        mel_count : int
+            The number of mel frequency bands to
+            consider in the STFT. Default is 36.
+        seconds : int
+            The segment length for taking the second
+            FFT in calculating the fluctuation patterns. Default is TR.
+        band_num : int
+            The number of bands to merge the frequency
+            bands in the STFT into for the second FFT. Default is 12.
+        max_freq : int
+            The maximum fluctuation frequency to
+            consider. Default is 10 Hz.
+        Pampalk : bool
+            Whether or not to use Pampalk's method
+            (i.e. hardcoded gaussian values) or to use the gaussian
+            built in filter. Default is True.
+        terhardt : bool
+            Whether or not to use terhardt's perception
+            model weights. Default is False.
+            
+        Returns
+        -------
+        tmp        
+        """
 
         if n_fft is None:
             n_fft = self.n_fft # Originally default was 512
@@ -822,47 +823,47 @@ class Features(object):
 
     def fluctuationFocus(self, n_fft=None, hop_length=None, mel_count=36,
                         seconds=None, band_num=12, max_freq=10, Pampalk=True,
-                        terhardt=False, decomposition=True):
-    """ Calculate the fluctuation focus of the fluction patterns of the song.
+                            terhardt=False, decomposition=True):
+        """ Calculate the fluctuation focus of the fluction patterns of the song.
 
-        Can be done with or without having called self.fluctuationPatterns()
-        first. Parameters same as self.fluctuationPatterns().
+            Can be done with or without having called self.fluctuationPatterns()
+            first. Parameters same as self.fluctuationPatterns().
 
-    Parameters
-    ----------
-    n_fft : int
-        The window length for the STFT [samples].
-        For using with librosa. Default 2048 [samples].
-    hop_length : int
-        Hop length (i.e. overlap) between the
-        frames for the STFT calculation [samples].
-        Default is 2048 [samples] (i.e. no overlap).
-    mel_count : int
-        The number of mel frequency bands to
-        consider in the STFT. Default is 36.
-    seconds : int
-        The segment length for taking the second
-        FFT in calculating the fluctuation patterns. Default is TR.
-    band_num : int
-        The number of bands to merge the frequency
-        bands in the STFT into for the second FFT. Default is 12.
-    max_freq : int
-        The maximum fluctuation frequency to
-        consider. Default is 10 Hz.
-    Pampalk : bool
-        Whether or not to use Pampalk's method
-        (i.e. hardcoded gaussian values) or to use the gaussian
-        built in filter. Default is True.
-    terhardt : bool
-        Whether or not to use terhardt's perception
-        model weights. Default is False.
-    decompositon: bool
-        
-    Returns
-    -------
-    tmp        
+        Parameters
+        ----------
+        n_fft : int
+            The window length for the STFT [samples].
+            For using with librosa. Default 2048 [samples].
+        hop_length : int
+            Hop length (i.e. overlap) between the
+            frames for the STFT calculation [samples].
+            Default is 2048 [samples] (i.e. no overlap).
+        mel_count : int
+            The number of mel frequency bands to
+            consider in the STFT. Default is 36.
+        seconds : int
+            The segment length for taking the second
+            FFT in calculating the fluctuation patterns. Default is TR.
+        band_num : int
+            The number of bands to merge the frequency
+            bands in the STFT into for the second FFT. Default is 12.
+        max_freq : int
+            The maximum fluctuation frequency to
+            consider. Default is 10 Hz.
+        Pampalk : bool
+            Whether or not to use Pampalk's method
+            (i.e. hardcoded gaussian values) or to use the gaussian
+            built in filter. Default is True.
+        terhardt : bool
+            Whether or not to use terhardt's perception
+            model weights. Default is False.
+        decompositon: bool
+            
+        Returns
+        -------
+        tmp        
 
-    """
+        """
         if n_fft is None:
             n_fft = self.n_fft # Originally default was 512
         if hop_length is None:
@@ -892,46 +893,46 @@ class Features(object):
                         hop_length=None, mel_count=36, seconds=None, band_num=12,
                         max_freq=10, Pampalk=True, terhardt=False,
                         decomposition=True):
-    """Calculate the fluctuation centroid of the fluction patterns of the song.
-        
-        Can be done with or without having called self.fluctuationPatterns()
-        first. Parameters same as self.fluctuationPatterns().
+        """Calculate the fluctuation centroid of the fluction patterns of the song.
+            
+            Can be done with or without having called self.fluctuationPatterns()
+            first. Parameters same as self.fluctuationPatterns().
 
-    Parameters
-    ----------
-    n_fft : int
-        The window length for the STFT [samples].
-        For using with librosa. Default 2048 [samples].
-    hop_length : int
-        Hop length (i.e. overlap) between the
-        frames for the STFT calculation [samples].
-        Default is 2048 [samples] (i.e. no overlap).
-    mel_count : int
-        The number of mel frequency bands to
-        consider in the STFT. Default is 36.
-    seconds : int
-        The segment length for taking the second
-        FFT in calculating the fluctuation patterns. Default is TR.
-    band_num : int
-        The number of bands to merge the frequency
-        bands in the STFT into for the second FFT. Default is 12.
-    max_freq : int
-        The maximum fluctuation frequency to
-        consider. Default is 10 Hz.
-    Pampalk : bool
-        Whether or not to use Pampalk's method
-        (i.e. hardcoded gaussian values) or to use the gaussian
-        built in filter. Default is True.
-    terhardt : bool
-        Whether or not to use terhardt's perception
-        model weights. Default is False.
-    decompositon: bool
-        
-    Returns
-    -------
-    tmp        
-        
-    """
+        Parameters
+        ----------
+        n_fft : int
+            The window length for the STFT [samples].
+            For using with librosa. Default 2048 [samples].
+        hop_length : int
+            Hop length (i.e. overlap) between the
+            frames for the STFT calculation [samples].
+            Default is 2048 [samples] (i.e. no overlap).
+        mel_count : int
+            The number of mel frequency bands to
+            consider in the STFT. Default is 36.
+        seconds : int
+            The segment length for taking the second
+            FFT in calculating the fluctuation patterns. Default is TR.
+        band_num : int
+            The number of bands to merge the frequency
+            bands in the STFT into for the second FFT. Default is 12.
+        max_freq : int
+            The maximum fluctuation frequency to
+            consider. Default is 10 Hz.
+        Pampalk : bool
+            Whether or not to use Pampalk's method
+            (i.e. hardcoded gaussian values) or to use the gaussian
+            built in filter. Default is True.
+        terhardt : bool
+            Whether or not to use terhardt's perception
+            model weights. Default is False.
+        decompositon: bool
+            
+        Returns
+        -------
+        tmp        
+            
+        """
         if n_fft is None:
             # Originally default was 512, TODO: check if accurate
             n_fft = self.n_fft
@@ -962,46 +963,46 @@ class Features(object):
                     hop_length=None, mel_count=36, seconds=None, band_num=12,
                     max_freq=10, Pampalk=True, terhardt=False,
                     decomposition=True):
-    """ Calculate the fluctuation entropy of the fluction patterns of the song.
-        
-        Can be done with or without having called self.fluctuationPatterns()
-        first. Parameters same as self.fluctuationPatterns().
+        """ Calculate the fluctuation entropy of the fluction patterns of the song.
+            
+            Can be done with or without having called self.fluctuationPatterns()
+            first. Parameters same as self.fluctuationPatterns().
 
-    Parameters
-    ----------
-    n_fft : int
-        The window length for the STFT [samples].
-        For using with librosa. Default 2048 [samples].
-    hop_length : int
-        Hop length (i.e. overlap) between the
-        frames for the STFT calculation [samples].
-        Default is 2048 [samples] (i.e. no overlap).
-    mel_count : int
-        The number of mel frequency bands to
-        consider in the STFT. Default is 36.
-    seconds : int
-        The segment length for taking the second
-        FFT in calculating the fluctuation patterns. Default is TR.
-    band_num : int
-        The number of bands to merge the frequency
-        bands in the STFT into for the second FFT. Default is 12.
-    max_freq : int
-        The maximum fluctuation frequency to
-        consider. Default is 10 Hz.
-    Pampalk : bool
-        Whether or not to use Pampalk's method
-        (i.e. hardcoded gaussian values) or to use the gaussian
-        built in filter. Default is True.
-    terhardt : bool
-        Whether or not to use terhardt's perception
-        model weights. Default is False.
-    decompositon: bool
-        
-    Returns
-    -------
-    tmp        
+        Parameters
+        ----------
+        n_fft : int
+            The window length for the STFT [samples].
+            For using with librosa. Default 2048 [samples].
+        hop_length : int
+            Hop length (i.e. overlap) between the
+            frames for the STFT calculation [samples].
+            Default is 2048 [samples] (i.e. no overlap).
+        mel_count : int
+            The number of mel frequency bands to
+            consider in the STFT. Default is 36.
+        seconds : int
+            The segment length for taking the second
+            FFT in calculating the fluctuation patterns. Default is TR.
+        band_num : int
+            The number of bands to merge the frequency
+            bands in the STFT into for the second FFT. Default is 12.
+        max_freq : int
+            The maximum fluctuation frequency to
+            consider. Default is 10 Hz.
+        Pampalk : bool
+            Whether or not to use Pampalk's method
+            (i.e. hardcoded gaussian values) or to use the gaussian
+            built in filter. Default is True.
+        terhardt : bool
+            Whether or not to use terhardt's perception
+            model weights. Default is False.
+        decompositon: bool
+            
+        Returns
+        -------
+        tmp        
 
-    """
+        """
         if n_fft is None:
             # Originally default was 512, TODO: check if accurate
             n_fft = self.n_fft
