@@ -1,7 +1,7 @@
 import numpy as np
 import cortex
-from regression_code.huth.npp import mcorr
-from music.utils.viz import separate_model_weights
+#from regression_code.huth.npp import mcorr
+from music_feats.utils.viz import separate_model_weights
 
 def STA(delRstim, zRresp, delPstims, zPresps, ndelays, modeldims):
     """Function estimates model weights using a spike-triggered average
@@ -30,7 +30,6 @@ def STA(delRstim, zRresp, delPstims, zPresps, ndelays, modeldims):
         values for each submodel
 
     """
-    
     STA_W = np.dot(delRstim.T, zRresp)
     STA_valpreds = [np.dot(delPstim, STA_W) for delPstim in delPstims]
     
