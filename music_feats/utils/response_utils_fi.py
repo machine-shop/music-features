@@ -1,11 +1,13 @@
 import os
 from collections import defaultdict
-import docdb
+#import docdb
+#Cannot pip install
 import numpy as np
 import tables
 import logging
 import hashlib
-from util import save_table_file
+#from util import save_table_file
+#cannot pip install
 import nibabel as ni
 import cortex
 # changed utils.util --> util for script to work
@@ -15,7 +17,7 @@ logger = logging.getLogger("song.util.response_utils")
 
 
 def load_response_imagedocs(experiments, fromaction="DetrendSGolay"):
-"""Loads music responses from the given [experiments]. All images generated
+    """Loads music responses from the given [experiments]. All images generated
     by the action [fromaction] will be used.
 
     Parameters
@@ -201,7 +203,7 @@ def dilate_mask(mask, ktype):
 
 
 def load_mcparams(respdict):
-"""This function loads motion correction parameter estimates for the listed
+    """This function loads motion correction parameter estimates for the listed
     images.
 
     Parameters
@@ -235,7 +237,7 @@ def load_mcparams(respdict):
 
 def load_responses(respdict, mask, cachedir="/auto/k8/loganesian/respcache/",
                    force_reload=True, multiseries="mean"):
-"""This function caches the responses in an HDF5 file and reads them if the
+    """This function caches the responses in an HDF5 file and reads them if the
     image IDs haven't changed.
 
     If there are multiple image series for a given stimulus, the images will
@@ -291,7 +293,7 @@ def load_responses(respdict, mask, cachedir="/auto/k8/loganesian/respcache/",
 
 def load_responses_test(respdict, mask, cachedir="/auto/k8/loganesian/respcache/",
                    force_reload=True, multiseries="mean"):
-"""This is a version of load_responses() from above, modified to work with
+    """This is a version of load_responses() from above, modified to work with
     fake data. Only difference is that experimentnames is omitted.
 
     Parameters
@@ -341,7 +343,7 @@ def load_responses_test(respdict, mask, cachedir="/auto/k8/loganesian/respcache/
 
 
 def _load_responses(respdict, mask, multiseries):
-"""Loads actual response data from the dictionary of lists of response image
+    """Loads actual response data from the dictionary of lists of response image
     documents, [respdict].
 
     Parameters
@@ -371,7 +373,7 @@ def _load_responses(respdict, mask, multiseries):
     return resps
 
 def selectROI(respdict, ROIS, surface, experiment, mask, multiseries="mean"):
-"""Select a particular ROI to do the regression on
+    """Select a particular ROI to do the regression on
 
     Parameters
     ----------
