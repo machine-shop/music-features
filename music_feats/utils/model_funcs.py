@@ -4,7 +4,7 @@ from regression_code.huth.npp import mcorr
 from music.utils.viz import separate_model_weights
 
 def STA(delRstim, zRresp, delPstims, zPresps, ndelays, modeldims):
-"""Function estimates model weights using a spike-triggered average
+    """Function estimates model weights using a spike-triggered average
     model. Weights are cross-validated and the results returned.
 
     Parameters
@@ -49,7 +49,7 @@ def STA(delRstim, zRresp, delPstims, zPresps, ndelays, modeldims):
     return STA_W, valcorr_STA, submodelwts_STA, np.nan_to_num(valmodelcorr_STA)
 
 def spectralCentroid(W):
-"""Function used for calculating spectral centroid of the weights. Computes the
+    """Function used for calculating spectral centroid of the weights. Computes the
     centroid of the weights (rows) for each voxel (column). Frequency approximated
     by index of the weights.
 
@@ -72,7 +72,7 @@ def spectralCentroid(W):
     return np.nan_to_num(np.sum(freq_inds * rectified_w, axis=0)/total_weights)
 
 def createVolume(data, mask, surface, xfms, vmin=None, vmax=None, factor=0.95):
-"""Helper function for creating a cortex volume for visualization.
+    """Helper function for creating a cortex volume for visualization.
 
     Parameters
     ----------
@@ -110,7 +110,7 @@ def createVolume(data, mask, surface, xfms, vmin=None, vmax=None, factor=0.95):
     return cortex.Volume(volData, surface, xfms, vmin=vmin, vmax=vmax)
 
 def averageDelays(wt, modeldims, delays=4):
-"""Compute the average weight across delays. Assumes there are wt.shape[0]/delays
+    """Compute the average weight across delays. Assumes there are wt.shape[0]/delays
     features overall (sub-models of dimension 1). Used for tonotopy analysis.
 
     Parameters
