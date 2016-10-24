@@ -310,10 +310,11 @@ from apigen import ApiDocWriter
 import music_feats
 package = 'music_feats'
 module = sys.modules[package]
-
-outdir = 'api'
+outdir = '_build'
 docwriter = ApiDocWriter(package)
 docwriter.write_api_docs(outdir)
+#('WARNING: Empty -', 'music_feats')
 docwriter.write_index(outdir, 'api', relative_to='api')
+#('outdir: ', '')
 print('%d files written' % len(docwriter.written_modules))
 
