@@ -40,17 +40,17 @@ class TRFile(object):
             self.load_from_file(trfilename)
 
     def load_from_file(self, trfilename):
-    """Loads TR data from report with given [trfilename].
-    Parameters
-    ----------
-    trfilename : str
-        Name of TR file
+        """Loads TR data from report with given [trfilename].
+        Parameters
+        ----------
+        trfilename : str
+            Name of TR file
 
-    Returns
-    -------
-    None
+        Returns
+        -------
+        None
 
-    """
+        """
         # Read the report file and populate the datastructure
         for ll in open(trfilename):
             timestr = ll.split()[0]
@@ -82,38 +82,38 @@ class TRFile(object):
             self.trtimes.insert(btr+1, ntr)
 
     def simulate(self, ntrs):
-    """Simulates [ntrs] TRs that occur at the expected TR.
-    Parameters
-    ----------
-    ntrs : ntrs
+        """Simulates [ntrs] TRs that occur at the expected TR.
+        Parameters
+        ----------
+        ntrs : ntrs
 
-    Returns
-    -------
-    np.ndarray
+        Returns
+        -------
+        np.ndarray
 
-    """
+        """
         self.trtimes = list(np.arange(ntrs)*self.expectedtr)
 
     def get_reltriggertimes(self):
-    """Returns the times of all trigger events relative to the sound.
+        """Returns the times of all trigger events relative to the sound.
 
-    Returns
-    -------
-    np.ndarray
+        Returns
+        -------
+        np.ndarray
 
-    """
+        """
         
         return np.array(self.trtimes)-self.soundstarttime
 
     @property
     def avgtr(self):
-    """Returns the average TR for this run.
+        """Returns the average TR for this run.
 
-    Returns
-    -------
-    np.ndarray
-    
-    """
+        Returns
+        -------
+        np.ndarray
+        
+        """
         return np.diff(self.trtimes).mean()
 
 # TODO need to update the root default to something relevant
