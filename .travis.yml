@@ -8,6 +8,6 @@ install:
   - "pip install -r requirements.txt"
 
 #command to run tests
-script: nosetests --exe --with-coverage --cover-package=music-features
+script: nosetests --exe --with-coverage --cover-package=music_feats
 
 sudo: required
