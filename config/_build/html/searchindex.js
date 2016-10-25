@@ -1,0 +1,1 @@
+Search.setIndex({envversion:47,filenames:["index"],objects:{},objnames:{},objtypes:{},terms:{},titles:["Music-features documentation"],titleterms:{api:[],content:0,document:0,featur:0,music:0,refer:[]}})

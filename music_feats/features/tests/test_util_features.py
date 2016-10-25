@@ -8,7 +8,6 @@ import librosa, math
 
 import os
 from os.path import join as pjoin
-
 sr = 44100
 n_fft = 2048
 
