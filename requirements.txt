@@ -2,3 +2,4 @@ numpy
 scipy
 librosa
 coverage
+pytest
