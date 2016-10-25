@@ -3,7 +3,7 @@ import math
 import librosa
 import numpy as np
 import scipy as sp
-from music.features.util.utils import *
+from music_feats.features.util.utils import *
 
 __all__ = ['rms',
            'zcr',
