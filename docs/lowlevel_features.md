@@ -11,8 +11,7 @@
 | Modulation power spectrum (MPS) | The log amplitude of the spectogram. | Theunissen and Ellie, 2014; Singh and Theunissen, 2003 | Modulation of power of spectral and temporal modulations. |
 | Root mean square energy (RMS) | The energy contained in the signal. |  Alluri et al., Neuroimage, 2012 | Relates to loudness measurements. |
 | Zero crossing rate | Number of time domain zero crossings of the signal | Alluri et al., Neuroimage, 2012 | Timbre | 
-| Spectral centroid | Center of mass of spectrum. Brightness. | Alluri et al., Neuroimage, 2012, Beauchamp J. W., Synthesis by Spectral Amplitude and
-            'Brightness' Matching of Analyzed Musical Instrument Tones, 1982 | Timbre | 
+| Spectral centroid | Center of mass of spectrum. Brightness. | Alluri et al., Neuroimage, 2012, Beauchamp J. W., Synthesis by Spectral Amplitude and Brightness Matching of Analyzed Musical Instrument Tones, 1982 | Timbre | 
 | Spectral spread |  Standard deviation of the spectrum | Alluri et al., Neuroimage, 2012 | Timbre | 
 | Spectral flatness | Wiener entropy. How noise like a signal is. | Alluri et al., Neuroimage, 2012 | Timbre | 
 | Mode | Major/Minor mode |  Alluri et al., Neuroimage, 2012 | Timbre | 
