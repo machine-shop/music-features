@@ -1,0 +1,458 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Module: features.util.utils &mdash; Music_Feats 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Music_Feats 1.0 documentation" href="../index.html" />
+    <link rel="up" title="API Reference" href="api.html" />
+    <link rel="prev" title="Module: features.tonotopyExtractor" href="music_feats.features.tonotopyExtractor.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="music_feats.features.tonotopyExtractor.html" title="Module: features.tonotopyExtractor"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API Reference</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-music_feats.features.util.utils">
+<span id="module-features-util-utils"></span><h1>Module: <code class="xref py py-mod docutils literal"><span class="pre">features.util.utils</span></code><a class="headerlink" href="#module-music_feats.features.util.utils" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.util.utils.calculateSegLen" title="music_feats.features.util.utils.calculateSegLen"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.util.utils.calculateSegLen</span></code></a>(sr,&nbsp;...)</td>
+<td>Calculates the segment length, corresponding to secondary window length.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.features.util.utils.calculateStartEnd" title="music_feats.features.util.utils.calculateStartEnd"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.util.utils.calculateStartEnd</span></code></a>(...)</td>
+<td>Functino used to calculate the start and end indices when taking chunks from a long array.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.util.utils.encodeKey" title="music_feats.features.util.utils.encodeKey"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.util.utils.encodeKey</span></code></a>(vals)</td>
+<td>Encode key values; switch from string to integer.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.features.util.utils.encodeMode" title="music_feats.features.util.utils.encodeMode"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.util.utils.encodeMode</span></code></a>(vals)</td>
+<td>Encode mode values; switch from string to integer.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.util.utils.framewise" title="music_feats.features.util.utils.framewise"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.util.utils.framewise</span></code></a>(...)</td>
+<td>Internal helper function to be used in all feature decomposition functions.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.features.util.utils.loadProfiles" title="music_feats.features.util.utils.loadProfiles"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.util.utils.loadProfiles</span></code></a>([name])</td>
+<td>Minor and Major profiles.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.util.utils.nextPow" title="music_feats.features.util.utils.nextPow"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.util.utils.nextPow</span></code></a>(x)</td>
+<td>Calculate the nearest power of two that is greater than this number.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.features.util.utils.prevPow" title="music_feats.features.util.utils.prevPow"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.util.utils.prevPow</span></code></a>(x)</td>
+<td>Calculate the nearest power of two that is less than this number.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.util.utils.TRFile" title="music_feats.features.util.utils.TRFile"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.util.utils.TRFile</span></code></a>(...)</td>
+<td><p class="rubric">Attributes</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="calculateseglen">
+<h2>calculateSegLen<a class="headerlink" href="#calculateseglen" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.util.utils.calculateSegLen">
+<code class="descclassname">music_feats.features.util.utils.</code><code class="descname">calculateSegLen</code><span class="sig-paren">(</span><em>sr</em>, <em>seconds</em>, <em>ds_rate</em>, <em>use='prev'</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.util.utils.calculateSegLen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the segment length, corresponding to secondary
+window length. Used with MPS and FP in features.py.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">parameters:</th><td class="field-body"><ul class="first last">
+<li><p class="first">sr : integer. The sampling rate used.</p>
+</li>
+<li><dl class="first docutils">
+<dt>second <span class="classifier-delimiter">:</span> <span class="classifier">float. The number of seconds the secondary</span></dt>
+<dd><p class="first last">window is supposed to be.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>ds_rate <span class="classifier-delimiter">:</span> <span class="classifier">float. The chunking used in the middle step.</span></dt>
+<dd><p class="first last">(i.e hop_length) (TBD if hop_length more accurate than
+n_fft)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>use <span class="classifier-delimiter">:</span> <span class="classifier">string. Whether or not to use either prevPow or nextPow</span></dt>
+<dd><p class="first last">in the calculations. Default is &#8216;prev&#8217;.
+Choices: &#8216;prev&#8217;, &#8216;next&#8217;, None.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="calculatestartend">
+<h2>calculateStartEnd<a class="headerlink" href="#calculatestartend" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.util.utils.calculateStartEnd">
+<code class="descclassname">music_feats.features.util.utils.</code><code class="descname">calculateStartEnd</code><span class="sig-paren">(</span><em>hop_length</em>, <em>segment_length</em>, <em>iterV=None</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.util.utils.calculateStartEnd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Functino used to calculate the start and end indices when taking
+chunks from a long array.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">parameters:</th><td class="field-body"><ul class="first last">
+<li><p class="first">hop_length : integer. The amount of overlap between frames.</p>
+</li>
+<li><p class="first">segment_length : integer. Frame length.</p>
+</li>
+<li><dl class="first docutils">
+<dt>iterV <span class="classifier-delimiter">:</span> <span class="classifier">integer. Which iteration of a for loop or which chunck</span></dt>
+<dd><p class="first last">currently on. Default is None.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="encodekey">
+<h2>encodeKey<a class="headerlink" href="#encodekey" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.util.utils.encodeKey">
+<code class="descclassname">music_feats.features.util.utils.</code><code class="descname">encodeKey</code><span class="sig-paren">(</span><em>vals</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.util.utils.encodeKey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encode key values; switch from string to integer. Used by
+feature extraction object (features.py).
+code = {&#8216;C&#8217;:0, &#8216;C#&#8217;:1, &#8216;D&#8217;:2, &#8216;D#&#8217;:3, &#8216;E&#8217;:4, &#8216;F&#8217;:5,</p>
+<blockquote>
+<div><blockquote>
+<div>&#8216;F#&#8217;:6, &#8216;G&#8217;:7, &#8216;G#&#8217;:8, &#8216;A&#8217;:9, &#8216;A#&#8217;:10, &#8216;B&#8217;:11}</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">parameters:</th><td class="field-body"><ul class="first last simple">
+<li>vals : np.ndarray. The key values to encode.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="encodemode">
+<h2>encodeMode<a class="headerlink" href="#encodemode" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.util.utils.encodeMode">
+<code class="descclassname">music_feats.features.util.utils.</code><code class="descname">encodeMode</code><span class="sig-paren">(</span><em>vals</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.util.utils.encodeMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encode mode values; switch from string to integer. Used by
+feature extraction object (features.py).
+code = {&#8216;Major&#8217;:0, &#8216;Minor&#8217;:1}</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">parameters:</th><td class="field-body"><ul class="first last simple">
+<li>vals : np.ndarray. The mode values to encode.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="framewise">
+<h2>framewise<a class="headerlink" href="#framewise" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.util.utils.framewise">
+<code class="descclassname">music_feats.features.util.utils.</code><code class="descname">framewise</code><span class="sig-paren">(</span><em>func</em>, <em>y</em>, <em>win_length</em>, <em>hop_length</em>, <em>padAmt=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.util.utils.framewise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal helper function to be used in all feature decomposition functions.
+Computes feature according to frames.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">parameters:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>func <span class="classifier-delimiter">:</span> <span class="classifier">function name. Feacture extraction function to be applied</span></dt>
+<dd><p class="first last">to each frame.</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">y : np.ndarray [shape=(n,)]. Time series to calculate the RMS of.</p>
+</li>
+<li><p class="first">win_length : integer. Length (in samples) of each frame.</p>
+</li>
+<li><p class="first">hop_length : integer. Overlapping samples between each frame</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">returns:</th><td class="field-body"><ul class="first last simple">
+<li>A numpy array with the result of function &#8216;func&#8217; applied to each
+frame.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="loadprofiles">
+<h2>loadProfiles<a class="headerlink" href="#loadprofiles" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.util.utils.loadProfiles">
+<code class="descclassname">music_feats.features.util.utils.</code><code class="descname">loadProfiles</code><span class="sig-paren">(</span><em>name='gomez'</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.util.utils.loadProfiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minor and Major profiles.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nextpow">
+<h2>nextPow<a class="headerlink" href="#nextpow" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.util.utils.nextPow">
+<code class="descclassname">music_feats.features.util.utils.</code><code class="descname">nextPow</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.util.utils.nextPow" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Calculate the nearest power of two that is greater than this number.</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">usage:</th><td class="field-body"><div class="first last highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ans</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">nextPow</span><span class="p">(</span><span class="n">flt</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="prevpow">
+<h2>prevPow<a class="headerlink" href="#prevpow" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.util.utils.prevPow">
+<code class="descclassname">music_feats.features.util.utils.</code><code class="descname">prevPow</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.util.utils.prevPow" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Calculate the nearest power of two that is less than this number.</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">usage:</th><td class="field-body"><div class="first last highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ans</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">nextPow</span><span class="p">(</span><span class="n">flt</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="trfile">
+<h2><a class="reference internal" href="#music_feats.features.util.utils.TRFile" title="music_feats.features.util.utils.TRFile"><code class="xref py py-class docutils literal"><span class="pre">TRFile</span></code></a><a class="headerlink" href="#trfile" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="music_feats.features.util.utils.TRFile">
+<em class="property">class </em><code class="descclassname">music_feats.features.util.utils.</code><code class="descname">TRFile</code><span class="sig-paren">(</span><em>trfilename</em>, <em>expectedtr=2.0045</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.util.utils.TRFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p class="rubric">Attributes</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.util.utils.TRFile.avgtr" title="music_feats.features.util.utils.TRFile.avgtr"><code class="xref py py-obj docutils literal"><span class="pre">avgtr</span></code></a></td>
+<td>Returns the average TR for this run.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.util.utils.TRFile.get_reltriggertimes" title="music_feats.features.util.utils.TRFile.get_reltriggertimes"><code class="xref py py-obj docutils literal"><span class="pre">get_reltriggertimes</span></code></a>()</td>
+<td>Returns the times of all trigger events relative to the sound.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.features.util.utils.TRFile.load_from_file" title="music_feats.features.util.utils.TRFile.load_from_file"><code class="xref py py-obj docutils literal"><span class="pre">load_from_file</span></code></a>(trfilename)</td>
+<td>Loads TR data from report with given [trfilename].</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.util.utils.TRFile.simulate" title="music_feats.features.util.utils.TRFile.simulate"><code class="xref py py-obj docutils literal"><span class="pre">simulate</span></code></a>(ntrs)</td>
+<td>Simulates [ntrs] TRs that occur at the expected TR.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="music_feats.features.util.utils.TRFile.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>trfilename</em>, <em>expectedtr=2.0045</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.util.utils.TRFile.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads data from [trfilename], should be output from stimulus
+presentation code.
+TRFile was written by FD (original source stimulus_utils_fi.py)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="music_feats.features.util.utils.TRFile.avgtr">
+<code class="descname">avgtr</code><a class="headerlink" href="#music_feats.features.util.utils.TRFile.avgtr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the average TR for this run.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="music_feats.features.util.utils.TRFile.get_reltriggertimes">
+<code class="descname">get_reltriggertimes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.util.utils.TRFile.get_reltriggertimes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the times of all trigger events relative to the sound.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="music_feats.features.util.utils.TRFile.load_from_file">
+<code class="descname">load_from_file</code><span class="sig-paren">(</span><em>trfilename</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.util.utils.TRFile.load_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads TR data from report with given [trfilename].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="music_feats.features.util.utils.TRFile.simulate">
+<code class="descname">simulate</code><span class="sig-paren">(</span><em>ntrs</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.util.utils.TRFile.simulate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulates [ntrs] TRs that occur at the expected TR.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Module: <code class="docutils literal"><span class="pre">features.util.utils</span></code></a><ul>
+<li><a class="reference internal" href="#calculateseglen">calculateSegLen</a></li>
+<li><a class="reference internal" href="#calculatestartend">calculateStartEnd</a></li>
+<li><a class="reference internal" href="#encodekey">encodeKey</a></li>
+<li><a class="reference internal" href="#encodemode">encodeMode</a></li>
+<li><a class="reference internal" href="#framewise">framewise</a></li>
+<li><a class="reference internal" href="#loadprofiles">loadProfiles</a></li>
+<li><a class="reference internal" href="#nextpow">nextPow</a></li>
+<li><a class="reference internal" href="#prevpow">prevPow</a></li>
+<li><a class="reference internal" href="#trfile"><code class="docutils literal"><span class="pre">TRFile</span></code></a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="music_feats.features.tonotopyExtractor.html"
+                        title="previous chapter">Module: <code class="docutils literal"><span class="pre">features.tonotopyExtractor</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/music_feats.features.util.utils.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="music_feats.features.tonotopyExtractor.html" title="Module: features.tonotopyExtractor"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>

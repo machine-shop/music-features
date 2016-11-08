@@ -1,0 +1,41 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+Module: :mod:`utils.model_funcs`
+================================
+.. automodule:: music_feats.utils.model_funcs
+
+.. currentmodule:: music_feats.utils.model_funcs
+.. autosummary::
+
+   music_feats.utils.model_funcs.STA
+   music_feats.utils.model_funcs.averageDelays
+   music_feats.utils.model_funcs.createVolume
+   music_feats.utils.model_funcs.separate_model_weights
+   music_feats.utils.model_funcs.spectralCentroid
+
+
+STA
+---
+
+.. autofunction:: music_feats.utils.model_funcs.STA
+
+averageDelays
+-------------
+
+.. autofunction:: music_feats.utils.model_funcs.averageDelays
+
+createVolume
+------------
+
+.. autofunction:: music_feats.utils.model_funcs.createVolume
+
+separate_model_weights
+----------------------
+
+.. autofunction:: music_feats.utils.model_funcs.separate_model_weights
+
+spectralCentroid
+----------------
+
+.. autofunction:: music_feats.utils.model_funcs.spectralCentroid
+

@@ -1,0 +1,51 @@
+No. , Filename , First note onset (SMD) , First note onset (Audacity) (L) , (R) if different , Notes 
+1  , Bach_BWV849-01_001_20090916-SMD , 2.549 , 2.615 , , 
+2  , Bach_BWV849-02_001_20090916-SMD , 0.191 , 0.255 , , 
+3  , Bach_BWV871-01_002_20090916-SMD , 0.861 , 0.914 ,  , X perturbation 
+4  , Bach_BWV871-02_002_20090916-SMD , 1.027 , 1.085 , , 
+5  , Bach_BWV875-01_002_20090916-SMD , 1.336 , 1.391 , , 
+6  , Bach_BWV875-02_002_20090916-SMD , 1.472 , 1.529 , , 
+7  , Bach_BWV888-01_008_20110315-SMD , 1.352 , 1.414 , 1.438 , Stereo recording. left first note much lower amplitude can't really hear
+8  , Bach_BWV888-02_008_20110315-SMD , 1.706 , 1.758 , , 
+9  , Bartok_SZ080-01_002_20110315-SMD , 1.143 , 1.203 , , 
+10 , Bartok_SZ080-02_002_20110315-SMD , 1.085 , 1.145 , 1.147 , Stereo right onset appears a little (very little) later 
+11 , Bartok_SZ080-03_002_20110315-SMD , 0.892 , 0.944 , , 
+12 , Beethoven_Op027No1-01_003_20090916-SMD , 1.255 , 1.310 , , 
+13 , Beethoven_Op027No1-02_003_20090916-SMD , 0.268 , 0.330 , , 
+14 , Beethoven_Op027No1-03_003_20090916-SMD , 0.312 , 0.053 , , Recording may actually begin at ~0.053; audacity shows perturbation that could be part of composition. After verifying with a professional pianist I changed the onset to 0.053.
+15 , Beethoven_Op031No2-01_002_20090916-SMD , 0.543 , 0.605 , , 
+16 , Beethoven_Op031No2-02_002_20090916-SMD , 1.875 , 1.944 , , 
+17 , Beethoven_Op031No2-03_002_20090916-SMD , 0.284 , 0.336 , , 
+18 , Beethoven_WoO080_001_20081107-SMD , 0.824 , 0.874 , , 
+19 , Brahms_Op005-01_002_20110315-SMD , 0.975 , 0.994 , 1.009 , negligible stereo effect 
+20 , Brahms_Op010No1_003_20090916-SMD , 2.150 , 2.203 , , 
+21 , Brahms_Op010No2_003_20090916-SMD , 1.552 , 1.605 , , 
+22 , Chopin_Op010-03_007_20100611-SMD , 0.927 , 0.985 , 0.980 , Stereo left onset appears a little (very little) later
+23 , Chopin_Op010-04_007_20100611-SMD , 0.261 , 0.311 , 0.312 , Stereo left onset appears a little (very little) later 
+24 , Chopin_Op026No1_003_20100611-SMD , 0.799 , 0.863 , 0.862 , Stereo left onset appears a little (very little) later 
+25 , Chopin_Op026No2_005_20100611-SMD , 1.077 , 1.137 , 1.132 , Stereo left onset appears a little (very little) later 
+26 , Chopin_Op028-01_003_20100611-SMD , 0.616 , 0.670 , 0.620 , Stereo left onset appears a little (very little) later 
+27 , Chopin_Op028-03_003_20100611-SMD , 0.444 , 0.498 , 0.497 , Stereo left onset appears a little (very little) later 
+28 , Chopin_Op028-04_003_20100611-SMD , 0.620 , 0.685 , 0.682 , Stereo left onset appears a little (very little) later 
+29 , Chopin_Op028-11_003_20100611-SMD , 0.572 , 0.623 , 0.621 , Stereo left onset appears a little (very little) later 
+30 , Chopin_Op028-15_006_20100611-SMD , 1.229 , 1.291 , 1.286 , Stereo left onset appears a little (very little) later 
+31 , Chopin_Op028-17_005_20100611-SMD , 1.045 , 1.136 , 1.110 , Stereo left onset appears a little (very little) later 
+32 , Chopin_Op029_004_20100611-SMD , 0.411 , 0.464 , 0.462 , Stereo left onset appears a little (very little) later 
+33 , Chopin_Op048No1_007_20100611-SMD , 0.742 , 0.796 , , 
+34 , Chopin_Op066_006_20100611-SMD , 1.102 , 1.150 , , 
+35 , Haydn_Hob017No4_003_20090916-SMD , 1.013 , 1.067 , , 
+36 , Haydn_HobXVINo52-01_008_20110315-SMD , 0.840 , 0.897 , 0.896 , Stereo left onset appears a little (very little) later 
+37 , Haydn_HobXVINo52-02_008_20110315-SMD , 0.896 , 0.978 , ,
+38 , Haydn_HobXVINo52-03_008_20110315-SMD , 1.182 , 1.233 , 1.234 , Stereo right onset appears a little (very little) later 
+39 , Liszt_AnnesDePelerinage-LectureDante_002_20090916-SMD , 2.227 , 2.281 , , 
+40 , Liszt_KonzertetuedeNo2LaLeggierezza_003_20090916-SMD , 1.700 , 1.769 , , 
+41 , Liszt_VariationenBachmotivWeinenKlagenSorgenZagen_001_20090916-SMD , 1.296 , 1.349 , , 
+42 , Mozart_KV265_006_20110315-SMD , 1.026 , 1.081 , , 
+43 , Mozart_KV398_002_20110315-SMD , 1.063 , 1.112 , , 
+44 , Rachmaninoff_Op036-01_007_20110315-SMD , 0.914 , 0.967 , 0.968 , Stereo right onset appears a little (very little) later 
+45 , Rachmaninoff_Op036-02_007_20110315-SMD , 1.064 , 1.116 , , 
+46 , Rachmaninoff_Op036-03_007_20110315-SMD , 1.176 , 1.229 , , Not too sure about this onset.  I think the composition starts at this time for both left/right. Yes- double-checked. Onset starts at 1.229. A tiny little earlier right.
+47 , Rachmaninov_Op039No1_002_20090916-SMD , 6.275 , 6.327 , , 
+48 , Ravel_JeuxDEau_008_20110315-SMD , 1.025 , 1.084 , , 
+49 , Ravel_ValsesNoblesEtSentimentales_003_20090916-SMD , 2.111 , 2.163 , , 
+50 , Skryabin_Op008No8_003_20090916-SMD , 0.906 , 0.958 , , 

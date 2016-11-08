@@ -1,0 +1,269 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+Module: :mod:`features.DesignMatrix`
+====================================
+.. automodule:: music_feats.features.DesignMatrix
+
+.. currentmodule:: music_feats.features.DesignMatrix
+.. autosummary::
+
+   music_feats.features.DesignMatrix.STA
+   music_feats.features.DesignMatrix.addnoise
+   music_feats.features.DesignMatrix.applyMask
+   music_feats.features.DesignMatrix.averageDelays
+   music_feats.features.DesignMatrix.boldlike
+   music_feats.features.DesignMatrix.createResponse
+   music_feats.features.DesignMatrix.createVolume
+   music_feats.features.DesignMatrix.dilate_mask
+   music_feats.features.DesignMatrix.expfun
+   music_feats.features.DesignMatrix.expinterp2D
+   music_feats.features.DesignMatrix.gabor_xfm
+   music_feats.features.DesignMatrix.gabor_xfm2D
+   music_feats.features.DesignMatrix.generateTestR
+   music_feats.features.DesignMatrix.interpdata
+   music_feats.features.DesignMatrix.lanczosfun
+   music_feats.features.DesignMatrix.lanczosinterp2D
+   music_feats.features.DesignMatrix.loadShuffledIMS
+   music_feats.features.DesignMatrix.load_mcparams
+   music_feats.features.DesignMatrix.load_response_imagedocs
+   music_feats.features.DesignMatrix.load_response_imagedocs_music_AN
+   music_feats.features.DesignMatrix.load_response_imagedocs_speech_AN
+   music_feats.features.DesignMatrix.load_response_imagedocs_test
+   music_feats.features.DesignMatrix.load_response_imagedocs_tonotopy_AN
+   music_feats.features.DesignMatrix.load_response_imagedocs_tonotopy_LO
+   music_feats.features.DesignMatrix.load_responses
+   music_feats.features.DesignMatrix.load_responses_test
+   music_feats.features.DesignMatrix.retrieveMasks
+   music_feats.features.DesignMatrix.savenewBR
+   music_feats.features.DesignMatrix.scramble
+   music_feats.features.DesignMatrix.scrambleHelper
+   music_feats.features.DesignMatrix.selectROI
+   music_feats.features.DesignMatrix.separate_model_weights
+   music_feats.features.DesignMatrix.separate_voxel_model_weights
+   music_feats.features.DesignMatrix.sincfun
+   music_feats.features.DesignMatrix.sincinterp1D
+   music_feats.features.DesignMatrix.sincinterp2D
+   music_feats.features.DesignMatrix.sincupinterp2D
+   music_feats.features.DesignMatrix.spectralCentroid
+   music_feats.features.DesignMatrix.test_interp
+
+   music_feats.features.DesignMatrix.DesignMatrix
+   music_feats.features.DesignMatrix.TRFile
+
+STA
+---
+
+.. autofunction:: music_feats.features.DesignMatrix.STA
+
+addnoise
+--------
+
+.. autofunction:: music_feats.features.DesignMatrix.addnoise
+
+applyMask
+---------
+
+.. autofunction:: music_feats.features.DesignMatrix.applyMask
+
+averageDelays
+-------------
+
+.. autofunction:: music_feats.features.DesignMatrix.averageDelays
+
+boldlike
+--------
+
+.. autofunction:: music_feats.features.DesignMatrix.boldlike
+
+createResponse
+--------------
+
+.. autofunction:: music_feats.features.DesignMatrix.createResponse
+
+createVolume
+------------
+
+.. autofunction:: music_feats.features.DesignMatrix.createVolume
+
+dilate_mask
+-----------
+
+.. autofunction:: music_feats.features.DesignMatrix.dilate_mask
+
+expfun
+------
+
+.. autofunction:: music_feats.features.DesignMatrix.expfun
+
+expinterp2D
+-----------
+
+.. autofunction:: music_feats.features.DesignMatrix.expinterp2D
+
+gabor_xfm
+---------
+
+.. autofunction:: music_feats.features.DesignMatrix.gabor_xfm
+
+gabor_xfm2D
+-----------
+
+.. autofunction:: music_feats.features.DesignMatrix.gabor_xfm2D
+
+generateTestR
+-------------
+
+.. autofunction:: music_feats.features.DesignMatrix.generateTestR
+
+interpdata
+----------
+
+.. autofunction:: music_feats.features.DesignMatrix.interpdata
+
+lanczosfun
+----------
+
+.. autofunction:: music_feats.features.DesignMatrix.lanczosfun
+
+lanczosinterp2D
+---------------
+
+.. autofunction:: music_feats.features.DesignMatrix.lanczosinterp2D
+
+loadShuffledIMS
+---------------
+
+.. autofunction:: music_feats.features.DesignMatrix.loadShuffledIMS
+
+load_mcparams
+-------------
+
+.. autofunction:: music_feats.features.DesignMatrix.load_mcparams
+
+load_response_imagedocs
+-----------------------
+
+.. autofunction:: music_feats.features.DesignMatrix.load_response_imagedocs
+
+load_response_imagedocs_music_AN
+--------------------------------
+
+.. autofunction:: music_feats.features.DesignMatrix.load_response_imagedocs_music_AN
+
+load_response_imagedocs_speech_AN
+---------------------------------
+
+.. autofunction:: music_feats.features.DesignMatrix.load_response_imagedocs_speech_AN
+
+load_response_imagedocs_test
+----------------------------
+
+.. autofunction:: music_feats.features.DesignMatrix.load_response_imagedocs_test
+
+load_response_imagedocs_tonotopy_AN
+-----------------------------------
+
+.. autofunction:: music_feats.features.DesignMatrix.load_response_imagedocs_tonotopy_AN
+
+load_response_imagedocs_tonotopy_LO
+-----------------------------------
+
+.. autofunction:: music_feats.features.DesignMatrix.load_response_imagedocs_tonotopy_LO
+
+load_responses
+--------------
+
+.. autofunction:: music_feats.features.DesignMatrix.load_responses
+
+load_responses_test
+-------------------
+
+.. autofunction:: music_feats.features.DesignMatrix.load_responses_test
+
+retrieveMasks
+-------------
+
+.. autofunction:: music_feats.features.DesignMatrix.retrieveMasks
+
+savenewBR
+---------
+
+.. autofunction:: music_feats.features.DesignMatrix.savenewBR
+
+scramble
+--------
+
+.. autofunction:: music_feats.features.DesignMatrix.scramble
+
+scrambleHelper
+--------------
+
+.. autofunction:: music_feats.features.DesignMatrix.scrambleHelper
+
+selectROI
+---------
+
+.. autofunction:: music_feats.features.DesignMatrix.selectROI
+
+separate_model_weights
+----------------------
+
+.. autofunction:: music_feats.features.DesignMatrix.separate_model_weights
+
+separate_voxel_model_weights
+----------------------------
+
+.. autofunction:: music_feats.features.DesignMatrix.separate_voxel_model_weights
+
+sincfun
+-------
+
+.. autofunction:: music_feats.features.DesignMatrix.sincfun
+
+sincinterp1D
+------------
+
+.. autofunction:: music_feats.features.DesignMatrix.sincinterp1D
+
+sincinterp2D
+------------
+
+.. autofunction:: music_feats.features.DesignMatrix.sincinterp2D
+
+sincupinterp2D
+--------------
+
+.. autofunction:: music_feats.features.DesignMatrix.sincupinterp2D
+
+spectralCentroid
+----------------
+
+.. autofunction:: music_feats.features.DesignMatrix.spectralCentroid
+
+test_interp
+-----------
+
+.. autofunction:: music_feats.features.DesignMatrix.test_interp
+
+
+:class:`DesignMatrix`
+---------------------
+
+
+.. autoclass:: DesignMatrix
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__
+
+:class:`TRFile`
+---------------
+
+
+.. autoclass:: TRFile
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__

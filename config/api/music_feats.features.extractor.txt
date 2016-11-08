@@ -1,0 +1,101 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+Module: :mod:`features.extractor`
+=================================
+.. automodule:: music_feats.features.extractor
+
+.. currentmodule:: music_feats.features.extractor
+.. autosummary::
+
+   music_feats.features.extractor.CQT
+   music_feats.features.extractor.MPS
+   music_feats.features.extractor.chromagram
+   music_feats.features.extractor.fluctuationCentroid
+   music_feats.features.extractor.fluctuationEntropy
+   music_feats.features.extractor.fluctuationFocus
+   music_feats.features.extractor.fluctuationPatterns
+   music_feats.features.extractor.rms
+   music_feats.features.extractor.spectralCentroid
+   music_feats.features.extractor.spectralFlatness
+   music_feats.features.extractor.spectralSpread
+   music_feats.features.extractor.temporalEnvelope
+   music_feats.features.extractor.temporalFlatness
+   music_feats.features.extractor.tonality
+   music_feats.features.extractor.zcr
+
+
+CQT
+---
+
+.. autofunction:: music_feats.features.extractor.CQT
+
+MPS
+---
+
+.. autofunction:: music_feats.features.extractor.MPS
+
+chromagram
+----------
+
+.. autofunction:: music_feats.features.extractor.chromagram
+
+fluctuationCentroid
+-------------------
+
+.. autofunction:: music_feats.features.extractor.fluctuationCentroid
+
+fluctuationEntropy
+------------------
+
+.. autofunction:: music_feats.features.extractor.fluctuationEntropy
+
+fluctuationFocus
+----------------
+
+.. autofunction:: music_feats.features.extractor.fluctuationFocus
+
+fluctuationPatterns
+-------------------
+
+.. autofunction:: music_feats.features.extractor.fluctuationPatterns
+
+rms
+---
+
+.. autofunction:: music_feats.features.extractor.rms
+
+spectralCentroid
+----------------
+
+.. autofunction:: music_feats.features.extractor.spectralCentroid
+
+spectralFlatness
+----------------
+
+.. autofunction:: music_feats.features.extractor.spectralFlatness
+
+spectralSpread
+--------------
+
+.. autofunction:: music_feats.features.extractor.spectralSpread
+
+temporalEnvelope
+----------------
+
+.. autofunction:: music_feats.features.extractor.temporalEnvelope
+
+temporalFlatness
+----------------
+
+.. autofunction:: music_feats.features.extractor.temporalFlatness
+
+tonality
+--------
+
+.. autofunction:: music_feats.features.extractor.tonality
+
+zcr
+---
+
+.. autofunction:: music_feats.features.extractor.zcr
+

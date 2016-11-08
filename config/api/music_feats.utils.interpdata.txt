@@ -1,0 +1,83 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+Module: :mod:`utils.interpdata`
+===============================
+.. automodule:: music_feats.utils.interpdata
+
+.. currentmodule:: music_feats.utils.interpdata
+.. autosummary::
+
+   music_feats.utils.interpdata.expfun
+   music_feats.utils.interpdata.expinterp2D
+   music_feats.utils.interpdata.gabor_xfm
+   music_feats.utils.interpdata.gabor_xfm2D
+   music_feats.utils.interpdata.interpdata
+   music_feats.utils.interpdata.lanczosfun
+   music_feats.utils.interpdata.lanczosinterp2D
+   music_feats.utils.interpdata.sincfun
+   music_feats.utils.interpdata.sincinterp1D
+   music_feats.utils.interpdata.sincinterp2D
+   music_feats.utils.interpdata.sincupinterp2D
+   music_feats.utils.interpdata.test_interp
+
+
+expfun
+------
+
+.. autofunction:: music_feats.utils.interpdata.expfun
+
+expinterp2D
+-----------
+
+.. autofunction:: music_feats.utils.interpdata.expinterp2D
+
+gabor_xfm
+---------
+
+.. autofunction:: music_feats.utils.interpdata.gabor_xfm
+
+gabor_xfm2D
+-----------
+
+.. autofunction:: music_feats.utils.interpdata.gabor_xfm2D
+
+interpdata
+----------
+
+.. autofunction:: music_feats.utils.interpdata.interpdata
+
+lanczosfun
+----------
+
+.. autofunction:: music_feats.utils.interpdata.lanczosfun
+
+lanczosinterp2D
+---------------
+
+.. autofunction:: music_feats.utils.interpdata.lanczosinterp2D
+
+sincfun
+-------
+
+.. autofunction:: music_feats.utils.interpdata.sincfun
+
+sincinterp1D
+------------
+
+.. autofunction:: music_feats.utils.interpdata.sincinterp1D
+
+sincinterp2D
+------------
+
+.. autofunction:: music_feats.utils.interpdata.sincinterp2D
+
+sincupinterp2D
+--------------
+
+.. autofunction:: music_feats.utils.interpdata.sincupinterp2D
+
+test_interp
+-----------
+
+.. autofunction:: music_feats.utils.interpdata.test_interp
+

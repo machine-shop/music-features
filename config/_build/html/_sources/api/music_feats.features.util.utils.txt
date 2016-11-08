@@ -1,0 +1,71 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+Module: :mod:`features.util.utils`
+==================================
+.. automodule:: music_feats.features.util.utils
+
+.. currentmodule:: music_feats.features.util.utils
+.. autosummary::
+
+   music_feats.features.util.utils.calculateSegLen
+   music_feats.features.util.utils.calculateStartEnd
+   music_feats.features.util.utils.encodeKey
+   music_feats.features.util.utils.encodeMode
+   music_feats.features.util.utils.framewise
+   music_feats.features.util.utils.loadProfiles
+   music_feats.features.util.utils.nextPow
+   music_feats.features.util.utils.prevPow
+
+   music_feats.features.util.utils.TRFile
+
+calculateSegLen
+---------------
+
+.. autofunction:: music_feats.features.util.utils.calculateSegLen
+
+calculateStartEnd
+-----------------
+
+.. autofunction:: music_feats.features.util.utils.calculateStartEnd
+
+encodeKey
+---------
+
+.. autofunction:: music_feats.features.util.utils.encodeKey
+
+encodeMode
+----------
+
+.. autofunction:: music_feats.features.util.utils.encodeMode
+
+framewise
+---------
+
+.. autofunction:: music_feats.features.util.utils.framewise
+
+loadProfiles
+------------
+
+.. autofunction:: music_feats.features.util.utils.loadProfiles
+
+nextPow
+-------
+
+.. autofunction:: music_feats.features.util.utils.nextPow
+
+prevPow
+-------
+
+.. autofunction:: music_feats.features.util.utils.prevPow
+
+
+:class:`TRFile`
+---------------
+
+
+.. autoclass:: TRFile
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__
