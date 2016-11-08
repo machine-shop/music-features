@@ -7,17 +7,22 @@ __all__ = ['tonotopy_labels',
 def tonotopy_labels(fname, fpath='/auto/k8/loganesian/stimuli/tonotopy/uncalibrated_wavs', numF=10):
 	"""
 	Use the labels generated when creating the tonotopy stimuli to create a binary feature matrix.
-		:parameters:
-            - fname : the name of the stimulus of which you wish to load the labels.
-			- fpath : the path where the tonotopy files are saved. 
-				Default : '/auto/k8/loganesian/stimuli/tonotopy/uncalibrated_wavs'
-			- numF : the number of tonal centers used in the tonotopy experiment.
-		:returns:
-			- data_matrix : np.ndarray. [shape=(n, numF)] Binary matrix denoting which
+    
+    Parameters
+    ----------
+    fname : the name of the stimulus of which you wish to load the labels.
+    fpath : the path where the tonotopy files are saved. 
+			Default : '/auto/k8/loganesian/stimuli/tonotopy/uncalibrated_wavs'
+	numF : the number of tonal centers used in the tonotopy experiment.Default = 10
+	
+	Returns
+    -------
+	data_matrix : np.ndarray. [shape=(n, numF)] Binary matrix denoting which
 					 	    frequency center correponds to which sample.
-			- labels : np.ndarray. [shape=(n,)] The actual labels for the sound file.
-			- freqs : np.ndarray. [shape=(numF,)] The center frequencies used for the localizer.
+	labels : np.ndarray. [shape=(n,)] The actual labels for the sound file.
+	freqs : np.ndarray. [shape=(numF,)] The center frequencies used for the localizer.
 					  Computed: np.logspace(np.log10(150), np.log10(9600), num=numF)
+
 	"""
 	full_fname = os.path.join(fpath, fname)
 	labels = np.load('{0}_Labels.npy'.format(full_fname)) # load the labels
@@ -33,12 +38,18 @@ def averageDownsample(vals, newlen=None, overlapsize=1):
         """
         Downsample feature matrix by taking a moving window overage of some overlap. Primarily used
 		with the tonotopy labels feature.
-            :parameters:
-                - vals : np.ndarray. The values to be downsampled. (size: time x feature num)
-                - newlen : integer. The new length the downsampled signal should be.
+
+		Parameters
+        ----------
+        vals : np.ndarray. 
+            The values to be downsampled. (size: time x feature num)
+        newlen : integer. 
+            The new length the downsampled signal should be.
                            Default is None, reutrning original values untouched.
-                - overlapsize: integer. The amount of overlap when computing the averages.
+        overlapsize: integer. 
+            The amount of overlap when computing the averages.
                            Default is 1.
+                           
         """
         if newlen is None:
             print 'New length value not provided, will not average and downsample...'

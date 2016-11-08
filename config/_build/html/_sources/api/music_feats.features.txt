@@ -1,0 +1,161 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+Module: :mod:`features`
+=======================
+.. automodule:: music_feats.features
+
+.. currentmodule:: music_feats.features
+.. autosummary::
+
+   music_feats.features.CQT
+   music_feats.features.MPS
+   music_feats.features.averageDownsample
+   music_feats.features.calculatebintime
+   music_feats.features.chromagram
+   music_feats.features.fluctuationCentroid
+   music_feats.features.fluctuationEntropy
+   music_feats.features.fluctuationFocus
+   music_feats.features.fluctuationPatterns
+   music_feats.features.pitchExtraction
+   music_feats.features.pitchSelectionHeuristic
+   music_feats.features.rms
+   music_feats.features.spectralCentroid
+   music_feats.features.spectralSpread
+   music_feats.features.temporalEnvelope
+   music_feats.features.temporalFlatness
+   music_feats.features.tonality
+   music_feats.features.tonotopy_labels
+   music_feats.features.zcr
+
+   music_feats.features.BinnedNote
+   music_feats.features.DesignMatrix
+   music_feats.features.Features
+
+CQT
+---
+
+.. autofunction:: music_feats.features.CQT
+
+MPS
+---
+
+.. autofunction:: music_feats.features.MPS
+
+averageDownsample
+-----------------
+
+.. autofunction:: music_feats.features.averageDownsample
+
+calculatebintime
+----------------
+
+.. autofunction:: music_feats.features.calculatebintime
+
+chromagram
+----------
+
+.. autofunction:: music_feats.features.chromagram
+
+fluctuationCentroid
+-------------------
+
+.. autofunction:: music_feats.features.fluctuationCentroid
+
+fluctuationEntropy
+------------------
+
+.. autofunction:: music_feats.features.fluctuationEntropy
+
+fluctuationFocus
+----------------
+
+.. autofunction:: music_feats.features.fluctuationFocus
+
+fluctuationPatterns
+-------------------
+
+.. autofunction:: music_feats.features.fluctuationPatterns
+
+pitchExtraction
+---------------
+
+.. autofunction:: music_feats.features.pitchExtraction
+
+pitchSelectionHeuristic
+-----------------------
+
+.. autofunction:: music_feats.features.pitchSelectionHeuristic
+
+rms
+---
+
+.. autofunction:: music_feats.features.rms
+
+spectralCentroid
+----------------
+
+.. autofunction:: music_feats.features.spectralCentroid
+
+spectralSpread
+--------------
+
+.. autofunction:: music_feats.features.spectralSpread
+
+temporalEnvelope
+----------------
+
+.. autofunction:: music_feats.features.temporalEnvelope
+
+temporalFlatness
+----------------
+
+.. autofunction:: music_feats.features.temporalFlatness
+
+tonality
+--------
+
+.. autofunction:: music_feats.features.tonality
+
+tonotopy_labels
+---------------
+
+.. autofunction:: music_feats.features.tonotopy_labels
+
+zcr
+---
+
+.. autofunction:: music_feats.features.zcr
+
+
+:class:`BinnedNote`
+-------------------
+
+
+.. autoclass:: BinnedNote
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__
+
+:class:`DesignMatrix`
+---------------------
+
+
+.. autoclass:: DesignMatrix
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__
+
+:class:`Features`
+-----------------
+
+
+.. autoclass:: Features
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__

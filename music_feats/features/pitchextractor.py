@@ -1,4 +1,9 @@
+import copy
+import os
 import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+
 import pretty_midi
 from collections import defaultdict
 
@@ -23,10 +28,16 @@ def calculatebintime(starttime, endtime, binsize):
 	"""
 	Computes the 'start time' of the bin in which a particular note needs to be placed in.
 	'Start time' is computed using the notes start and end time and the binsize to be used.
-		:paramters:
-			- starttime : float. The start time of the note.
-			- endtime : float. The end time of the note.
-			- binsize : float. The size of the bins used (in seconds).
+
+	Parameters
+    ----------
+	starttime : float
+	    The start time of the note.
+	endtime : float
+	    The end time of the note.
+	binsize : float
+	    The size of the bins used (in seconds).
+
 	"""
 	startbin = starttime//binsize * binsize
 	if endtime >= startbin + binsize:
@@ -40,12 +51,20 @@ def pitchSelectionHeuristic(timebin, factor=0.05):
 	Current heuristic: select the pitch that is the highest in the time bin OR
 	pick the second highest pitch, if its duration is greather than factor * duration of the
 	highest pitch.
-		:parameters:
-			- timebin : list. List of notes in a particular time bin.
-			- factor : float. The factor by which to multiply the duration of the highest pitch in
+
+	Parameters
+    ----------
+	timebin : list
+	    List of notes in a particular time bin.
+    factor : float
+        The factor by which to multiply the duration of the highest pitch in
 				time bin, when trying to decide between the highest and second highest pitch.
-		:returns:
-			- pitch : float. The pitch that is the representative pitch of that time bin.
+
+	Returns
+    -------
+	pitch : float
+	    The pitch that is the representative pitch of that time bin.
+
 	"""
 	if len(timebin) == 0:
 		# if empty return nothing
@@ -86,26 +105,37 @@ def pitchExtraction(midi_file, num_instruments=1, binsize=2.0, **kwargs):
 	seconds according to the note start and end times. Then a 'representative' pitch
 	for that particular bin is selected according to a pitch heursitc as defined in
 	pitchSelectionHeuristic().
-		:usage:
-			>>> # Extract pitches of some midifile
-			>>> pitches = pitchExtraction('sample.mid', num_instruments=1, binsize=2.0, factor=0.05)
 			
-		:parameters:
-			- midi_file : string. The midi file from which to extract the pitches.
-			- num_instrument : integer. The number of instruments in this midi file.
-				Default: 1 instrument. WARNING: currently, as implemented, function ONLY
-				works for 1 instrument.
-			- binsize : float. The size of the time bins to be used when binning the notes
+	Parameters
+    ----------
+	midi_file : string
+	    The midi file from which to extract the pitches.
+	num_instrument : integer
+	    The number of instruments in this midi file.	
+	instrument : integer. 
+	    Default = 1. WARNING: currently, as implemented, function ONLY works for 1 instrument.
+	binsize : float
+	    Default = 2.0. The size of the time bins to be used when binning the notes
 				together.
-			- **kwargs : arguments to be used by pitchSelectionHeuristic().
+	**kwargs : list
+	    arguments to be used by pitchSelectionHeuristic().
 
-		:returns:
-			- extractedPitches : np.ndarray [shape=(1,n)] of 'representative' pitches for every
+	Returns
+    -------
+	extractedPitches 
+	    np.ndarray [shape=(1,n)] of 'representative' pitches for every
 				binsize time units.
+
+	Examples
+    --------
+	>>> # Extract pitches of some midifile
+	>>> pitches = pitchExtraction('sample.mid', 
+		            num_instruments=1, binsize=2.0, factor=0.05)
+
 	"""
 	if num_instruments > 1:
-		print "Function hasn't been designed to work with more\
-		       than one instrument; quiting now"
+		print ("Function hasn't been designed to work with more\
+		       than one instrument; quiting now")
 		return 
 	
 	midi_data = pretty_midi.PrettyMIDI(midi_file)

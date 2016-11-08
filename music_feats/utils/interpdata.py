@@ -2,10 +2,42 @@ import numpy as np
 import logging
 
 logger = logging.getLogger("text.regression.interpdata")
+__all__ = ['interpdata',
+            'sincinterp1D',
+            'sincinterp2D',
+            'lanczosinterp2D',
+            'sincupinterp2D',
+            'sincfun',
+            'lanczosfun',
+            'expinterp2D',
+            'expfun',
+            'gabor_xfm',
+            'gabor_xfm2D',
+            'test_interp'          
+            ]
+
 
 def interpdata(data, oldtime, newtime):
-    """Interpolates the columns of [data] to find the values at [newtime], given that the current
-    values are at [oldtime].  [oldtime] must have the same number of elements as [data] has rows.
+    """Interpolates the columns of [data] to find the values at [newtime], 
+    given that the current values are at [oldtime].  
+
+    [oldtime] must have 
+    the same number of elements as [data] has rows.
+
+    Parameters
+    ----------
+    data : np.ndarray
+        data
+    oldtime : oldtime
+        oldtime
+    newtime : newtime
+        newtime
+
+    Returns
+    -------
+    np.ndarray
+        Interpolted data
+
     """
     ## Check input sizes ##
     if not len(oldtime) == data.shape[0]:
@@ -25,8 +57,9 @@ def interpdata(data, oldtime, newtime):
     return newdata
 
 def sincinterp1D(data, oldtime, newtime, cutoff_mult=1.0, window=1):
-    """Interpolates the one-dimensional signal [data] at the times given by [newtime], assuming
-    that each sample in [data] was collected at the corresponding time in [oldtime]. Clearly,
+    """Interpolates the one-dimensional signal [data] at the times given by [newtime]. 
+
+    Assumes that each sample in [data] was collected at the corresponding time in [oldtime]. Clearly,
     [oldtime] and [data] must have the same length, but [newtime] can have any length.
     
     This function will assume that the time points in [newtime] are evenly spaced and will use
@@ -39,6 +72,27 @@ def sincinterp1D(data, oldtime, newtime, cutoff_mult=1.0, window=1):
     length of [oldtime] and M is the length of [newtime].
     
     This filter is non-causal.
+
+    [oldtime] must have 
+    the same number of elements as [data] has rows.
+
+    Parameters
+    ----------
+    data : np.ndarray
+        data
+    oldtime : oldtime
+        oldtime
+    newtime : newtime
+        newtime
+    cutoff_mult : float
+        cutoff_mult
+    window : int
+
+    Returns
+    -------
+    np.ndarray
+        Interpolted data
+
     """
     ## Find the cutoff frequency ##
     cutoff = 1/np.mean(np.diff(newtime)) * cutoff_mult
@@ -61,6 +115,24 @@ def sincinterp2D(data, oldtime, newtime, cutoff_mult=1.0, window=1, causal=False
     be used to calculate the low-pass cutoff of the sinc interpolation filter.
     
     [window] lobes of the sinc function will be used.  [window] should be an integer.
+
+    Parameters
+    ----------
+    data : np.ndarray
+    oldtime : oldtime
+    newtime : new time
+    cutoff_multi : int
+        Cutoff frequency. Default at 1
+    window : int
+        Lowest order lobe of the sinc function.
+    casual : bool  
+    renorm : bool
+
+    Returns
+    -------
+    np.ndarray
+        new matrix
+
     """
     ## Find the cutoff frequency ##
     cutoff = 1/np.mean(np.diff(newtime)) * cutoff_mult
@@ -86,11 +158,28 @@ def lanczosinterp2D(data, oldtime, newtime, window=3, cutoff_mult=1.0, rectify=F
     """Interpolates the columns of [data], assuming that the i'th row of data corresponds to
     oldtime(i). A new matrix with the same number of columns and a number of rows given
     by the length of [newtime] is returned.
-    
+
     The time points in [newtime] are assumed to be evenly spaced, and their frequency will
     be used to calculate the low-pass cutoff of the interpolation filter.
     
     [window] lobes of the sinc function will be used. [window] should be an integer.
+
+    Parameters
+    ----------
+    data : np.ndarray
+    oldtime : oldtime
+    newtime : new time
+    window : int
+        Lowest order lobe of the sinc function.
+    cutoff_multi : int
+        Cutoff frequency. Default at 1
+    rectify : bool  
+
+    Returns
+    -------
+    np.ndarray
+        new matrix
+        
     """
     ## Find the cutoff frequency ##
     cutoff = 1/np.mean(np.diff(newtime)) * cutoff_mult
@@ -119,7 +208,23 @@ def sincupinterp2D(data, oldtime, newtimes, cutoff, window=1):
     will be used to calculate the low-pass cutoff of the sinc interpolation filter.
 
     [window] lobes of the sinc function will be used.  [window] should be an integer.
-    Setting [window] to 1 yields a Lanczos filter.
+    Setting [window] to 1 yields a Lanczos filter
+
+    Parameters
+    ----------
+    data : np.ndarray
+    oldtime : oldtime
+    newtime : new time
+    cutoff : int
+        Cutoff frequency
+    window : int
+        Lowest order lobe of the sinc function.
+
+    Returns
+    -------
+    np.ndarray
+        new matrix
+
     """
     #cutoff = 1/np.mean(np.diff(oldtime))
     print "Doing sinc interpolation with cutoff=%0.3f and %d lobes."%(cutoff, window)
@@ -133,10 +238,28 @@ def sincupinterp2D(data, oldtime, newtimes, cutoff, window=1):
 
 def sincfun(B, t, window=np.inf, causal=False, renorm=True):
     """Compute the sinc function with some cutoff frequency [B] at some time [t].
-    [t] can be a scalar or any shaped numpy array.
+    [t] can be a scalar or any shaped numpy array. 
+    
     If given a [window], only the lowest-order [window] lobes of the sinc function
     will be non-zero.
-    If [causal], only past values (i.e. t<0) will have non-zero weights.
+
+    Parameters
+    ----------
+    B : int
+        Cutoff frequency
+    t : t
+        time
+    window : int
+        Lowest order lobe of the sinc function.
+    casual : bool
+        True if past values have non-zero weights. Default is False
+    renorm : bool
+
+    Returns
+    -------
+    float
+        sinc function value
+
     """
     val = 2*B*np.sin(2*np.pi*B*t)/(2*np.pi*B*t+1e-20)
     if t.shape:
@@ -156,6 +279,21 @@ def lanczosfun(cutoff, t, window=3):
     [t] can be a scalar or any shaped numpy array.
     If given a [window], only the lowest-order [window] lobes of the sinc function
     will be non-zero.
+
+    Parameters
+    ----------
+    cutoff : int
+        Cutoff frequency
+    t : t
+        time
+    window : int
+        Lowest order lobe of the sinc function. Default at 3
+
+    Returns
+    -------
+    float
+        lanczos function value
+
     """
     t = t * cutoff
     val = window * np.sin(np.pi*t) * np.sin(np.pi*t/window) / (np.pi**2 * t**2)
@@ -174,6 +312,17 @@ def expinterp2D(data, oldtime, newtime, theta):
 
 def expfun(theta, t):
     """Computes an exponential weighting function for interpolation.
+
+    Parameters
+    ----------
+    theta : theta
+    t : t
+
+    Returns
+    -------
+    float
+        val
+
     """
     val = np.exp(-t*theta)
     val[t<0] = 0.0
@@ -182,6 +331,27 @@ def expfun(theta, t):
     return val
 
 def gabor_xfm(data, oldtimes, newtimes, freqs, sigma):
+    """Insert description here
+
+    Parameters
+    ----------
+    data : np.ndarray
+        data
+    oldtime : oldtime
+        oldtime
+    newtime : newtime
+        newtime
+    freqs : freqs
+        freqs
+    sigma : sigma
+        sigma
+
+    Returns
+    -------
+    np.ndarray
+        np.ndarray
+
+    """
     sinvals = np.vstack([np.sin(oldtimes*f*2*np.pi) for f in freqs])
     cosvals = np.vstack([np.cos(oldtimes*f*2*np.pi) for f in freqs])
     outvals = np.zeros((len(newtimes), len(freqs)), dtype=np.complex128)
@@ -197,11 +367,41 @@ def gabor_xfm(data, oldtimes, newtimes, freqs, sigma):
     return outvals
 
 def gabor_xfm2D(ddata, oldtimes, newtimes, freqs, sigma):
+    """Insert description here
+
+    Parameters
+    ----------
+    data : np.ndarray
+        data
+    oldtime : oldtime
+        oldtime
+    newtime : newtime
+        newtime
+    freqs : freqs
+        freqs
+    sigma : sigma
+        sigma
+
+    Returns
+    -------
+    np.ndarray
+        np.ndarray
+
+    """
     return np.vstack([gabor_xfm(d, oldtimes, newtimes, freqs, sigma).T for d in ddata])
 
 def test_interp(**kwargs):
     """Tests sincinterp2D passing it the given [kwargs] and interpolating known signals 
-    between the two time domains.
+    between the two time domains
+
+    Parameters
+    ----------
+    kwargs : kwargs
+
+    Returns
+    -------
+    newtime, interpdata
+        newtime, interpdata
     """
     oldtime = np.linspace(0, 10, 100)
     newtime = np.linspace(0, 10, 49)

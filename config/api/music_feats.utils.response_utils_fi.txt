@@ -1,0 +1,77 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+Module: :mod:`utils.response_utils_fi`
+======================================
+.. automodule:: music_feats.utils.response_utils_fi
+
+.. currentmodule:: music_feats.utils.response_utils_fi
+.. autosummary::
+
+   music_feats.utils.response_utils_fi.dilate_mask
+   music_feats.utils.response_utils_fi.load_mcparams
+   music_feats.utils.response_utils_fi.load_response_imagedocs
+   music_feats.utils.response_utils_fi.load_response_imagedocs_music_AN
+   music_feats.utils.response_utils_fi.load_response_imagedocs_speech_AN
+   music_feats.utils.response_utils_fi.load_response_imagedocs_test
+   music_feats.utils.response_utils_fi.load_response_imagedocs_tonotopy_AN
+   music_feats.utils.response_utils_fi.load_response_imagedocs_tonotopy_LO
+   music_feats.utils.response_utils_fi.load_responses
+   music_feats.utils.response_utils_fi.load_responses_test
+   music_feats.utils.response_utils_fi.selectROI
+
+
+dilate_mask
+-----------
+
+.. autofunction:: music_feats.utils.response_utils_fi.dilate_mask
+
+load_mcparams
+-------------
+
+.. autofunction:: music_feats.utils.response_utils_fi.load_mcparams
+
+load_response_imagedocs
+-----------------------
+
+.. autofunction:: music_feats.utils.response_utils_fi.load_response_imagedocs
+
+load_response_imagedocs_music_AN
+--------------------------------
+
+.. autofunction:: music_feats.utils.response_utils_fi.load_response_imagedocs_music_AN
+
+load_response_imagedocs_speech_AN
+---------------------------------
+
+.. autofunction:: music_feats.utils.response_utils_fi.load_response_imagedocs_speech_AN
+
+load_response_imagedocs_test
+----------------------------
+
+.. autofunction:: music_feats.utils.response_utils_fi.load_response_imagedocs_test
+
+load_response_imagedocs_tonotopy_AN
+-----------------------------------
+
+.. autofunction:: music_feats.utils.response_utils_fi.load_response_imagedocs_tonotopy_AN
+
+load_response_imagedocs_tonotopy_LO
+-----------------------------------
+
+.. autofunction:: music_feats.utils.response_utils_fi.load_response_imagedocs_tonotopy_LO
+
+load_responses
+--------------
+
+.. autofunction:: music_feats.utils.response_utils_fi.load_responses
+
+load_responses_test
+-------------------
+
+.. autofunction:: music_feats.utils.response_utils_fi.load_responses_test
+
+selectROI
+---------
+
+.. autofunction:: music_feats.utils.response_utils_fi.selectROI
+

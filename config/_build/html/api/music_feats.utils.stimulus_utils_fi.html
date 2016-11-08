@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Module: utils.stimulus_utils_fi &mdash; Music_Feats 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Music_Feats 1.0 documentation" href="../index.html" />
+    <link rel="up" title="API Reference" href="api.html" />
+    <link rel="next" title="Module: utils.viz" href="music_feats.utils.viz.html" />
+    <link rel="prev" title="Module: utils.response_utils_fi" href="music_feats.utils.response_utils_fi.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.viz.html" title="Module: utils.viz"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.response_utils_fi.html" title="Module: utils.response_utils_fi"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API Reference</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-music_feats.utils.stimulus_utils_fi">
+<span id="module-utils-stimulus-utils-fi"></span><h1>Module: <code class="xref py py-mod docutils literal"><span class="pre">utils.stimulus_utils_fi</span></code><a class="headerlink" href="#module-music_feats.utils.stimulus_utils_fi" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.stimulus_utils_fi.load_generic_trfiles" title="music_feats.utils.stimulus_utils_fi.load_generic_trfiles"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.stimulus_utils_fi.load_generic_trfiles</span></code></a>(...)</td>
+<td>Loads a dictionary of generic TRFiles (i.e.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.stimulus_utils_fi.load_generic_trfiles_fi" title="music_feats.utils.stimulus_utils_fi.load_generic_trfiles_fi"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.stimulus_utils_fi.load_generic_trfiles_fi</span></code></a>(...)</td>
+<td>Loads a dictionary of generic TRFiles (i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.stimulus_utils_fi.load_trfiles" title="music_feats.utils.stimulus_utils_fi.load_trfiles"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.stimulus_utils_fi.load_trfiles</span></code></a>(...)</td>
+<td>Loads a dictionary of TRFiles for the given responses</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.stimulus_utils_fi.TRFile" title="music_feats.utils.stimulus_utils_fi.TRFile"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.stimulus_utils_fi.TRFile</span></code></a>(...)</td>
+<td>Loads data from [trfilename], should be output from stimulus presentation code.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="load-generic-trfiles">
+<h2>load_generic_trfiles<a class="headerlink" href="#load-generic-trfiles" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.stimulus_utils_fi.load_generic_trfiles">
+<code class="descclassname">music_feats.utils.stimulus_utils_fi.</code><code class="descname">load_generic_trfiles</code><span class="sig-paren">(</span><em>respdict</em>, <em>root='/auto/k1/huth/text/story/stimreports/generic'</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.stimulus_utils_fi.load_generic_trfiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a dictionary of generic TRFiles (i.e. not specifically from the
+session in which the data was collected.. this should be fine) for the
+given responses</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>respdict</strong> : dict</p>
+<blockquote>
+<div><p>Response dictionary</p>
+</div></blockquote>
+<p><strong>root</strong> : &#8220;str&#8221;</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-generic-trfiles-fi">
+<h2>load_generic_trfiles_fi<a class="headerlink" href="#load-generic-trfiles-fi" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.stimulus_utils_fi.load_generic_trfiles_fi">
+<code class="descclassname">music_feats.utils.stimulus_utils_fi.</code><code class="descname">load_generic_trfiles_fi</code><span class="sig-paren">(</span><em>stimuli</em>, <em>subject</em>, <em>root='data/trfiles'</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.stimulus_utils_fi.load_generic_trfiles_fi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a dictionary of generic TRFiles (i.e. not specifically from the
+session in which the data was collected.. this should be fine) for the
+given stimuli.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>respdict</strong> : dict</p>
+<blockquote>
+<div><p>Response dictionary</p>
+</div></blockquote>
+<p><strong>subject</strong> : subject</p>
+<p><strong>root</strong> : &#8220;str&#8221;</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-trfiles">
+<h2>load_trfiles<a class="headerlink" href="#load-trfiles" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.stimulus_utils_fi.load_trfiles">
+<code class="descclassname">music_feats.utils.stimulus_utils_fi.</code><code class="descname">load_trfiles</code><span class="sig-paren">(</span><em>respdict</em>, <em>root='/auto/data/archive/mri/stimreports/'</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.stimulus_utils_fi.load_trfiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a dictionary of TRFiles for the given responses
+Parameters
+&#8212;&#8212;&#8212;-
+respdict : dict</p>
+<blockquote>
+<div>Response dictionary</div></blockquote>
+<p>root : &#8220;str&#8221;</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="trfile">
+<h2><a class="reference internal" href="#music_feats.utils.stimulus_utils_fi.TRFile" title="music_feats.utils.stimulus_utils_fi.TRFile"><code class="xref py py-class docutils literal"><span class="pre">TRFile</span></code></a><a class="headerlink" href="#trfile" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="music_feats.utils.stimulus_utils_fi.TRFile">
+<em class="property">class </em><code class="descclassname">music_feats.utils.stimulus_utils_fi.</code><code class="descname">TRFile</code><span class="sig-paren">(</span><em>trfilename</em>, <em>expectedtr=2.0045</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.stimulus_utils_fi.TRFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Loads data from [trfilename], should be output from stimulus
+presentation code.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="46%" />
+<col width="54%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>trtimes</td>
+<td>(trtimes)</td>
+</tr>
+<tr class="row-even"><td>soundstartime</td>
+<td>(soundstartime)</td>
+</tr>
+<tr class="row-odd"><td>soundstoptime</td>
+<td>(soundstoptime)</td>
+</tr>
+<tr class="row-even"><td>otherlabels</td>
+<td>(otherlabels)</td>
+</tr>
+<tr class="row-odd"><td>expectedtr</td>
+<td>(expectedtr)</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>load_from_file(trfilename)</td>
+<td>Loads TR data from report with given [trfilename].</td>
+</tr>
+<tr class="row-even"><td>stimulate(ntrs)</td>
+<td>Simulates [ntrs] TRs that occur at the expected TR.</td>
+</tr>
+<tr class="row-odd"><td>get_reltriggertimes()</td>
+<td>Returns the times of all trigger events relative to the sound.</td>
+</tr>
+<tr class="row-even"><td>avgtr()</td>
+<td>Returns the average TR for this run.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="music_feats.utils.stimulus_utils_fi.TRFile.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>trfilename</em>, <em>expectedtr=2.0045</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.stimulus_utils_fi.TRFile.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="music_feats.utils.stimulus_utils_fi.TRFile.avgtr">
+<code class="descname">avgtr</code><a class="headerlink" href="#music_feats.utils.stimulus_utils_fi.TRFile.avgtr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the average TR for this run.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="music_feats.utils.stimulus_utils_fi.TRFile.get_reltriggertimes">
+<code class="descname">get_reltriggertimes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.stimulus_utils_fi.TRFile.get_reltriggertimes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the times of all trigger events relative to the sound.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="music_feats.utils.stimulus_utils_fi.TRFile.load_from_file">
+<code class="descname">load_from_file</code><span class="sig-paren">(</span><em>trfilename</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.stimulus_utils_fi.TRFile.load_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads TR data from report with given [trfilename].
+Parameters
+&#8212;&#8212;&#8212;-
+trfilename : str</p>
+<blockquote>
+<div>Name of TR file</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="music_feats.utils.stimulus_utils_fi.TRFile.simulate">
+<code class="descname">simulate</code><span class="sig-paren">(</span><em>ntrs</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.stimulus_utils_fi.TRFile.simulate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulates [ntrs] TRs that occur at the expected TR.
+Parameters
+&#8212;&#8212;&#8212;-
+ntrs : ntrs</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Module: <code class="docutils literal"><span class="pre">utils.stimulus_utils_fi</span></code></a><ul>
+<li><a class="reference internal" href="#load-generic-trfiles">load_generic_trfiles</a></li>
+<li><a class="reference internal" href="#load-generic-trfiles-fi">load_generic_trfiles_fi</a></li>
+<li><a class="reference internal" href="#load-trfiles">load_trfiles</a></li>
+<li><a class="reference internal" href="#trfile"><code class="docutils literal"><span class="pre">TRFile</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="music_feats.utils.response_utils_fi.html"
+                        title="previous chapter">Module: <code class="docutils literal"><span class="pre">utils.response_utils_fi</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="music_feats.utils.viz.html"
+                        title="next chapter">Module: <code class="docutils literal"><span class="pre">utils.viz</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/music_feats.utils.stimulus_utils_fi.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.viz.html" title="Module: utils.viz"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.response_utils_fi.html" title="Module: utils.response_utils_fi"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

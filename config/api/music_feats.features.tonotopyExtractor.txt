@@ -1,0 +1,23 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+Module: :mod:`features.tonotopyExtractor`
+=========================================
+.. automodule:: music_feats.features.tonotopyExtractor
+
+.. currentmodule:: music_feats.features.tonotopyExtractor
+.. autosummary::
+
+   music_feats.features.tonotopyExtractor.averageDownsample
+   music_feats.features.tonotopyExtractor.tonotopy_labels
+
+
+averageDownsample
+-----------------
+
+.. autofunction:: music_feats.features.tonotopyExtractor.averageDownsample
+
+tonotopy_labels
+---------------
+
+.. autofunction:: music_feats.features.tonotopyExtractor.tonotopy_labels
+

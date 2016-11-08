@@ -1,0 +1,462 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Module: utils.response_utils_fi &mdash; Music_Feats 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Music_Feats 1.0 documentation" href="../index.html" />
+    <link rel="up" title="API Reference" href="api.html" />
+    <link rel="next" title="Module: utils.stimulus_utils_fi" href="music_feats.utils.stimulus_utils_fi.html" />
+    <link rel="prev" title="Module: utils.model_funcs" href="music_feats.utils.model_funcs.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.stimulus_utils_fi.html" title="Module: utils.stimulus_utils_fi"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.model_funcs.html" title="Module: utils.model_funcs"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API Reference</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-music_feats.utils.response_utils_fi">
+<span id="module-utils-response-utils-fi"></span><h1>Module: <code class="xref py py-mod docutils literal"><span class="pre">utils.response_utils_fi</span></code><a class="headerlink" href="#module-music_feats.utils.response_utils_fi" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.response_utils_fi.dilate_mask" title="music_feats.utils.response_utils_fi.dilate_mask"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.response_utils_fi.dilate_mask</span></code></a>(...)</td>
+<td>Dilates the given binary [mask] with the specified type of [kernel], which should be an integer [1, 2, 3] that is passed as the connectivity argument to scipy.ndimage.morphology.generate_binary_structure.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.response_utils_fi.load_mcparams" title="music_feats.utils.response_utils_fi.load_mcparams"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.response_utils_fi.load_mcparams</span></code></a>(...)</td>
+<td>This function loads motion correction parameter estimates for the listed images.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.response_utils_fi.load_response_imagedocs" title="music_feats.utils.response_utils_fi.load_response_imagedocs"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.response_utils_fi.load_response_imagedocs</span></code></a>(...)</td>
+<td>Loads music responses from the given [experiments].</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.response_utils_fi.load_response_imagedocs_music_AN" title="music_feats.utils.response_utils_fi.load_response_imagedocs_music_AN"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.response_utils_fi.load_response_imagedocs_music_AN</span></code></a>([...])</td>
+<td>Loads response images for AN.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.response_utils_fi.load_response_imagedocs_speech_AN" title="music_feats.utils.response_utils_fi.load_response_imagedocs_speech_AN"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.response_utils_fi.load_response_imagedocs_speech_AN</span></code></a>([...])</td>
+<td>Loads response images for AN.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.response_utils_fi.load_response_imagedocs_test" title="music_feats.utils.response_utils_fi.load_response_imagedocs_test"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.response_utils_fi.load_response_imagedocs_test</span></code></a>(...)</td>
+<td>Loads the fake data for testing pipeline.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.response_utils_fi.load_response_imagedocs_tonotopy_AN" title="music_feats.utils.response_utils_fi.load_response_imagedocs_tonotopy_AN"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.response_utils_fi.load_response_imagedocs_tonotopy_AN</span></code></a>([...])</td>
+<td>Loads response images for AN.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.response_utils_fi.load_response_imagedocs_tonotopy_LO" title="music_feats.utils.response_utils_fi.load_response_imagedocs_tonotopy_LO"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.response_utils_fi.load_response_imagedocs_tonotopy_LO</span></code></a>([...])</td>
+<td>Loads response images for LO</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.response_utils_fi.load_responses" title="music_feats.utils.response_utils_fi.load_responses"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.response_utils_fi.load_responses</span></code></a>(...)</td>
+<td>This function caches the responses in an HDF5 file and reads them if the image IDs haven&#8217;t changed.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.response_utils_fi.load_responses_test" title="music_feats.utils.response_utils_fi.load_responses_test"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.response_utils_fi.load_responses_test</span></code></a>(...)</td>
+<td>This is a version of load_responses() from above, modified to work with fake data.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.response_utils_fi.selectROI" title="music_feats.utils.response_utils_fi.selectROI"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.response_utils_fi.selectROI</span></code></a>(...)</td>
+<td>Select a particular ROI to do the regression on</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="dilate-mask">
+<h2>dilate_mask<a class="headerlink" href="#dilate-mask" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.response_utils_fi.dilate_mask">
+<code class="descclassname">music_feats.utils.response_utils_fi.</code><code class="descname">dilate_mask</code><span class="sig-paren">(</span><em>mask</em>, <em>ktype</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.response_utils_fi.dilate_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dilates the given binary [mask] with the specified type of [kernel],
+which should be an integer [1, 2, 3] that is passed as the connectivity
+argument to scipy.ndimage.morphology.generate_binary_structure.</p>
+<p>See the docs of that function for details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>mask</strong> : mask</p>
+<p><strong>kytpe</strong> : ktype</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">returntype</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-mcparams">
+<h2>load_mcparams<a class="headerlink" href="#load-mcparams" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.response_utils_fi.load_mcparams">
+<code class="descclassname">music_feats.utils.response_utils_fi.</code><code class="descname">load_mcparams</code><span class="sig-paren">(</span><em>respdict</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.response_utils_fi.load_mcparams" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function loads motion correction parameter estimates for the listed
+images.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>respdict</strong> : dict</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-response-imagedocs">
+<h2>load_response_imagedocs<a class="headerlink" href="#load-response-imagedocs" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.response_utils_fi.load_response_imagedocs">
+<code class="descclassname">music_feats.utils.response_utils_fi.</code><code class="descname">load_response_imagedocs</code><span class="sig-paren">(</span><em>experiments</em>, <em>fromaction='DetrendSGolay'</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.response_utils_fi.load_response_imagedocs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads music responses from the given [experiments]. All images generated
+by the action [fromaction] will be used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>experiments</strong> : experiments</p>
+<blockquote>
+<div><p>Experiment name. Used to name output files
+or to query bold responses in the scramble method.</p>
+</div></blockquote>
+<p><strong>fromaction</strong> : str</p>
+<blockquote>
+<div><p>Action that will be used. Defaulted at &#8220;DetrendGolay&#8221;</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
+<blockquote class="last">
+<div><p>dictionary of (song name : list of responses)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-response-imagedocs-music-an">
+<h2>load_response_imagedocs_music_AN<a class="headerlink" href="#load-response-imagedocs-music-an" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.response_utils_fi.load_response_imagedocs_music_AN">
+<code class="descclassname">music_feats.utils.response_utils_fi.</code><code class="descname">load_response_imagedocs_music_AN</code><span class="sig-paren">(</span><em>sessions=1</em>, <em>usesg=True</em>, <em>unwarp=False</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.response_utils_fi.load_response_imagedocs_music_AN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads response images for AN.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>session</strong> : int</p>
+<p><strong>usesg</strong> : bool</p>
+<p><strong>unwarp</strong> : bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
+<blockquote class="last">
+<div><p>dictionary of (song name : list of responses)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-response-imagedocs-speech-an">
+<h2>load_response_imagedocs_speech_AN<a class="headerlink" href="#load-response-imagedocs-speech-an" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.response_utils_fi.load_response_imagedocs_speech_AN">
+<code class="descclassname">music_feats.utils.response_utils_fi.</code><code class="descname">load_response_imagedocs_speech_AN</code><span class="sig-paren">(</span><em>sessions=1</em>, <em>usesg=True</em>, <em>unwarp=False</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.response_utils_fi.load_response_imagedocs_speech_AN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads response images for AN.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>session</strong> : int</p>
+<p><strong>usesg</strong> : bool</p>
+<p><strong>unwarp</strong> : bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
+<blockquote class="last">
+<div><p>dictionary of (song name : list of responses)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-response-imagedocs-test">
+<h2>load_response_imagedocs_test<a class="headerlink" href="#load-response-imagedocs-test" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.response_utils_fi.load_response_imagedocs_test">
+<code class="descclassname">music_feats.utils.response_utils_fi.</code><code class="descname">load_response_imagedocs_test</code><span class="sig-paren">(</span><em>reading_dir</em>, <em>fnames</em>, <em>validation=None</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.response_utils_fi.load_response_imagedocs_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the fake data for testing pipeline.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="load-response-imagedocs-tonotopy-an">
+<h2>load_response_imagedocs_tonotopy_AN<a class="headerlink" href="#load-response-imagedocs-tonotopy-an" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.response_utils_fi.load_response_imagedocs_tonotopy_AN">
+<code class="descclassname">music_feats.utils.response_utils_fi.</code><code class="descname">load_response_imagedocs_tonotopy_AN</code><span class="sig-paren">(</span><em>sessions=1</em>, <em>usesg=True</em>, <em>unwarp=False</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.response_utils_fi.load_response_imagedocs_tonotopy_AN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads response images for AN.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>session</strong> : int</p>
+<p><strong>usesg</strong> : bool</p>
+<p><strong>unwarp</strong> : bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
+<blockquote class="last">
+<div><p>dictionary of (song name : list of responses)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-response-imagedocs-tonotopy-lo">
+<h2>load_response_imagedocs_tonotopy_LO<a class="headerlink" href="#load-response-imagedocs-tonotopy-lo" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.response_utils_fi.load_response_imagedocs_tonotopy_LO">
+<code class="descclassname">music_feats.utils.response_utils_fi.</code><code class="descname">load_response_imagedocs_tonotopy_LO</code><span class="sig-paren">(</span><em>sessions=1</em>, <em>usesg=True</em>, <em>unwarp=False</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.response_utils_fi.load_response_imagedocs_tonotopy_LO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads response images for LO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>session</strong> : int</p>
+<p><strong>usesg</strong> : bool</p>
+<p><strong>unwarp</strong> : bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
+<blockquote class="last">
+<div><p>dictionary of (song name : list of responses)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-responses">
+<h2>load_responses<a class="headerlink" href="#load-responses" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.response_utils_fi.load_responses">
+<code class="descclassname">music_feats.utils.response_utils_fi.</code><code class="descname">load_responses</code><span class="sig-paren">(</span><em>respdict</em>, <em>mask</em>, <em>cachedir='/auto/k8/loganesian/respcache/'</em>, <em>force_reload=True</em>, <em>multiseries='mean'</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.response_utils_fi.load_responses" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function caches the responses in an HDF5 file and reads them if the
+image IDs haven&#8217;t changed.</p>
+<p>If there are multiple image series for a given stimulus, the images will
+either be averaged, if [multiseries] is &#8220;mean&#8221;, or concatenated, if
+[multiseries] is &#8220;cat&#8221;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>respdict</strong> : dict</p>
+<p><strong>mask</strong> : mask</p>
+<p><strong>cachedir</strong> : str</p>
+<blockquote>
+<div><p>Cache directory</p>
+</div></blockquote>
+<p><strong>force_readlload</strong> : bool</p>
+<p><strong>multiseries</strong> : str</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-responses-test">
+<h2>load_responses_test<a class="headerlink" href="#load-responses-test" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.response_utils_fi.load_responses_test">
+<code class="descclassname">music_feats.utils.response_utils_fi.</code><code class="descname">load_responses_test</code><span class="sig-paren">(</span><em>respdict</em>, <em>mask</em>, <em>cachedir='/auto/k8/loganesian/respcache/'</em>, <em>force_reload=True</em>, <em>multiseries='mean'</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.response_utils_fi.load_responses_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a version of load_responses() from above, modified to work with
+fake data. Only difference is that experimentnames is omitted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>respdict</strong> : dict</p>
+<p><strong>mask</strong> : mask</p>
+<p><strong>cachedir</strong> : str</p>
+<blockquote>
+<div><p>Cache directory</p>
+</div></blockquote>
+<p><strong>force_readlload</strong> : bool</p>
+<p><strong>multiseries</strong> : str</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="selectroi">
+<h2>selectROI<a class="headerlink" href="#selectroi" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.response_utils_fi.selectROI">
+<code class="descclassname">music_feats.utils.response_utils_fi.</code><code class="descname">selectROI</code><span class="sig-paren">(</span><em>respdict</em>, <em>ROIS</em>, <em>surface</em>, <em>experiment</em>, <em>mask</em>, <em>multiseries='mean'</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.response_utils_fi.selectROI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select a particular ROI to do the regression on</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>respdict</strong> : dict</p>
+<blockquote>
+<div><p>response image documents</p>
+</div></blockquote>
+<p><strong>ROIS</strong> : ROIS</p>
+<p><strong>surface</strong> : surface</p>
+<p><strong>experiment</strong> : experiment</p>
+<p><strong>mask</strong> : mask</p>
+<p><strong>multiseries</strong> : str</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
+<blockquote class="last">
+<div><p>actiual response data</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Module: <code class="docutils literal"><span class="pre">utils.response_utils_fi</span></code></a><ul>
+<li><a class="reference internal" href="#dilate-mask">dilate_mask</a></li>
+<li><a class="reference internal" href="#load-mcparams">load_mcparams</a></li>
+<li><a class="reference internal" href="#load-response-imagedocs">load_response_imagedocs</a></li>
+<li><a class="reference internal" href="#load-response-imagedocs-music-an">load_response_imagedocs_music_AN</a></li>
+<li><a class="reference internal" href="#load-response-imagedocs-speech-an">load_response_imagedocs_speech_AN</a></li>
+<li><a class="reference internal" href="#load-response-imagedocs-test">load_response_imagedocs_test</a></li>
+<li><a class="reference internal" href="#load-response-imagedocs-tonotopy-an">load_response_imagedocs_tonotopy_AN</a></li>
+<li><a class="reference internal" href="#load-response-imagedocs-tonotopy-lo">load_response_imagedocs_tonotopy_LO</a></li>
+<li><a class="reference internal" href="#load-responses">load_responses</a></li>
+<li><a class="reference internal" href="#load-responses-test">load_responses_test</a></li>
+<li><a class="reference internal" href="#selectroi">selectROI</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="music_feats.utils.model_funcs.html"
+                        title="previous chapter">Module: <code class="docutils literal"><span class="pre">utils.model_funcs</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="music_feats.utils.stimulus_utils_fi.html"
+                        title="next chapter">Module: <code class="docutils literal"><span class="pre">utils.stimulus_utils_fi</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/music_feats.utils.response_utils_fi.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.stimulus_utils_fi.html" title="Module: utils.stimulus_utils_fi"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.model_funcs.html" title="Module: utils.model_funcs"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

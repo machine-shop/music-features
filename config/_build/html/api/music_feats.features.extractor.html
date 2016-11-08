@@ -1,0 +1,1413 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Module: features.extractor &mdash; Music_Feats 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Music_Feats 1.0 documentation" href="../index.html" />
+    <link rel="up" title="API Reference" href="api.html" />
+    <link rel="next" title="Module: features.features" href="music_feats.features.features.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="music_feats.features.features.html" title="Module: features.features"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API Reference</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-music_feats.features.extractor">
+<span id="module-features-extractor"></span><h1>Module: <code class="xref py py-mod docutils literal"><span class="pre">features.extractor</span></code><a class="headerlink" href="#module-music_feats.features.extractor" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.extractor.CQT" title="music_feats.features.extractor.CQT"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.extractor.CQT</span></code></a>(y[,&nbsp;sr,&nbsp;...])</td>
+<td>Get the constant-q transform of the audio file.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.features.extractor.MPS" title="music_feats.features.extractor.MPS"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.extractor.MPS</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.extractor.chromagram" title="music_feats.features.extractor.chromagram"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.extractor.chromagram</span></code></a>([...])</td>
+<td>Derivation of chromagram from librosa python package.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.features.extractor.fluctuationCentroid" title="music_feats.features.extractor.fluctuationCentroid"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.extractor.fluctuationCentroid</span></code></a>([...])</td>
+<td>Calculates the centroid of the fluctuation patterns of the audio piece.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.extractor.fluctuationEntropy" title="music_feats.features.extractor.fluctuationEntropy"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.extractor.fluctuationEntropy</span></code></a>([...])</td>
+<td>Calculates the entropy of the fluctuation patterns of the audio piece.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.features.extractor.fluctuationFocus" title="music_feats.features.extractor.fluctuationFocus"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.extractor.fluctuationFocus</span></code></a>([...])</td>
+<td>Calculates the focus of the fluctuation patterns of the audio piece.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.extractor.fluctuationPatterns" title="music_feats.features.extractor.fluctuationPatterns"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.extractor.fluctuationPatterns</span></code></a>(y)</td>
+<td>Calculates the fluctuation patterns of the piece based on E.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.features.extractor.rms" title="music_feats.features.extractor.rms"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.extractor.rms</span></code></a>(y[,&nbsp;sr,&nbsp;...])</td>
+<td>Calculate root-mean-square energy from a time-series signal</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.extractor.spectralCentroid" title="music_feats.features.extractor.spectralCentroid"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.extractor.spectralCentroid</span></code></a>(y)</td>
+<td>Calculate the spectral centroid (mean) of a time-series signal.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.features.extractor.spectralFlatness" title="music_feats.features.extractor.spectralFlatness"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.extractor.spectralFlatness</span></code></a>(y)</td>
+<td>Calculate the spectral flatness from a time-series signal</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.extractor.spectralSpread" title="music_feats.features.extractor.spectralSpread"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.extractor.spectralSpread</span></code></a>(y)</td>
+<td>Calculate the spectral spread of a time-series signal.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.features.extractor.temporalEnvelope" title="music_feats.features.extractor.temporalEnvelope"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.extractor.temporalEnvelope</span></code></a>(y)</td>
+<td>Calculate the temporal envelope of the signal.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.extractor.temporalFlatness" title="music_feats.features.extractor.temporalFlatness"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.extractor.temporalFlatness</span></code></a>(y)</td>
+<td>Calculate the temporal flatness from a time-series signal</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.features.extractor.tonality" title="music_feats.features.extractor.tonality"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.extractor.tonality</span></code></a>(y[,&nbsp;...])</td>
+<td>Calculates the average correlation coefficients of different tonalities</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.extractor.zcr" title="music_feats.features.extractor.zcr"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.extractor.zcr</span></code></a>(y[,&nbsp;sr,&nbsp;...])</td>
+<td>Calculate the zero-crossing rate from a time-series signal.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="cqt">
+<h2>CQT<a class="headerlink" href="#cqt" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.extractor.CQT">
+<code class="descclassname">music_feats.features.extractor.</code><code class="descname">CQT</code><span class="sig-paren">(</span><em>y</em>, <em>sr=44100</em>, <em>cqt_hop=1024</em>, <em>seconds=2.0</em>, <em>n_bins=30</em>, <em>bins_per_octave=4</em>, <em>fmin=27.5</em>, <em>use_han=False</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.extractor.CQT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the constant-q transform of the audio file. Takes ((seconds*sr)//cqt_hop) * cqt_hop
+sample long chunks of the audiofile before doing the cqt computation. Hop length between
+these chunks is frame_length - cqt_hop, where frame_length is the size of the chunks of the
+audiofile. These chunks are necessary because librosa&#8217;s cqt function can only handle short
+duration audio files in a reasonable amount of time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>cqt_hop</strong> : integer.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The hop length between adjacent frames for when extracting</dt>
+<dd><p class="first last">the cqt feature.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>seconds</strong> : float.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The time window to intially chunk the audio file into before</dt>
+<dd><p class="first last">feeding into the librosa cqt function.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>n_bins</strong> : integer.</p>
+<blockquote>
+<div><p>The number of cqt frequency bands to extract.</p>
+</div></blockquote>
+<p><strong>bins_per_octave</strong> : interger.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The number of cqt frequency bands that comprise</dt>
+<dd><p class="first last">an octave. The number of octaves is n_bins/float(bins_per_octave).</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>fmin</strong> : integer.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The lowest frequency in the range of frequencies covered by the constant</dt>
+<dd><p class="first last">q transform.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>use_han</strong> : boolean.</p>
+<blockquote>
+<div><p>True, window each frame with a hanning window before extracting CQT.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>CQTlog</strong> : np.ndarray [shape=(n_bins, n)]</p>
+<blockquote class="last">
+<div><p>The time series of the constant-q transform of the audio file.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>As of 06/22/2016, librosa&#8217;s util.frame() function already applies a hanning window.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the constant q transform of a time-series</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">CQTlog</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">CQT</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="mps">
+<h2>MPS<a class="headerlink" href="#mps" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.extractor.MPS">
+<code class="descclassname">music_feats.features.extractor.</code><code class="descname">MPS</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.extractor.MPS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="chromagram">
+<h2>chromagram<a class="headerlink" href="#chromagram" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.extractor.chromagram">
+<code class="descclassname">music_feats.features.extractor.</code><code class="descname">chromagram</code><span class="sig-paren">(</span><em>y=None</em>, <em>sr=44100</em>, <em>S=None</em>, <em>norm=inf</em>, <em>n_fft=2048</em>, <em>hop_length=None</em>, <em>seconds=4</em>, <em>tuning=None</em>, <em>center=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.extractor.chromagram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Derivation of chromagram from librosa python package. Bins spectrogram
+on a larger frame size than it was originally calculated with.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>y</strong> : numpy array [shape=(n,)]</p>
+<blockquote>
+<div><p>a numpy array of time series to calculate the chromagram of.
+Default is none.</p>
+</div></blockquote>
+<p><strong>sr</strong> : integer</p>
+<blockquote>
+<div><p>The sampling rate of the audio file. Default is 44100 Hz.</p>
+</div></blockquote>
+<p><strong>S</strong> : np.ndarray.</p>
+<blockquote>
+<div><p>The spectrogram from which to calculate the chromagram. 
+Default is None (function calculates spectrogram first).</p>
+</div></blockquote>
+<p><strong>norm</strong> : float or None.</p>
+<blockquote>
+<div><p>Column-wise normalization. Default np.inf.</p>
+</div></blockquote>
+<p><strong>n_fft</strong> : integer.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The window size with which to calculate</dt>
+<dd><p class="first last">the spectrogram. Default is 2048.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>hop_length</strong> : integer.</p>
+<blockquote>
+<div><p>The amount of overlap between the frames. 
+Default is half-overlap.</p>
+</div></blockquote>
+<p><strong>seconds</strong> : integer.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The amount of seconds to bin the spectrogram</dt>
+<dd><p class="first last">into before calculating the chromagram. Default is 4 seconds.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>tuning</strong> : float in &#8216;[-0.5, 0.5]&#8217; or None.</p>
+<blockquote>
+<div><p>Deviation from A440; tuning in fractional bins. 
+Default is None (automatically estimated)</p>
+</div></blockquote>
+<p><strong>center</strong> : boolean.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Whether or not to center the spectrogram</dt>
+<dd><p class="first last">before calculating the chromagram. Default is True.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>kwargs</strong> : array</p>
+<blockquote class="last">
+<div><p>the arguments for librosa.filter.chroma()</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="fluctuationcentroid">
+<h2>fluctuationCentroid<a class="headerlink" href="#fluctuationcentroid" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.extractor.fluctuationCentroid">
+<code class="descclassname">music_feats.features.extractor.</code><code class="descname">fluctuationCentroid</code><span class="sig-paren">(</span><em>y=None</em>, <em>sr=44100</em>, <em>all_fp=None</em>, <em>n_fft=512</em>, <em>hop_length=512</em>, <em>mel_count=36</em>, <em>seconds=3</em>, <em>band_num=12</em>, <em>max_freq=10</em>, <em>Pampalk=True</em>, <em>terhardt=False</em>, <em>decomposition=True</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.extractor.fluctuationCentroid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the centroid of the fluctuation patterns of the audio piece. 
+Based on computation from E. Pampalk&#8217;s PhD thesis (2006) paper.
+Can calculate for either the median fluctuation pattern or for all
+fluctuation patterns.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>y</strong> : np.ndarray [shape=(n,)]</p>
+<blockquote>
+<div><p>Time series of the audio file. Default = None.</p>
+</div></blockquote>
+<p><strong>sr</strong> : integer</p>
+<blockquote>
+<div><p>sampling rate of the audio file. Default 44100.</p>
+</div></blockquote>
+<p><strong>all_fp: np.ndarray[shape=(segment_num, band_num*resolution)]</strong></p>
+<blockquote>
+<div><p>Output of fluctuation_patterns. Default None.</p>
+</div></blockquote>
+<p><strong>decomposition: boolean.</strong></p>
+<blockquote>
+<div><p>Whether to only consider the median
+fluctuation pattern or all fluctuation patterns.</p>
+</div></blockquote>
+<p><strong>n_fft</strong> : integer.</p>
+<blockquote>
+<div><p>FFT window size for 
+librosa.feature.melspectrogram() [samples]. Default 512.</p>
+</div></blockquote>
+<p><strong>hop_length</strong> : integer.</p>
+<blockquote>
+<div><p>The amount of overlap [samples] between
+the frames for librosa.feature.melspectrogram(). Default is
+same values as n_fft. Default 512.</p>
+</div></blockquote>
+<p><strong>mel_count</strong> : integer.</p>
+<blockquote>
+<div><p>The number of mel bands to consider when
+generating the melspectrogram. Default is 36 bands.</p>
+</div></blockquote>
+<p><strong>seconds</strong> : integer.</p>
+<blockquote>
+<div><p>The length of each segment when calculating
+the fluctuation patterns. Default is 3 seconds.</p>
+</div></blockquote>
+<p><strong>band_num</strong> : integer.</p>
+<blockquote>
+<div><p>The number of bands to consider when calculating
+the fluctuation patterns. The mel bands resulting from the initial
+melspectrogram will be combined together to get this many bands.
+Default is 12 bands.</p>
+</div></blockquote>
+<p><strong>max_freq</strong> : integer.</p>
+<blockquote>
+<div><p>The maximum modulation frequency to be considered.
+Default is 10 Hz.</p>
+</div></blockquote>
+<p><strong>Pampalk: boolean.</strong></p>
+<blockquote>
+<div><p>Whether to use Pampalk&#8217;s algorithm straight from his
+thesis (i.e. with the hardcoded gaussian values) or to use an 
+alternate method involving a built-in gaussian filter. Default is
+using Pampalk&#8217;s method.</p>
+</div></blockquote>
+<p><strong>terhardt: boolean.</strong></p>
+<blockquote>
+<div><p>Whether or not to apply the Terhardt perception model
+(1979). Default is False.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray[shape=(num_segments,)]</p>
+<blockquote>
+<div><p>if decomposition == True</p>
+</div></blockquote>
+<p>float</p>
+<blockquote class="last">
+<div><p>if decomposition == False</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the fluctuation entropy of an audiofile</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fp_centroid</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">fluctuationCentroid</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+<span class="go">        decomposition=True, n_fft=512, hop_length=512,</span>
+<span class="go">        mel_count=36, seconds=3, band_num=12, max_freq=10,</span>
+<span class="go">        Pampalk=True, terhardt=False)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fluctuation_patterns</span> <span class="o">=</span> 
+<span class="go">        extractor.fluctuationPatterns(y, sr=sr)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the fluctuation entropy from fp values</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fp_centroid</span> <span class="o">=</span> 
+<span class="go">        extractor.fluctuationEntropy(all_fp=fluctuation_patterns)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="fluctuationentropy">
+<h2>fluctuationEntropy<a class="headerlink" href="#fluctuationentropy" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.extractor.fluctuationEntropy">
+<code class="descclassname">music_feats.features.extractor.</code><code class="descname">fluctuationEntropy</code><span class="sig-paren">(</span><em>y=None</em>, <em>sr=44100</em>, <em>all_fp=None</em>, <em>decomposition=True</em>, <em>n_fft=512</em>, <em>hop_length=512</em>, <em>mel_count=36</em>, <em>seconds=3</em>, <em>band_num=12</em>, <em>max_freq=10</em>, <em>Pampalk=True</em>, <em>terhardt=False</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.extractor.fluctuationEntropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the entropy of the fluctuation patterns of the audio piece. 
+Based on computation from V. Alluri (2012) paper, with slight modification.
+Can calculate for either the median fluctuation pattern or for all
+fluctuation patterns.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>y</strong> : np.ndarray [shape=(n,)]</p>
+<blockquote>
+<div><p>Time series of the audio file. Default = None.</p>
+</div></blockquote>
+<p><strong>sr</strong> : integer</p>
+<blockquote>
+<div><p>sampling rate of the audio file. Default 44100.</p>
+</div></blockquote>
+<p><strong>all_fp: np.ndarray[shape=(segment_num, band_num*resolution)]</strong></p>
+<blockquote>
+<div><p>Output of fluctuation_patterns. Default None.</p>
+</div></blockquote>
+<p><strong>decomposition: boolean.</strong></p>
+<blockquote>
+<div><p>Whether to only consider the median
+fluctuation pattern or all fluctuation patterns.</p>
+</div></blockquote>
+<p><strong>n_fft</strong> : integer.</p>
+<blockquote>
+<div><p>FFT window size for 
+librosa.feature.melspectrogram() [samples]. Default 512.</p>
+</div></blockquote>
+<p><strong>hop_length</strong> : integer.</p>
+<blockquote>
+<div><p>The amount of overlap [samples] between
+the frames for librosa.feature.melspectrogram(). Default is
+same values as n_fft. Default 512.</p>
+</div></blockquote>
+<p><strong>mel_count</strong> : integer.</p>
+<blockquote>
+<div><p>The number of mel bands to consider when
+generating the melspectrogram. Default is 36 bands.</p>
+</div></blockquote>
+<p><strong>seconds</strong> : integer.</p>
+<blockquote>
+<div><p>The length of each segment when calculating
+the fluctuation patterns. Default is 3 seconds.</p>
+</div></blockquote>
+<p><strong>band_num</strong> : integer.</p>
+<blockquote>
+<div><p>The number of bands to consider when calculating
+the fluctuation patterns. The mel bands resulting from the initial
+melspectrogram will be combined together to get this many bands.
+Default is 12 bands.</p>
+</div></blockquote>
+<p><strong>max_freq</strong> : integer.</p>
+<blockquote>
+<div><p>The maximum modulation frequency to be considered.
+Default is 10 Hz.</p>
+</div></blockquote>
+<p><strong>Pampalk: boolean.</strong></p>
+<blockquote>
+<div><p>Whether to use Pampalk&#8217;s algorithm straight from his
+thesis (i.e. with the hardcoded gaussian values) or to use an 
+alternate method involving a built-in gaussian filter. Default is
+using Pampalk&#8217;s method.</p>
+</div></blockquote>
+<p><strong>terhardt: boolean.</strong></p>
+<blockquote>
+<div><p>Whether or not to apply the Terhardt perception model
+(1979). Default is False.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray[shape=(num_segments,)]</p>
+<blockquote>
+<div><p>if decomposition == True</p>
+</div></blockquote>
+<p>float</p>
+<blockquote class="last">
+<div><p>if decomposition == False</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the fluctuation entropy of an audiofile</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fp_entropy</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">fluctuationEntropy</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+<span class="go">        decomposition=True, n_fft=512, hop_length=512,</span>
+<span class="go">        mel_count=36, seconds=3, band_num=12, max_freq=10,</span>
+<span class="go">        Pampalk=True, terhardt=False)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fluctuation_patterns</span> <span class="o">=</span> 
+<span class="go">        extractor.fluctuationPatterns(y, sr=sr)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the fluctuation entropy from fp values</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fp_entropy</span> <span class="o">=</span> 
+<span class="go">        extractor.fluctuationEntropy(all_fp=fluctuation_patterns)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="fluctuationfocus">
+<h2>fluctuationFocus<a class="headerlink" href="#fluctuationfocus" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.extractor.fluctuationFocus">
+<code class="descclassname">music_feats.features.extractor.</code><code class="descname">fluctuationFocus</code><span class="sig-paren">(</span><em>y=None</em>, <em>sr=44100</em>, <em>all_fp=None</em>, <em>n_fft=512</em>, <em>hop_length=512</em>, <em>mel_count=36</em>, <em>seconds=3</em>, <em>band_num=12</em>, <em>max_freq=10</em>, <em>Pampalk=True</em>, <em>terhardt=False</em>, <em>decomposition=True</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.extractor.fluctuationFocus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the focus of the fluctuation patterns of the audio piece. 
+Based on computation from E. Pampalk&#8217;s PhD thesis (2006) paper.
+Can calculate for either the median fluctuation pattern or for all
+fluctuation patterns.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>y</strong> : np.ndarray [shape=(n,)]</p>
+<blockquote>
+<div><p>Time series of the audio file. Default = None.</p>
+</div></blockquote>
+<p><strong>sr</strong> : integer</p>
+<blockquote>
+<div><p>sampling rate of the audio file. Default 44100.</p>
+</div></blockquote>
+<p><strong>all_fp: np.ndarray[shape=(segment_num, band_num*resolution)]</strong></p>
+<blockquote>
+<div><p>Output of fluctuation_patterns. Default None.</p>
+</div></blockquote>
+<p><strong>decomposition: boolean.</strong></p>
+<blockquote>
+<div><p>Whether to only consider the median
+fluctuation pattern or all fluctuation patterns.</p>
+</div></blockquote>
+<p><strong>n_fft</strong> : integer.</p>
+<blockquote>
+<div><p>FFT window size for 
+librosa.feature.melspectrogram() [samples]. Default 512.</p>
+</div></blockquote>
+<p><strong>hop_length</strong> : integer.</p>
+<blockquote>
+<div><p>The amount of overlap [samples] between
+the frames for librosa.feature.melspectrogram(). Default is
+same values as n_fft. Default 512.</p>
+</div></blockquote>
+<p><strong>mel_count</strong> : integer.</p>
+<blockquote>
+<div><p>The number of mel bands to consider when
+generating the melspectrogram. Default is 36 bands.</p>
+</div></blockquote>
+<p><strong>seconds</strong> : integer.</p>
+<blockquote>
+<div><p>The length of each segment when calculating
+the fluctuation patterns. Default is 3 seconds.</p>
+</div></blockquote>
+<p><strong>band_num</strong> : integer.</p>
+<blockquote>
+<div><p>The number of bands to consider when calculating
+the fluctuation patterns. The mel bands resulting from the initial
+melspectrogram will be combined together to get this many bands.
+Default is 12 bands.</p>
+</div></blockquote>
+<p><strong>max_freq</strong> : integer.</p>
+<blockquote>
+<div><p>The maximum modulation frequency to be considered.
+Default is 10 Hz.</p>
+</div></blockquote>
+<p><strong>Pampalk: boolean.</strong></p>
+<blockquote>
+<div><p>Whether to use Pampalk&#8217;s algorithm straight from his
+thesis (i.e. with the hardcoded gaussian values) or to use an 
+alternate method involving a built-in gaussian filter. Default is
+using Pampalk&#8217;s method.</p>
+</div></blockquote>
+<p><strong>terhardt: boolean.</strong></p>
+<blockquote>
+<div><p>Whether or not to apply the Terhardt perception model
+(1979). Default is False.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray[shape=(num_segments,)]</p>
+<blockquote>
+<div><p>if decomposition == True</p>
+</div></blockquote>
+<p>float</p>
+<blockquote class="last">
+<div><p>if decomposition == False</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the fluctuation entropy of an audiofile</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fp_focus</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">fluctuationFocus</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+<span class="go">        decomposition=True, n_fft=512, hop_length=512,</span>
+<span class="go">        mel_count=36, seconds=3, band_num=12, max_freq=10,</span>
+<span class="go">        Pampalk=True, terhardt=False)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fluctuation_patterns</span> <span class="o">=</span> 
+<span class="go">        extractor.fluctuationPatterns(y, sr=sr)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the fluctuation entropy from fp values</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fp_focus</span> <span class="o">=</span> 
+<span class="go">        extractor.fluctuationEntropy(all_fp=fluctuation_patterns)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="fluctuationpatterns">
+<h2>fluctuationPatterns<a class="headerlink" href="#fluctuationpatterns" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.extractor.fluctuationPatterns">
+<code class="descclassname">music_feats.features.extractor.</code><code class="descname">fluctuationPatterns</code><span class="sig-paren">(</span><em>y</em>, <em>sr=44100</em>, <em>n_fft=512</em>, <em>hop_length=512</em>, <em>mel_count=36</em>, <em>seconds=3</em>, <em>band_num=12</em>, <em>max_freq=10</em>, <em>center=True</em>, <em>padAmt=0.25</em>, <em>Pampalk=True</em>, <em>terhardt=False</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.extractor.fluctuationPatterns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the fluctuation patterns of the piece based on E. Pampalk&#8217;s
+PhD thesis (2006).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>y</strong> : np.ndarray [shape=(n,)]</p>
+<blockquote>
+<div><p>Time series of the audio file</p>
+</div></blockquote>
+<p><strong>sr</strong> : integer</p>
+<blockquote>
+<div><p>sampling rate of the audio file. Default 44100.</p>
+</div></blockquote>
+<p><strong>n_fft</strong> : integer.</p>
+<blockquote>
+<div><p>FFT window size for librosa.feature.melspectrogram() [samples]</p>
+</div></blockquote>
+<p><strong>hop_length</strong> : integer.</p>
+<blockquote>
+<div><p>The amount of overlap [samples] between the frames for librosa.
+feature.melspectrogram(). Default issame values as n_fft.</p>
+</div></blockquote>
+<p><strong>mel_count</strong> : integer.</p>
+<blockquote>
+<div><p>The number of mel bands to consider when
+generating the melspectrogram. Default is 36 bands.</p>
+</div></blockquote>
+<p><strong>seconds</strong> : integer.</p>
+<blockquote>
+<div><p>The length of each segment when calculating
+the fluctuation patterns. Default is 3 seconds.</p>
+</div></blockquote>
+<p><strong>band_num</strong> : integer.</p>
+<blockquote>
+<div><p>The number of bands to consider when calculating
+the fluctuation patterns. The mel bands resulting from the initial
+melspectrogram will be combined together to get this many bands.
+Default is 12 bands.</p>
+</div></blockquote>
+<p><strong>max_freq</strong> : integer.</p>
+<blockquote>
+<div><p>The maximum modulation frequency to be considered.
+Default is 10 Hz.</p>
+</div></blockquote>
+<p><strong>center</strong> : boolean.</p>
+<blockquote>
+<div><p>Whether or not to center the signal. Default True.</p>
+</div></blockquote>
+<p><strong>padAmt</strong> : float.</p>
+<blockquote>
+<div><p>What factor of the segment_length to pad by.
+Will pad from left and from right by the same amount. Default is 0.25.</p>
+</div></blockquote>
+<p><strong>Pampalk: boolean.</strong></p>
+<blockquote>
+<div><p>Whether to use Pampalk&#8217;s algorithm straight from his
+thesis (i.e. with the hardcoded gaussian values) or to use an 
+alternate method involving a built-in gaussian filter. Default is
+using Pampalk&#8217;s method.</p>
+</div></blockquote>
+<p><strong>terhardt: boolean.</strong></p>
+<blockquote>
+<div><p>Whether or not to apply the Terhardt perception model
+(1979). Default is False.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray[shape=(segment_num, band_num*resolution)]</p>
+<blockquote class="last">
+<div><blockquote>
+<div><p>Fluctuation patterns. Each row is a segment in time</p>
+</div></blockquote>
+<p>(row 0 being first). Resolution is a value calculated
+in the function; it corresponds to the resolution of the
+modulation frequency domain (bin number between 0-max_freq Hz).
+Note the fluctuation patterns are encoded in vector format.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the fluctuation patterns</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fluctuation_patterns</span> <span class="o">=</span> 
+<span class="go">        extractor.fluctuationPatterns(y, sr=sr, n_fft=512,</span>
+<span class="go">                hop_length=512, mel_count=12, seconds=3,</span>
+<span class="go">                band_num=12, max_freq=10, Pampalk=True,</span>
+<span class="go">                terhardt=False)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="rms">
+<h2>rms<a class="headerlink" href="#rms" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.extractor.rms">
+<code class="descclassname">music_feats.features.extractor.</code><code class="descname">rms</code><span class="sig-paren">(</span><em>y</em>, <em>sr=44100</em>, <em>n_fft=2048</em>, <em>hop_length=None</em>, <em>pad=None</em>, <em>decomposition=True</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.extractor.rms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate root-mean-square energy from a time-series signal</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>y</strong> : np.ndarray [shape=(n,)].</p>
+<blockquote>
+<div><p>Time series to calculate the RMS of.</p>
+</div></blockquote>
+<p><strong>sr</strong> : integer.</p>
+<blockquote>
+<div><p>sampling rate of the audio file</p>
+</div></blockquote>
+<p><strong>win_length</strong> : integer.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The frame length of the music time series</dt>
+<dd><p class="first last">(in s) to be considered.  Default 50 ms.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>hop_length</strong> : integer.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The amount of overlap between the frames</dt>
+<dd><p class="first last">(in samples).  Default is half the window length.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>pad</strong> : integer.</p>
+<blockquote>
+<div><p>Amount which to pad by before frame decomposition.</p>
+</div></blockquote>
+<p><strong>decomposition</strong> : boolean.</p>
+<blockquote>
+<div><p>Whether or not to do a framewise analysis of the time series</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">float</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>A float representing the root-mean-square of the time-series of</dt>
+<dd><p class="first last">the signal, if decomposition = &#8216;False&#8217;:</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>numpy array</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>representing the root-mean-square of the time-series of the signal </dt>
+<dd><p class="first last">per frame, If decomposition = &#8216;True&#8217;.</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the RMS of a time-series</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rms</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">rms</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+<span class="go">        win_length=None, hop_length=512, decomposition=&#39;True&#39;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="spectralcentroid">
+<h2>spectralCentroid<a class="headerlink" href="#spectralcentroid" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.extractor.spectralCentroid">
+<code class="descclassname">music_feats.features.extractor.</code><code class="descname">spectralCentroid</code><span class="sig-paren">(</span><em>y</em>, <em>sr=44100</em>, <em>n_fft=2048</em>, <em>hop_length=None</em>, <em>toWin=True</em>, <em>pad=None</em>, <em>decomposition=True</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.extractor.spectralCentroid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the spectral centroid (mean) of a time-series signal. Commonly
+used as the brightness of a sound.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>y</strong> : numpy array [shape=(n,)]</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>numpy array of time series to calculate the</dt>
+<dd><p class="first last">spectral centroid of.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>sr</strong> : integer</p>
+<blockquote>
+<div><p>Sampling rate of the audio file. (Default = 22050)</p>
+</div></blockquote>
+<p><strong>win_length</strong> : integer.</p>
+<blockquote>
+<div><p>The frame length of the music time series (in s) to be considered.  
+Default 50 ms.</p>
+</div></blockquote>
+<p><strong>hop_length</strong> : integer.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The amount of overlap between the frames</dt>
+<dd><p class="first last">(in samples).  Default is half the window length.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>decomposition: boolean.</strong></p>
+<blockquote>
+<div><p>Whether or not to do a framewise analysis of the time-series.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">float</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>representing the spectral centroid (mean) of the signal, </dt>
+<dd><p class="first last">if decomposition=False:</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>numpy array</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>representing the spectral centroid of the signal</dt>
+<dd><p class="first last">per frame (window), if decomposition = True</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[R4]</a></td><td>Beauchamp J. W., Synthesis by Spectral Amplitude and
+&#8216;Brightness&#8217; Matching of Analyzed Musical Instrument Tones</td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the spectral centroid of a time-series</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spectralCentroid</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">spectralCentroid</span><span class="p">(</span><span class="n">y</span><span class="p">,</span>
+<span class="go">            sr=sr, win_length=0.05, hop_length=None,</span>
+<span class="go">            decomposition=True)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="spectralflatness">
+<h2>spectralFlatness<a class="headerlink" href="#spectralflatness" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.extractor.spectralFlatness">
+<code class="descclassname">music_feats.features.extractor.</code><code class="descname">spectralFlatness</code><span class="sig-paren">(</span><em>y</em>, <em>sr=44100</em>, <em>n_fft=2048</em>, <em>hop_length=None</em>, <em>toWin=True</em>, <em>pad=None</em>, <em>decomposition=True</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.extractor.spectralFlatness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the spectral flatness from a time-series signal</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>y</strong> : numpy array [shape=(n,)]</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>a numpy array of time series to calculate the</dt>
+<dd><p class="first last">spectral flatness of.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>sr</strong> : integer</p>
+<blockquote>
+<div><p>sampling rate of the audio file</p>
+</div></blockquote>
+<p><strong>win_length</strong> : integer.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The frame length of the music time series</dt>
+<dd><p class="first last">(in s) to be considered.  Default 50 ms.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>hop_length</strong> : integer.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The amount of overlap between the frames</dt>
+<dd><p class="first last">(in s).  Default is half the window length.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>decomposition: boolean.</strong></p>
+<blockquote>
+<div><p>Whether or not to do a framewise analysis of the time series.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">float</p>
+<blockquote>
+<div><p>representing the spectral flatness of the signal,
+if decomposition=False:</p>
+</div></blockquote>
+<p>numpy array</p>
+<blockquote class="last">
+<div><p>representing the spectral flatness of the signal per frame,
+if decomposition = True</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the spectral flatness of a time-series</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spectralFlatness</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">spectralFlatness</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+<span class="go">        win_length=0.05, hop_length=None, decomposition=True)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="spectralspread">
+<h2>spectralSpread<a class="headerlink" href="#spectralspread" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.extractor.spectralSpread">
+<code class="descclassname">music_feats.features.extractor.</code><code class="descname">spectralSpread</code><span class="sig-paren">(</span><em>y</em>, <em>sr=44100</em>, <em>n_fft=2048</em>, <em>hop_length=None</em>, <em>toWin=True</em>, <em>pad=None</em>, <em>decomposition=True</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.extractor.spectralSpread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the spectral spread of a time-series signal.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>y</strong> : numpy array [shape=(n,)]</p>
+<blockquote>
+<div><p>a numpy array of time series to calculate the spectral spread of.</p>
+</div></blockquote>
+<p><strong>sr</strong> : integer</p>
+<blockquote>
+<div><p>Sampling rate of the audio file. (Default = 22050)</p>
+</div></blockquote>
+<p><strong>win_length</strong> : integer.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The frame length of the music time series</dt>
+<dd><p class="first last">(in s) to be considered.  Default 50 ms.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>hop_length</strong> : integer.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The amount of overlap between the frames</dt>
+<dd><p class="first last">(in s).  Default is half the window length.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>decomposition: boolean.</strong></p>
+<blockquote>
+<div><p>Whether or not to do a framewise analysis of the time series.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">float</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>representing the spectral spread (standard deviation) of</dt>
+<dd><p class="first last">the signal, if decomposition=False:</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>numpy array</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>representing the spectral spread of the signal per</dt>
+<dd><p class="first last">frame, if decomposition = True</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the spectral spread of a time-series</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spectralSpread</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">spectralSpread</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+<span class="go">        win_length=0.05, hop_length=None, decomposition=True)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="temporalenvelope">
+<h2>temporalEnvelope<a class="headerlink" href="#temporalenvelope" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.extractor.temporalEnvelope">
+<code class="descclassname">music_feats.features.extractor.</code><code class="descname">temporalEnvelope</code><span class="sig-paren">(</span><em>y</em>, <em>sr=44100</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.extractor.temporalEnvelope" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the temporal envelope of the signal.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>y</strong> : np.ndarray [shape=(n,)].</p>
+<blockquote>
+<div><p>Time series to calculate the temporal envelope of.</p>
+</div></blockquote>
+<p><strong>sr</strong> : integer.</p>
+<blockquote>
+<div><p>sampling rate of the audio file.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray [shape=(n,1)]</p>
+<blockquote class="last">
+<div><p>The time series of the temporal envelope of the audio file.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the temporal envelope of a time-series</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tempEnv</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">temporalEnvelope</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="temporalflatness">
+<h2>temporalFlatness<a class="headerlink" href="#temporalflatness" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.extractor.temporalFlatness">
+<code class="descclassname">music_feats.features.extractor.</code><code class="descname">temporalFlatness</code><span class="sig-paren">(</span><em>y</em>, <em>sr=44100</em>, <em>n_fft=2048</em>, <em>hop_length=None</em>, <em>pad=None</em>, <em>decomposition=True</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.extractor.temporalFlatness" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Calculate the temporal flatness from a time-series signal</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">usage:</th><td class="field-body"><div class="first highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the temporal flatness of a time-series</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temporalFlatness</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">temporalFlatness</span><span class="p">(</span><span class="n">y</span><span class="p">,</span>
+<span class="go">                    sr=sr, win_length=0.05, hop_length=None,</span>
+<span class="go">                    pad=None, decomposition=True)</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">returns:</th><td class="field-body"><p class="first">If decomposition = False:
+- A float representing the temporal flatness of the signal
+If decomposition = True:
+- A numpy array representing the temporal flatness of the signal</p>
+<blockquote class="last">
+<div><p>per frame</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>y</strong> : numpy array [shape=(n,)]</p>
+<blockquote>
+<div><p>a numpy array of time series to calculate the temporal flatness of.</p>
+</div></blockquote>
+<p><strong>sr</strong> : integer</p>
+<blockquote>
+<div><p>Sampling rate of the audio file.</p>
+</div></blockquote>
+<p><strong>win_length</strong> : integer.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The frame length of the music time series</dt>
+<dd><p class="first last">(in s) to be considered.  Default 50 ms.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>hop_length</strong> : integer.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The amount of overlap between the frames</dt>
+<dd><p class="first last">(in s).  Default is half the window length.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>decomposition: boolean.</strong></p>
+<blockquote>
+<div><p>Whether or not to do a framewise analysis of the time series.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">float</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>representing the temporal flatness of</dt>
+<dd><p class="first last">the signal, if decomposition=False:</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>numpy array</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>representing the temporal flatness of the signal per</dt>
+<dd><p class="first last">frame, if decomposition = True</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate the temporal flatness of a time-series</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temporalFlatness</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">temporalFlatness</span><span class="p">(</span><span class="n">y</span><span class="p">,</span>
+<span class="go">            sr=sr, win_length=0.05, hop_length=None,</span>
+<span class="go">            pad=None, decomposition=True)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="tonality">
+<h2>tonality<a class="headerlink" href="#tonality" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.extractor.tonality">
+<code class="descclassname">music_feats.features.extractor.</code><code class="descname">tonality</code><span class="sig-paren">(</span><em>y</em>, <em>sr=44100</em>, <em>profiles='gomez'</em>, <em>n_fft=2048</em>, <em>hop_length=1024</em>, <em>seconds=4</em>, <em>center=True</em>, <em>use_librosa=True</em>, <em>full=False</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.extractor.tonality" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Calculates the average correlation coefficients of different tonalities
+(key &amp; mode)</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>y</strong> : np.ndarray [shape=(n,)]</p>
+<blockquote>
+<div><blockquote>
+<div><p>Time series of the audio file</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>sr</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">integer</span><dd><p class="first last">The sampling rate of the audio file.</p>
+</dd>
+<dt>profiles</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd><p class="first last">default is gomez. The key profiles to be used.
+Profiles available:
+- Gomez, 2006; Krumhansl, Cognitive Foundations of Pitch;
+Temperley The Krumhansl-Schmuckler Key-Finding Algorithm
+Revisted; Temperley, MIREX; Wei Chai MIT PhD Thesis</p>
+</dd>
+<dt>n_fft</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">integer. </span><dd><p class="first last">FFT window size for STFT</p>
+</dd>
+<dt>hop_length</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">integer. </span><dd><p class="first last">The amount of overlap between the frames
+of the STFT (in samples).  Default is half the window length.</p>
+</dd>
+<dt>seconds</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">integer. </span><dd><dl class="first last docutils">
+<dt>The bin width to bin the spectrogram with</dt>
+<dd><p class="first last">before calculating chroma. Number is rounded down to nearest
+power of 2. (Default is 4 seconds -&gt; ~3 seconds)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>center</strong> : boolean.</p>
+<blockquote>
+<div><blockquote>
+<div><p>For extractor.chromagram(). Whether or not to
+center the spectrogram before calculating the chromagram.
+Default is True.</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>librosa</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">boolean. </span><dd><p class="first last">Whether to use extractor.chromagram() or
+librosa.chromagram(). Default is True.</p>
+</dd>
+<dt>full</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">boolean. </span><dd><p class="first last">Whether or not to include cumulative information
+about the tonality (key + mode) for the full song</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">numpy array</p>
+<blockquote class="last">
+<div><blockquote>
+<div><p>representing the key of the signal per frame</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>numpy array</dt>
+<dd><p class="first last">representing the mode of the signal per frame</p>
+</dd>
+<dt>numpy array</dt>
+<dd><p class="first last">with the average correlation values for major
+tonalities, if full = True</p>
+</dd>
+<dt>numpy array </dt>
+<dd><p class="first last">with the average correlation values for minor
+tonalities</p>
+</dd>
+<dt>array </dt>
+<dd><p class="first last">keys</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate key strength values and a time-series</span>
+<span class="go">    analysis of the tonality/modality</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">audio_keys</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">keys</span> <span class="o">=</span>
+<span class="go">    extractor.tonality(y, sr=sr,</span>
+<span class="go">            profiles=&#39;gomez&#39;, n_fft=2048, hop_length=64,</span>
+<span class="go">            full=True)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">audio_keys</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">tonality</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span>
+<span class="go">                profiles=&#39;gomez&#39;, n_fft=2048, hop_length=64,</span>
+<span class="go">                full=False)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="zcr">
+<h2>zcr<a class="headerlink" href="#zcr" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.extractor.zcr">
+<code class="descclassname">music_feats.features.extractor.</code><code class="descname">zcr</code><span class="sig-paren">(</span><em>y</em>, <em>sr=44100</em>, <em>p='second'</em>, <em>d='one'</em>, <em>n_fft=2048</em>, <em>hop_length=None</em>, <em>pad=None</em>, <em>decomposition=True</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.extractor.zcr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the zero-crossing rate from a time-series signal.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>y</strong> : np.ndarray [shape=(n,)]</p>
+<blockquote>
+<div><p>Time series of the audio file.</p>
+</div></blockquote>
+<p><strong>sr</strong> : integer.</p>
+<blockquote>
+<div><p>Sampling rate of the audio file.</p>
+</div></blockquote>
+<p><strong>p</strong> : string</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Number of zero crossings either per &#8216;second&#8217; or per &#8216;sample&#8217;.</dt>
+<dd><p class="first last">Default: &#8216;second&#8217;.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>d</strong> : string</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Number of zero crossings from negative to positive (or</dt>
+<dd><p class="first last">equivalently positive to negative) only using d=&#8217;one&#8217;
+(default) or both directions using d=&#8217;both&#8217;.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>win_length</strong> : integer.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The frame length of the music time series</dt>
+<dd><p class="first last">(in s) to be considered.  Default 50 ms.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>hop_length</strong> : integer.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The amount of overlap between the frames</dt>
+<dd><p class="first last">(in samples).  Default is half the window length.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>decomposition</strong> : boolean.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Whether or not to do a framewise</dt>
+<dd><p class="first last">analysis of the time series</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">float</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>representing the zcr of the time-series of the signal, </dt>
+<dd><p class="first last">if decomposition = &#8216;False&#8217;:</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>numpy array</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>representing the zcr of the time-series of the</dt>
+<dd><p class="first last">signal per frame, if decomposition = &#8216;True&#8217;:</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;file.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate a zero-crossing rate of the time-series of a</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># signal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zcr</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">zcr</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="s1">&#39;second&#39;</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="s1">&#39;one&#39;</span><span class="p">,</span>
+<span class="go">            win_length=0.05, hop_length=None,</span>
+<span class="go">            decomposition=&#39;True&#39;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Module: <code class="docutils literal"><span class="pre">features.extractor</span></code></a><ul>
+<li><a class="reference internal" href="#cqt">CQT</a></li>
+<li><a class="reference internal" href="#mps">MPS</a></li>
+<li><a class="reference internal" href="#chromagram">chromagram</a></li>
+<li><a class="reference internal" href="#fluctuationcentroid">fluctuationCentroid</a></li>
+<li><a class="reference internal" href="#fluctuationentropy">fluctuationEntropy</a></li>
+<li><a class="reference internal" href="#fluctuationfocus">fluctuationFocus</a></li>
+<li><a class="reference internal" href="#fluctuationpatterns">fluctuationPatterns</a></li>
+<li><a class="reference internal" href="#rms">rms</a></li>
+<li><a class="reference internal" href="#spectralcentroid">spectralCentroid</a></li>
+<li><a class="reference internal" href="#spectralflatness">spectralFlatness</a></li>
+<li><a class="reference internal" href="#spectralspread">spectralSpread</a></li>
+<li><a class="reference internal" href="#temporalenvelope">temporalEnvelope</a></li>
+<li><a class="reference internal" href="#temporalflatness">temporalFlatness</a></li>
+<li><a class="reference internal" href="#tonality">tonality</a></li>
+<li><a class="reference internal" href="#zcr">zcr</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="music_feats.features.features.html"
+                        title="next chapter">Module: <code class="docutils literal"><span class="pre">features.features</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/music_feats.features.extractor.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="music_feats.features.features.html" title="Module: features.features"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

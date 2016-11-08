@@ -2,8 +2,8 @@ from __future__ import division
 import numpy as np
 from scipy import signal
 from math import floor
-from music.features.util import interpdata
-from music.features.util.utils import *
+from music_feats.utils import interpdata
+from music_feats import * 
 
 __all__ = ['DesignMatrix']
 
@@ -11,22 +11,32 @@ class DesignMatrix(object):
     def __init__(self, features, trfile=None, TR=2.0045,
                  sr=44100, interp="lanczos", **kwargs):
         """
-            :parameters:
-                - features : dictionary of extracted features. (Ouptut of features.py)
-                - trfile : .report file that has TR times used to calculate the new
-                    times the design matrix needs to be downsampled to.
-                - TR : float. The TR length used for the fMRI scans.
-                    Default is 2.0045 seconds.
-                - sr : integer. The sampling rate to be used.
-                    Default is 44100 Hz.
-                - interp : string. The type of interpolation to be used.
-                        Currently only one option, 'lanczos' (also default value).
-                - [kwargs] are passed to the interpolation function.
-                        window : integer. Lobs of  sinc function to be used.
-                            Default is 3.  
-                        cutoff_mult : float. Associated with cutoff frequency.
-                            Default is 1.0 (Nyquist). <1.0 is low-pass filter.
-                        rectify : boolean. Default is False.
+        Parameters
+        ----------
+        features : dictionary 
+            dictionary of extracted features. (Ouptut of features.py)
+        trfile : .report file 
+            .report file that has TR times used to calculate the new
+            times the design matrix needs to be downsampled to.
+        TR : float. 
+            The TR length used for the fMRI scans.
+            Default is 2.0045 seconds.
+        sr : integer. 
+            The sampling rate to be used.
+            Default is 44100 Hz.
+        interp : string. 
+            The type of interpolation to be used.
+            Currently only one option, 'lanczos' (also default value).
+        **kwargs: list
+            [kwargs]are passed to the interpolation function.
+            window : integer. 
+                Lobs of  sinc function to be used.Default is 3.  
+            cutoff_mult : float. 
+                Associated with cutoff frequency.
+                Default is 1.0 (Nyquist). <1.0 is low-pass filter.
+            rectify : boolean. 
+                Default is False.
+
         """
         self.all_features = features
         self.trfile = trfile
@@ -39,8 +49,12 @@ class DesignMatrix(object):
     def returnFeature(self, feature):
         """
         Returns the value of an extracted feature.
-            :parameters:
-                - feature : string. The feature of interest.
+
+        Parameters
+        ----------
+        feature : string. 
+            The feature of interest.
+
         """
         return self.all_features[feature]
 
@@ -48,8 +62,12 @@ class DesignMatrix(object):
         """
         Stores an input matrix as the design matrix attribute for this
         instance of the DesignMatrix object.
-            :parameters:
-                - matrix : np.ndarry [(time, feature_dims)]. The feature matrix to save.
+
+        Parameters
+        ----------
+        matrix : np.ndarry [(time, feature_dims)]. 
+            The feature matrix to save.
+
         """
         self.feature_matrix = matrix
 
@@ -57,34 +75,43 @@ class DesignMatrix(object):
         """
         Stores the features that are used to construct the particular
         design matrix stored in self.feature_matrix.
-            :parameters:
-                - features_used : list. The list of features used in
-                    the design matrix.
+        
+        Parameters
+        ----------
+        features_used : list. 
+            The list of features used in the design matrix.
+
         """
         self.featsets = features_used
 
     def returnFeatsets(self):
         """
         Returns the features used to construct the design matrix.
+
         """
         return self.featsets
 
     def buildMatrix(self, feat, time_length, retrieve=True):
         """
         Build a feature matrix row by columns (time by features).
-            :parameters:
-                - feat : array of strings or array of features (type np.ndarray)
-                    A list of features with which to build the feature matrix.
-                    If array of strings, retrieve parameter must be set to True.
-                    Otherwise, retireve parameter must be set to False.
-                - time_length : integer. The length of a feature generated
-                    by a not padded version of the audiofile. (i.e. the length
-                    of a feature extracted by extractor). Pass in the length of the
-                    first feature in feat. (i.e, feat[0])
-                - retrieve : boolean. Indicates whether the object will
-                    need to retrieve the feature (if feat is a string array)
-                    or if the features are provided (in feat). Default is True.
-                    (i.e. this expects feat to be an array of strings)
+
+        Parameters
+        ----------
+        feat : array of strings or array of features (type np.ndarray)
+            A list of features with which to build the feature matrix.
+            If array of strings, retrieve parameter must be set to True.
+            Otherwise, retireve parameter must be set to False.
+        time_length : integer. 
+            The length of a feature generated
+            by a not padded version of the audiofile. (i.e. the length
+            of a feature extracted by extractor). Pass in the length of the
+            first feature in feat. (i.e, feat[0])
+        retrieve : boolean. 
+            Indicates whether the object will
+            need to retrieve the feature (if feat is a string array)
+            or if the features are provided (in feat). Default is True.
+            (i.e. this expects feat to be an array of strings)
+
         """
 
         if retrieve:
@@ -112,19 +139,27 @@ class DesignMatrix(object):
         """
         Downsamples the feature matrix using the settings specified
         in the initializer.
-            :parameters:
-                - oldlen : integer. The length of a feature generated
-                    (i.e. the length of a feature extracted by extractor)
-                - audiolen : integer. 
-                - method : string. The downsampling method to be used when downsampling
-                    the design matrix.
-                - feature_matrix : np.ndarray. Feature_matrix. Rows correspond
-                    to time, columns correspond to features. Default is None.
-                    if None, will try to access object feature_matrix. If no
-                    feature_matrix attribute exists, will raise exception.
-                - nonlin : string. The nonlinearity to add to values. Choices
-                    are 'squared', 'sqrt', None. Default is 'squared'.
-                - **kwargs : The arguments for helper functions calculateOldtimes()
+        
+        Parameters
+        ----------
+        oldlen : integer. 
+            The length of a feature generated
+            (i.e. the length of a feature extracted by extractor)
+        audiolen : integer. 
+        method : string. 
+            The downsampling method to be used when downsampling
+            the design matrix.
+        feature_matrix : np.ndarray. 
+            Feature_matrix. Rows correspond to time, 
+            columns correspond to features. Default is None.
+            if None, will try to access object feature_matrix. If no
+            feature_matrix attribute exists, will raise exception.
+        nonlin : string. 
+            The nonlinearity to add to values. Choices
+            are 'squared', 'sqrt', None. Default is 'squared'.
+        **kwargs : array
+            The arguments for helper functions calculateOldtimes()
+
         """
         if feature_matrix is None and not hasattr(self, 'feature_matrix'):
             raise ValueError('Need a feature matrix to downsample')
@@ -147,20 +182,27 @@ class DesignMatrix(object):
     def downsampleFeature(self, vals, oldlen, audiolen=None, method='inter', **kwargs):
         """
         Downsamples a specific feature to be the same length as the responses.
-            :parameters:
-                - vals : np.ndarray. The feature values that need to be
-                    downsampled.
-                - oldlen : integer. The old length of the features.
-                - audiolen : integer. The length of the audio data file from which the
-                    acoustic features were extracted. This parameter is only needed when
-                    using the 'interp' method of downsampling. Default None.
-                - method : string. The method of downsampling to use.
-                    Choices are 'inter' (interpolate), 'man' (manual),
-                    'resample' (sp.signal.resample()), or 'interCQT'
-                    (same as 'inter' but specifically for CQT feature).
-                    Default is 'inter.'
-                - **kwargs : arguments for the resampling method to be used
-                    and for calculateOldtimes()
+        
+        Parameters
+        ----------
+        vals : np.ndarray. 
+            The feature values that need to be downsampled.
+        oldlen : integer. 
+            The old length of the features.
+        audiolen : integer. 
+            The length of the audio data file from which the
+            acoustic features were extracted. This parameter is only needed when
+            using the 'interp' method of downsampling. Default None.
+        method : string. 
+            The method of downsampling to use.
+            Choices are 'inter' (interpolate), 'man' (manual),
+            'resample' (sp.signal.resample()), or 'interCQT'
+            (same as 'inter' but specifically for CQT feature).
+            Default is 'inter.'
+        **kwargs : arrray 
+            arguments for the resampling method to be used
+            and for calculateOldtimes()
+
         """
         # list of features that need to be manually downsampled
         # this is more for internal record keeping rather than for implementation
@@ -185,11 +227,19 @@ class DesignMatrix(object):
         """
         This is used as a helper function to the interpolation functions.
         Function applies  a desired nonlinearity to the values before downsampling them.
-            :parameters:
-                - vals : np.ndarray. The values that need to be downsampled.
-                - nonlin : string. Type of nonlinearity to apply.
-            :returns:
-                - vals : np.ndarray. The result of applying the input nonlinearity
+        
+        Parameters
+        ----------
+        vals : np.ndarray. 
+            The values that need to be downsampled.
+        nonlin : string. 
+            Type of nonlinearity to apply.
+
+        Returns
+        -------
+        vals : np.ndarray. 
+            The result of applying the input nonlinearity
+
         """
         if nonlin == 'squared':
             vals = np.square(vals)
@@ -201,22 +251,32 @@ class DesignMatrix(object):
                               endTrim=False, newLen=None, **kwargs):
         """
         Uses interpolation to downsample the signal.
-            :parameters:
-                - vals : np.ndarray. The values that need to be downsampled.
-                - oldlen : integer. The old length of the values.
-                -  audiolen : integer. The length of the audio data file from which the
-                    acoustic features were extracted.
-                - nonlin : string. The nonlinearity to add to the signal.
-                    Default is 'squared'
-                - endTrim : boolean. Whether or not to trim the last 5 TRs for the new
-                    set of time points (i.e., the new length) for the features. This is
-                    used when using TR reports for calculate the new length/timepoints
-                    and if the experimental setup had 5 TRs of no stimulus at the end of
-                    the run. Default False.
-                - newlen : integer. The new feature length to downsample to.
-                    Used when no TR report available for the data to compute the new
-                    time length of the features. Default None.
-                - **kwargs : arguments of calculateOldtimes()
+
+        Parameters
+        ----------
+        vals : np.ndarray. 
+            The values that need to be downsampled.
+        oldlen : integer. 
+            The old length of the values.
+        audiolen : integer. 
+            The length of the audio data file from which the
+            acoustic features were extracted.
+        nonlin : string. 
+            The nonlinearity to add to the signal.
+            Default is 'squared'
+        endTrim : boolean. 
+            Whether or not to trim the last 5 TRs for the new
+                set of time points (i.e., the new length) for the features. This is
+                used when using TR reports for calculate the new length/timepoints
+                 and if the experimental setup had 5 TRs of no stimulus at the end of
+                the run. Default False.
+        newlen : integer. 
+            The new feature length to downsample to.
+            Used when no TR report available for the data to compute the new
+            time length of the features. Default None.
+        **kwargs : array 
+            arguments of calculateOldtimes()
+
         """
         oldtime = self.calculateOldtimes(oldlen, audiolen, **kwargs)
         newtime = self.calculateTRtimes(endTrim=endTrim, newLen=newLen)
@@ -232,20 +292,29 @@ class DesignMatrix(object):
                                 endTrim=False, newLen=None, **kwargs):
         """
         Uses interpolation to downsample a constant-Q transform feature matrix.
-            :parameters:
-                - vals : np.ndarray. The values that need to be downsampled.
-                - oldlen : integer. The old length of the values.
-                - nonlin : string. The nonlinearity to add to the signal.
-                    Default is 'squared'
-                - endTrim : boolean. Whether or not to trim the last 5 TRs for the new
-                    set of time points (i.e., the new length) for the features. This is
-                    used when using TR reports for calculate the new length/timepoints
-                    and if the experimental setup had 5 TRs of no stimulus at the end of
-                    the run. Default False.
-                - newlen : integer. The new feature length to downsample to.
-                    Used when no TR report available for the data to compute the new
-                    time length of the features. Default None.
-                - **kwargs : arguments of calculateOldtimes()
+        
+        Parameters
+        ----------
+        vals : np.ndarray. 
+            The values that need to be downsampled.
+        oldlen : integer. 
+            The old length of the values.
+        nonlin : string. 
+            The nonlinearity to add to the signal.
+            Default is 'squared'
+        endTrim : boolean. 
+            Whether or not to trim the last 5 TRs for the new
+            set of time points (i.e., the new length) for the features. This is
+            used when using TR reports for calculate the new length/timepoints
+            and if the experimental setup had 5 TRs of no stimulus at the end of
+            the run. Default False.
+        newlen : integer. 
+            The new feature length to downsample to.
+            Used when no TR report available for the data to compute the new
+            time length of the features. Default None.
+        **kwargs : array 
+            arguments of calculateOldtimes()
+
         """
         oldtime = self.calculateOldTimesCQT(oldlen, **kwargs)
         newtime = self.calculateTRtimes(endTrim=endTrim, newLen=newLen)
@@ -260,13 +329,18 @@ class DesignMatrix(object):
     def manualDownsample(self, vals, oldlen, newlen=None):
         """
         Manually downsamples a 1D array by tossing out values.
-            :parameters:
-                - vals : np.ndarray. The values that need to be
-                    manually downsampled.
-                - oldlen : integer. The old length of the array.
-                - newlen : integer. The desired new downsampled
-                    length of the array. Default is None, which
-                    returns the original values, unchanged.
+        
+        Parameters
+        ----------                
+        vals : np.ndarray. 
+            The values that need to be manually downsampled.
+        oldlen : integer. 
+            The old length of the array.
+        newlen : integer. 
+            The desired new downsampled
+            length of the array. Default is None, which
+            returns the original values, unchanged.
+
         """
         # TODO: increase functionality to work with 2D arrays
         if newlen is None:
@@ -280,13 +354,19 @@ class DesignMatrix(object):
     def resampDownsample(self, vals, newlen=None, axis=1):
         """
         Downsample by using scipy.signal.resample().
-            :parameters:
-                - vals : np.ndarray. The values to be downsampled.
-                - newlen : integer. The new length the downsampled
-                    signal should be. Default is None, returning
-                    original values, untouched.
-                - axis : integer. The axis along which to resample the
-                    signal. Default is axis = 1.
+        
+        Parameters
+        ----------
+        vals : np.ndarray. 
+            The values to be downsampled.
+        newlen : integer. 
+            The new length the downsampled
+            signal should be. Default is None, returning
+            original values, untouched.
+        axis : integer. 
+            The axis along which to resample the
+            signal. Default is axis = 1.
+
         """
         if newlen is None:
             print 'New length value not provided, will not resample...'
@@ -296,12 +376,18 @@ class DesignMatrix(object):
     def averageDownsample(self, vals, newlen=None, overlapsize=1):
         """
         Downsample feature matrix by taking a moving window overage of some overlap.
-            :parameters:
-                - vals : np.ndarray. The values to be downsampled. (size: time x feature num)
-                - newlen : integer. The new length the downsampled signal should be.
-                           Default is None, reutrning original values untouched.
-                - overlapsize: integer. The amount of overlap when computing the averages.
-                           Default is 1.
+        
+        Parameters
+        ----------
+        vals : np.ndarray. 
+            The values to be downsampled. (size: time x feature num)
+        newlen : integer. 
+            The new length the downsampled signal should be.
+            Default is None, reutrning original values untouched.
+        overlapsize: integer. 
+            The amount of overlap when computing the averages.
+            Default is 1.
+
         """
         if newlen is None:
             print 'New length value not provided, will not average and downsample...'
@@ -319,28 +405,39 @@ class DesignMatrix(object):
         return newarr
 
     def calculateOldtimes(self, oldlen, audiolen, t='sc', start=None, end=None,
-    							n_fft=2048, hop_length=None, padded=None):
+                                n_fft=2048, hop_length=None, padded=None):
         """
         Calculate the time points for all the bins created when extracting
         features.
-            :parameters:
-                - oldlen : integer. The length of a feature generated
-                    by a not padded version of the audiofile. (i.e. the length
-                    of a feature extracted by extractor)
-                - audiolen : interger. The length of the audio signal (samples).
-                - t : string. Either 'sc' or 'sp'. Indicates the unit of time
-                    to use when downsampling the feature matrix.
-                - start : integer. The first sample to start calculating the old
-                    times from. Default: n_fft / 2
-                - end : integer. The last sample to be included/considered for
-                    calculating the old times. Default: len(audio) - n_fft/2
-                - n_fft : integer. The window length used for the time-series
-                    analysis of *all* features. Default is 2048 samples.
-                - hop_length : integer. Overlap length used when extracting
-                    features. Default is half of n_fft value (in samples)
-                - padded : integer. The amount the signal was padded on one side
-                    of the signal (assuming mirror padding to center signal).
-                    Used to correct the samples. Default is None.
+        
+        Parameters
+        ----------
+        oldlen : integer. 
+            The length of a feature generated
+            by a not padded version of the audiofile. (i.e. the length
+            of a feature extracted by extractor)
+        audiolen : interger. 
+            The length of the audio signal (samples).
+        t : string. 
+            Either 'sc' or 'sp'. Indicates the unit of time
+            to use when downsampling the feature matrix.
+        start : integer. 
+            The first sample to start calculating the old
+            times from. Default: n_fft / 2
+        end : integer. 
+            The last sample to be included/considered for
+            calculating the old times. Default: len(audio) - n_fft/2
+        n_fft : integer. 
+            The window length used for the time-series
+            analysis of *all* features. Default is 2048 samples.
+        hop_length : integer. 
+            Overlap length used when extracting
+            features. Default is half of n_fft value (in samples)
+        padded : integer. 
+            The amount the signal was padded on one side
+            of the signal (assuming mirror padding to center signal).
+            Used to correct the samples. Default is None.
+
         """
         # if n_fft is None:
         #     n_fft = self.n_fft
@@ -373,19 +470,30 @@ class DesignMatrix(object):
         """
         This function is used to calculate the time points for the samples of an
         extracted feature prior to downsampling.
-            :parameters:
-                - oldlen : integer. The length of a feature prior to downsampling
-                    (i.e. the length of a feature extracted by extractor).
-                - t : string. Either 'sc' or 'sp'. Indicates the unit of time
-                    to use when downsampling the feature matrix.
-                - cqt_hop : integer. The extraction parameter value corresponding to
-                    cqt_hop when extract CQT feature. Default 1024 [samples].
-                - seconds : float. The number of seconds used as the time window for the
-                    initial chunking of the soundfile before computing the CQT. Default 2.0.
-                - sr : integer. Sampling rate of the audiofile from which CQT was extracted.
-                    Default 44100 [samples per second].
-            :returns:
-                - oldtimes : np.ndarry. The time points of the extracted time series.
+        
+        Parameters
+        ----------
+        oldlen : integer. 
+            The length of a feature prior to downsampling
+            (i.e. the length of a feature extracted by extractor).
+        t : string. 
+            Either 'sc' or 'sp'. Indicates the unit of time
+            to use when downsampling the feature matrix.
+        cqt_hop : integer. 
+            The extraction parameter value corresponding to
+            cqt_hop when extract CQT feature. Default 1024 [samples].
+        seconds : float. 
+            The number of seconds used as the time window for the
+            initial chunking of the soundfile before computing the CQT. Default 2.0.
+        sr : integer. 
+            Sampling rate of the audiofile from which CQT was extracted.
+            Default 44100 [samples per second].
+        
+        Returns
+        -------
+        oldtimes : np.ndarry. 
+            The time points of the extracted time series.
+
         """
         # TODO: find a way to integrate this with the pre-existing downsampling stuff,
         # (maybe via variables/parameters)
@@ -411,18 +519,24 @@ class DesignMatrix(object):
         """
         Calculate the TR start times in seconds. Uses TRFile object class.
         Returns an array of start times in seconds.
-            :parameters:
-                - trim : integer. How much to trim the beginning of
-                    the TRtimes by. Depends on how many TRs passed before the
-                    stimulus began.
-                - endTrim : boolean. Whether or not to trim the last 5 TRs for the new
-                    set of time points (i.e., the new length) for the features. This is
-                    used when using TR reports for calculate the new length/timepoints
-                    and if the experimental setup had 5 TRs of no stimulus at the end of
-                    the run. Default False.
-                - newlen : integer. The new feature length to downsample to.
-                    Used when no TR report available for the data to compute the new
-                    time length of the features. Default None.
+        
+        Parameters
+        ----------
+        trim : integer. 
+            How much to trim the beginning of
+            the TRtimes by. Depends on how many TRs passed before the
+            stimulus began.
+        endTrim : boolean. 
+            Whether or not to trim the last 5 TRs for the new
+            set of time points (i.e., the new length) for the features. This is
+            used when using TR reports for calculate the new length/timepoints
+            and if the experimental setup had 5 TRs of no stimulus at the end of
+            the run. Default False.
+        newlen : integer. 
+            The new feature length to downsample to.
+            Used when no TR report available for the data to compute the new
+            time length of the features. Default None.
+
         """
         if self.trfile is not None:
             tr = TRFile(self.trfile)
@@ -439,7 +553,10 @@ class DesignMatrix(object):
     def saveMatrix(self):
         """
         Returns the feature matrix to be saved by user.
-            :returns:
-                - feature_matrix : np.ndarray [shape=].
+
+        Returns
+        -------
+        feature_matrix : np.ndarray [shape=].
+        
         """
         return self.feature_matrix

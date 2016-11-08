@@ -1,0 +1,29 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+Module: :mod:`features.DesignMatrix`
+====================================
+.. automodule:: music_feats.features.DesignMatrix
+
+.. currentmodule:: music_feats.features.DesignMatrix
+.. autosummary::
+
+   music_feats.features.DesignMatrix.interpdata
+
+   music_feats.features.DesignMatrix.DesignMatrix
+
+interpdata
+----------
+
+.. autofunction:: music_feats.features.DesignMatrix.interpdata
+
+
+:class:`DesignMatrix`
+---------------------
+
+
+.. autoclass:: DesignMatrix
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__

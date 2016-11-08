@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Module: utils.model_funcs &mdash; Music_Feats 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Music_Feats 1.0 documentation" href="../index.html" />
+    <link rel="up" title="API Reference" href="api.html" />
+    <link rel="next" title="Module: utils.response_utils_fi" href="music_feats.utils.response_utils_fi.html" />
+    <link rel="prev" title="Module: utils.interpdata" href="music_feats.utils.interpdata.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.response_utils_fi.html" title="Module: utils.response_utils_fi"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.interpdata.html" title="Module: utils.interpdata"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API Reference</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-music_feats.utils.model_funcs">
+<span id="module-utils-model-funcs"></span><h1>Module: <code class="xref py py-mod docutils literal"><span class="pre">utils.model_funcs</span></code><a class="headerlink" href="#module-music_feats.utils.model_funcs" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.model_funcs.STA" title="music_feats.utils.model_funcs.STA"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.model_funcs.STA</span></code></a>(delRstim,&nbsp;...)</td>
+<td>Function estimates model weights using a spike-triggered average model.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.model_funcs.averageDelays" title="music_feats.utils.model_funcs.averageDelays"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.model_funcs.averageDelays</span></code></a>(wt,&nbsp;...)</td>
+<td>Compute the average weight across delays.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.model_funcs.createVolume" title="music_feats.utils.model_funcs.createVolume"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.model_funcs.createVolume</span></code></a>(...)</td>
+<td>Helper function for creating a cortex volume for visualization.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.model_funcs.separate_model_weights" title="music_feats.utils.model_funcs.separate_model_weights"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.model_funcs.separate_model_weights</span></code></a>(...)</td>
+<td>Takes an N x M matrix of voxel weights [vwts] (where N is the total number of features and M is the number of voxels) and separates out the weights for each separate model.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.model_funcs.spectralCentroid" title="music_feats.utils.model_funcs.spectralCentroid"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.model_funcs.spectralCentroid</span></code></a>(W)</td>
+<td>Function used for calculating spectral centroid of the weights.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="sta">
+<h2>STA<a class="headerlink" href="#sta" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.model_funcs.STA">
+<code class="descclassname">music_feats.utils.model_funcs.</code><code class="descname">STA</code><span class="sig-paren">(</span><em>delRstim</em>, <em>zRresp</em>, <em>delPstims</em>, <em>zPresps</em>, <em>ndelays</em>, <em>modeldims</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.model_funcs.STA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function estimates model weights using a spike-triggered average
+model. Weights are cross-validated and the results returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>delRstim</strong> : np.ndarray</p>
+<blockquote>
+<div><p>training - stimulus feature time series</p>
+</div></blockquote>
+<p><strong>zRresp</strong> : np.ndarray</p>
+<blockquote>
+<div><p>training - voxel responses</p>
+</div></blockquote>
+<p><strong>delPstims</strong> : list of np.ndarry</p>
+<blockquote>
+<div><p>validation - stimulus feature time series</p>
+</div></blockquote>
+<p><strong>zPresps</strong> : list of np.ndarray</p>
+<blockquote>
+<div><p>validation - voxel responses</p>
+</div></blockquote>
+<p><strong>ndelays</strong> : python list of ints</p>
+<blockquote>
+<div><p>number of delays to use in the model</p>
+</div></blockquote>
+<p><strong>modeldims</strong> : python list of ints,</p>
+<blockquote>
+<div><p>dimensions of the submodels as a list</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray, np.ndarray, list, list</p>
+<blockquote class="last">
+<div><p>STA_W : estimated weights, valcorr_STA : validation correlation values (full model)
+submodelwts_STA : wts for each submodel, valmodelcorr_STA : list of prediction correlcation
+values for each submodel</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="averagedelays">
+<h2>averageDelays<a class="headerlink" href="#averagedelays" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.model_funcs.averageDelays">
+<code class="descclassname">music_feats.utils.model_funcs.</code><code class="descname">averageDelays</code><span class="sig-paren">(</span><em>wt</em>, <em>modeldims</em>, <em>delays=4</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.model_funcs.averageDelays" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the average weight across delays. Assumes there are wt.shape[0]/delays
+features overall (sub-models of dimension 1). Used for tonotopy analysis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>wt</strong> : np.ndarray</p>
+<blockquote>
+<div><p>[(num_channels*delays, num_voxels)]. Delayed model weights.</p>
+</div></blockquote>
+<p><strong>modeldims: list</strong></p>
+<blockquote>
+<div><p>List of submodel dimensions (should be list of all 1s).</p>
+</div></blockquote>
+<p><strong>delays</strong> : int</p>
+<blockquote>
+<div><p>Number of delays used. Default: 4.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">int</p>
+<blockquote class="last">
+<div><p>Average of delays</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="createvolume">
+<h2>createVolume<a class="headerlink" href="#createvolume" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.model_funcs.createVolume">
+<code class="descclassname">music_feats.utils.model_funcs.</code><code class="descname">createVolume</code><span class="sig-paren">(</span><em>data</em>, <em>mask</em>, <em>surface</em>, <em>xfms</em>, <em>vmin=None</em>, <em>vmax=None</em>, <em>factor=0.95</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.model_funcs.createVolume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function for creating a cortex volume for visualization.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : np.ndarray</p>
+<blockquote>
+<div><p>The data to visualize.</p>
+</div></blockquote>
+<p><strong>mask</strong> : np.ndarray</p>
+<blockquote>
+<div><p>Mask to use to transform.</p>
+</div></blockquote>
+<p><strong>surface</strong> : TYPE</p>
+<blockquote>
+<div><p>surface to use.</p>
+</div></blockquote>
+<p><strong>xfms</strong> :  TYPE</p>
+<blockquote>
+<div><p>transform to use.</p>
+</div></blockquote>
+<p><strong>vmin</strong> : float</p>
+<blockquote>
+<div><p>Default: Min of data.</p>
+</div></blockquote>
+<p><strong>vmax</strong> : float</p>
+<blockquote>
+<div><p>Default: Max of data.</p>
+</div></blockquote>
+<p><strong>factor</strong> : float</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Factor of vmax to use for visualization purposes.</dt>
+<dd><p class="first last">Default 0.95.</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">cortex volume</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="separate-model-weights">
+<h2>separate_model_weights<a class="headerlink" href="#separate-model-weights" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.model_funcs.separate_model_weights">
+<code class="descclassname">music_feats.utils.model_funcs.</code><code class="descname">separate_model_weights</code><span class="sig-paren">(</span><em>vwts</em>, <em>ndelays</em>, <em>modeldims</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.model_funcs.separate_model_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes an N x M matrix of voxel weights [vwts] (where N is the
+total number of features and M is the number of voxels) and
+separates out the weights for each separate model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>vwt</strong> : np.ndarray</p>
+<blockquote>
+<div><p>weight vector</p>
+</div></blockquote>
+<p><strong>ndelays</strong> : int</p>
+<blockquote>
+<div><p>number of delays</p>
+</div></blockquote>
+<p><strong>modeldims</strong> : modeldims</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote>
+<div><p>List of (D*Ni) x M matrices, where D is the number of</p>
+</div></blockquote>
+<p class="last">delays and Ni is the number of features in model i.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="spectralcentroid">
+<h2>spectralCentroid<a class="headerlink" href="#spectralcentroid" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.model_funcs.spectralCentroid">
+<code class="descclassname">music_feats.utils.model_funcs.</code><code class="descname">spectralCentroid</code><span class="sig-paren">(</span><em>W</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.model_funcs.spectralCentroid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function used for calculating spectral centroid of the weights. Computes the
+centroid of the weights (rows) for each voxel (column). Frequency approximated
+by index of the weights.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>W</strong> : np.ndarray</p>
+<blockquote>
+<div><p>[(num_channels, num_voxels)].</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np,ndarray,</p>
+<blockquote class="last">
+<div><p>SC :[(num_voxels)] One value per voxel correspond to the
+centroid of frequency indices.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Module: <code class="docutils literal"><span class="pre">utils.model_funcs</span></code></a><ul>
+<li><a class="reference internal" href="#sta">STA</a></li>
+<li><a class="reference internal" href="#averagedelays">averageDelays</a></li>
+<li><a class="reference internal" href="#createvolume">createVolume</a></li>
+<li><a class="reference internal" href="#separate-model-weights">separate_model_weights</a></li>
+<li><a class="reference internal" href="#spectralcentroid">spectralCentroid</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="music_feats.utils.interpdata.html"
+                        title="previous chapter">Module: <code class="docutils literal"><span class="pre">utils.interpdata</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="music_feats.utils.response_utils_fi.html"
+                        title="next chapter">Module: <code class="docutils literal"><span class="pre">utils.response_utils_fi</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/music_feats.utils.model_funcs.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.response_utils_fi.html" title="Module: utils.response_utils_fi"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.interpdata.html" title="Module: utils.interpdata"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

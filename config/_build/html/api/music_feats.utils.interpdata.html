@@ -1,0 +1,618 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Module: utils.interpdata &mdash; Music_Feats 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Music_Feats 1.0 documentation" href="../index.html" />
+    <link rel="up" title="API Reference" href="api.html" />
+    <link rel="next" title="Module: utils.model_funcs" href="music_feats.utils.model_funcs.html" />
+    <link rel="prev" title="Module: features.tonotopyExtractor" href="music_feats.features.tonotopyExtractor.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.model_funcs.html" title="Module: utils.model_funcs"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="music_feats.features.tonotopyExtractor.html" title="Module: features.tonotopyExtractor"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API Reference</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-music_feats.utils.interpdata">
+<span id="module-utils-interpdata"></span><h1>Module: <code class="xref py py-mod docutils literal"><span class="pre">utils.interpdata</span></code><a class="headerlink" href="#module-music_feats.utils.interpdata" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.interpdata.expfun" title="music_feats.utils.interpdata.expfun"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.interpdata.expfun</span></code></a>(theta,&nbsp;t)</td>
+<td>Computes an exponential weighting function for interpolation.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.interpdata.expinterp2D" title="music_feats.utils.interpdata.expinterp2D"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.interpdata.expinterp2D</span></code></a>(...)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.interpdata.gabor_xfm" title="music_feats.utils.interpdata.gabor_xfm"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.interpdata.gabor_xfm</span></code></a>(data,&nbsp;...)</td>
+<td>Insert description here</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.interpdata.gabor_xfm2D" title="music_feats.utils.interpdata.gabor_xfm2D"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.interpdata.gabor_xfm2D</span></code></a>(...)</td>
+<td>Insert description here</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.interpdata.interpdata" title="music_feats.utils.interpdata.interpdata"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.interpdata.interpdata</span></code></a>(...)</td>
+<td>Interpolates the columns of [data] to find the values at [newtime],  given that the current values are at [oldtime].</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.interpdata.lanczosfun" title="music_feats.utils.interpdata.lanczosfun"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.interpdata.lanczosfun</span></code></a>(...)</td>
+<td>Compute the lanczos function with some cutoff frequency [B] at some time [t].</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.interpdata.lanczosinterp2D" title="music_feats.utils.interpdata.lanczosinterp2D"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.interpdata.lanczosinterp2D</span></code></a>(...)</td>
+<td>Interpolates the columns of [data], assuming that the i&#8217;th row of data corresponds to oldtime(i).</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.interpdata.sincfun" title="music_feats.utils.interpdata.sincfun"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.interpdata.sincfun</span></code></a>(B,&nbsp;t[,&nbsp;...])</td>
+<td>Compute the sinc function with some cutoff frequency [B] at some time [t].</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.interpdata.sincinterp1D" title="music_feats.utils.interpdata.sincinterp1D"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.interpdata.sincinterp1D</span></code></a>(...)</td>
+<td>Interpolates the one-dimensional signal [data] at the times given by [newtime].</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.interpdata.sincinterp2D" title="music_feats.utils.interpdata.sincinterp2D"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.interpdata.sincinterp2D</span></code></a>(...)</td>
+<td>Interpolates the columns of [data], assuming that the i&#8217;th row of data corresponds to oldtime(i).</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.interpdata.sincupinterp2D" title="music_feats.utils.interpdata.sincupinterp2D"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.interpdata.sincupinterp2D</span></code></a>(...)</td>
+<td>Uses sinc interpolation to upsample the columns of [data], assuming that the i&#8217;th row of data comes from oldtime[i].</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.interpdata.test_interp" title="music_feats.utils.interpdata.test_interp"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.interpdata.test_interp</span></code></a>(...)</td>
+<td>Tests sincinterp2D passing it the given [kwargs] and interpolating known signals</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="expfun">
+<h2>expfun<a class="headerlink" href="#expfun" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.interpdata.expfun">
+<code class="descclassname">music_feats.utils.interpdata.</code><code class="descname">expfun</code><span class="sig-paren">(</span><em>theta</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.interpdata.expfun" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes an exponential weighting function for interpolation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>theta</strong> : theta</p>
+<p><strong>t</strong> : t</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">float</p>
+<blockquote class="last">
+<div><p>val</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="expinterp2d">
+<h2>expinterp2D<a class="headerlink" href="#expinterp2d" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.interpdata.expinterp2D">
+<code class="descclassname">music_feats.utils.interpdata.</code><code class="descname">expinterp2D</code><span class="sig-paren">(</span><em>data</em>, <em>oldtime</em>, <em>newtime</em>, <em>theta</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.interpdata.expinterp2D" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="gabor-xfm">
+<h2>gabor_xfm<a class="headerlink" href="#gabor-xfm" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.interpdata.gabor_xfm">
+<code class="descclassname">music_feats.utils.interpdata.</code><code class="descname">gabor_xfm</code><span class="sig-paren">(</span><em>data</em>, <em>oldtimes</em>, <em>newtimes</em>, <em>freqs</em>, <em>sigma</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.interpdata.gabor_xfm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert description here</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : np.ndarray</p>
+<blockquote>
+<div><p>data</p>
+</div></blockquote>
+<p><strong>oldtime</strong> : oldtime</p>
+<blockquote>
+<div><p>oldtime</p>
+</div></blockquote>
+<p><strong>newtime</strong> : newtime</p>
+<blockquote>
+<div><p>newtime</p>
+</div></blockquote>
+<p><strong>freqs</strong> : freqs</p>
+<blockquote>
+<div><p>freqs</p>
+</div></blockquote>
+<p><strong>sigma</strong> : sigma</p>
+<blockquote>
+<div><p>sigma</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>np.ndarray</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="gabor-xfm2d">
+<h2>gabor_xfm2D<a class="headerlink" href="#gabor-xfm2d" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.interpdata.gabor_xfm2D">
+<code class="descclassname">music_feats.utils.interpdata.</code><code class="descname">gabor_xfm2D</code><span class="sig-paren">(</span><em>ddata</em>, <em>oldtimes</em>, <em>newtimes</em>, <em>freqs</em>, <em>sigma</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.interpdata.gabor_xfm2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert description here</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : np.ndarray</p>
+<blockquote>
+<div><p>data</p>
+</div></blockquote>
+<p><strong>oldtime</strong> : oldtime</p>
+<blockquote>
+<div><p>oldtime</p>
+</div></blockquote>
+<p><strong>newtime</strong> : newtime</p>
+<blockquote>
+<div><p>newtime</p>
+</div></blockquote>
+<p><strong>freqs</strong> : freqs</p>
+<blockquote>
+<div><p>freqs</p>
+</div></blockquote>
+<p><strong>sigma</strong> : sigma</p>
+<blockquote>
+<div><p>sigma</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>np.ndarray</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="interpdata">
+<h2>interpdata<a class="headerlink" href="#interpdata" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.interpdata.interpdata">
+<code class="descclassname">music_feats.utils.interpdata.</code><code class="descname">interpdata</code><span class="sig-paren">(</span><em>data</em>, <em>oldtime</em>, <em>newtime</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.interpdata.interpdata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interpolates the columns of [data] to find the values at [newtime], 
+given that the current values are at [oldtime].</p>
+<p>[oldtime] must have 
+the same number of elements as [data] has rows.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : np.ndarray</p>
+<blockquote>
+<div><p>data</p>
+</div></blockquote>
+<p><strong>oldtime</strong> : oldtime</p>
+<blockquote>
+<div><p>oldtime</p>
+</div></blockquote>
+<p><strong>newtime</strong> : newtime</p>
+<blockquote>
+<div><p>newtime</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>Interpolted data</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="lanczosfun">
+<h2>lanczosfun<a class="headerlink" href="#lanczosfun" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.interpdata.lanczosfun">
+<code class="descclassname">music_feats.utils.interpdata.</code><code class="descname">lanczosfun</code><span class="sig-paren">(</span><em>cutoff</em>, <em>t</em>, <em>window=3</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.interpdata.lanczosfun" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the lanczos function with some cutoff frequency [B] at some time [t].
+[t] can be a scalar or any shaped numpy array.
+If given a [window], only the lowest-order [window] lobes of the sinc function
+will be non-zero.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>cutoff</strong> : int</p>
+<blockquote>
+<div><p>Cutoff frequency</p>
+</div></blockquote>
+<p><strong>t</strong> : t</p>
+<blockquote>
+<div><p>time</p>
+</div></blockquote>
+<p><strong>window</strong> : int</p>
+<blockquote>
+<div><p>Lowest order lobe of the sinc function. Default at 3</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">float</p>
+<blockquote class="last">
+<div><p>lanczos function value</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="lanczosinterp2d">
+<h2>lanczosinterp2D<a class="headerlink" href="#lanczosinterp2d" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.interpdata.lanczosinterp2D">
+<code class="descclassname">music_feats.utils.interpdata.</code><code class="descname">lanczosinterp2D</code><span class="sig-paren">(</span><em>data</em>, <em>oldtime</em>, <em>newtime</em>, <em>window=3</em>, <em>cutoff_mult=1.0</em>, <em>rectify=False</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.interpdata.lanczosinterp2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interpolates the columns of [data], assuming that the i&#8217;th row of data corresponds to
+oldtime(i). A new matrix with the same number of columns and a number of rows given
+by the length of [newtime] is returned.</p>
+<p>The time points in [newtime] are assumed to be evenly spaced, and their frequency will
+be used to calculate the low-pass cutoff of the interpolation filter.</p>
+<p>[window] lobes of the sinc function will be used. [window] should be an integer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : np.ndarray</p>
+<p><strong>oldtime</strong> : oldtime</p>
+<p><strong>newtime</strong> : new time</p>
+<p><strong>window</strong> : int</p>
+<blockquote>
+<div><p>Lowest order lobe of the sinc function.</p>
+</div></blockquote>
+<p><strong>cutoff_multi</strong> : int</p>
+<blockquote>
+<div><p>Cutoff frequency. Default at 1</p>
+</div></blockquote>
+<p><strong>rectify</strong> : bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>new matrix</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="sincfun">
+<h2>sincfun<a class="headerlink" href="#sincfun" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.interpdata.sincfun">
+<code class="descclassname">music_feats.utils.interpdata.</code><code class="descname">sincfun</code><span class="sig-paren">(</span><em>B</em>, <em>t</em>, <em>window=inf</em>, <em>causal=False</em>, <em>renorm=True</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.interpdata.sincfun" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the sinc function with some cutoff frequency [B] at some time [t].
+[t] can be a scalar or any shaped numpy array.</p>
+<p>If given a [window], only the lowest-order [window] lobes of the sinc function
+will be non-zero.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>B</strong> : int</p>
+<blockquote>
+<div><p>Cutoff frequency</p>
+</div></blockquote>
+<p><strong>t</strong> : t</p>
+<blockquote>
+<div><p>time</p>
+</div></blockquote>
+<p><strong>window</strong> : int</p>
+<blockquote>
+<div><p>Lowest order lobe of the sinc function.</p>
+</div></blockquote>
+<p><strong>casual</strong> : bool</p>
+<blockquote>
+<div><p>True if past values have non-zero weights. Default is False</p>
+</div></blockquote>
+<p><strong>renorm</strong> : bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">float</p>
+<blockquote class="last">
+<div><p>sinc function value</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="sincinterp1d">
+<h2>sincinterp1D<a class="headerlink" href="#sincinterp1d" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.interpdata.sincinterp1D">
+<code class="descclassname">music_feats.utils.interpdata.</code><code class="descname">sincinterp1D</code><span class="sig-paren">(</span><em>data</em>, <em>oldtime</em>, <em>newtime</em>, <em>cutoff_mult=1.0</em>, <em>window=1</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.interpdata.sincinterp1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interpolates the one-dimensional signal [data] at the times given by [newtime].</p>
+<p>Assumes that each sample in [data] was collected at the corresponding time in [oldtime]. Clearly,
+[oldtime] and [data] must have the same length, but [newtime] can have any length.</p>
+<p>This function will assume that the time points in [newtime] are evenly spaced and will use
+that frequency multipled by [cutoff_mult] as the cutoff frequency of the sinc filter.</p>
+<p>The sinc function will be computed with [window] lobes.  With [window]=1, this will
+effectively compute the Lanczos filter.</p>
+<p>This is a very simplistic filtering algorithm, so will take O(N*M) time, where N is the
+length of [oldtime] and M is the length of [newtime].</p>
+<p>This filter is non-causal.</p>
+<p>[oldtime] must have 
+the same number of elements as [data] has rows.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : np.ndarray</p>
+<blockquote>
+<div><p>data</p>
+</div></blockquote>
+<p><strong>oldtime</strong> : oldtime</p>
+<blockquote>
+<div><p>oldtime</p>
+</div></blockquote>
+<p><strong>newtime</strong> : newtime</p>
+<blockquote>
+<div><p>newtime</p>
+</div></blockquote>
+<p><strong>cutoff_mult</strong> : float</p>
+<blockquote>
+<div><p>cutoff_mult</p>
+</div></blockquote>
+<p><strong>window</strong> : int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>Interpolted data</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="sincinterp2d">
+<h2>sincinterp2D<a class="headerlink" href="#sincinterp2d" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.interpdata.sincinterp2D">
+<code class="descclassname">music_feats.utils.interpdata.</code><code class="descname">sincinterp2D</code><span class="sig-paren">(</span><em>data</em>, <em>oldtime</em>, <em>newtime</em>, <em>cutoff_mult=1.0</em>, <em>window=1</em>, <em>causal=False</em>, <em>renorm=True</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.interpdata.sincinterp2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interpolates the columns of [data], assuming that the i&#8217;th row of data corresponds to
+oldtime(i).  A new matrix with the same number of columns and a number of rows given
+by the length of [newtime] is returned.  If [causal], only past time points will be used
+to computed the present value, and future time points will be ignored.</p>
+<p>The time points in [newtime] are assumed to be evenly spaced, and their frequency will
+be used to calculate the low-pass cutoff of the sinc interpolation filter.</p>
+<p>[window] lobes of the sinc function will be used.  [window] should be an integer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : np.ndarray</p>
+<p><strong>oldtime</strong> : oldtime</p>
+<p><strong>newtime</strong> : new time</p>
+<p><strong>cutoff_multi</strong> : int</p>
+<blockquote>
+<div><p>Cutoff frequency. Default at 1</p>
+</div></blockquote>
+<p><strong>window</strong> : int</p>
+<blockquote>
+<div><p>Lowest order lobe of the sinc function.</p>
+</div></blockquote>
+<p><strong>casual</strong> : bool</p>
+<p><strong>renorm</strong> : bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>new matrix</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="sincupinterp2d">
+<h2>sincupinterp2D<a class="headerlink" href="#sincupinterp2d" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.interpdata.sincupinterp2D">
+<code class="descclassname">music_feats.utils.interpdata.</code><code class="descname">sincupinterp2D</code><span class="sig-paren">(</span><em>data</em>, <em>oldtime</em>, <em>newtimes</em>, <em>cutoff</em>, <em>window=1</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.interpdata.sincupinterp2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses sinc interpolation to upsample the columns of [data], assuming that the i&#8217;th
+row of data comes from oldtime[i].  A new matrix with the same number of columns
+and a number of rows given by the length of [newtime] is returned.</p>
+<p>The times points in [oldtime] are assumed to be evenly spaced, and their frequency
+will be used to calculate the low-pass cutoff of the sinc interpolation filter.</p>
+<p>[window] lobes of the sinc function will be used.  [window] should be an integer.
+Setting [window] to 1 yields a Lanczos filter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : np.ndarray</p>
+<p><strong>oldtime</strong> : oldtime</p>
+<p><strong>newtime</strong> : new time</p>
+<p><strong>cutoff</strong> : int</p>
+<blockquote>
+<div><p>Cutoff frequency</p>
+</div></blockquote>
+<p><strong>window</strong> : int</p>
+<blockquote>
+<div><p>Lowest order lobe of the sinc function.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>new matrix</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="test-interp">
+<h2>test_interp<a class="headerlink" href="#test-interp" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.interpdata.test_interp">
+<code class="descclassname">music_feats.utils.interpdata.</code><code class="descname">test_interp</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.interpdata.test_interp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests sincinterp2D passing it the given [kwargs] and interpolating known signals 
+between the two time domains</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>kwargs</strong> : kwargs</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">newtime, interpdata</p>
+<blockquote class="last">
+<div><p>newtime, interpdata</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Module: <code class="docutils literal"><span class="pre">utils.interpdata</span></code></a><ul>
+<li><a class="reference internal" href="#expfun">expfun</a></li>
+<li><a class="reference internal" href="#expinterp2d">expinterp2D</a></li>
+<li><a class="reference internal" href="#gabor-xfm">gabor_xfm</a></li>
+<li><a class="reference internal" href="#gabor-xfm2d">gabor_xfm2D</a></li>
+<li><a class="reference internal" href="#interpdata">interpdata</a></li>
+<li><a class="reference internal" href="#lanczosfun">lanczosfun</a></li>
+<li><a class="reference internal" href="#lanczosinterp2d">lanczosinterp2D</a></li>
+<li><a class="reference internal" href="#sincfun">sincfun</a></li>
+<li><a class="reference internal" href="#sincinterp1d">sincinterp1D</a></li>
+<li><a class="reference internal" href="#sincinterp2d">sincinterp2D</a></li>
+<li><a class="reference internal" href="#sincupinterp2d">sincupinterp2D</a></li>
+<li><a class="reference internal" href="#test-interp">test_interp</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="music_feats.features.tonotopyExtractor.html"
+                        title="previous chapter">Module: <code class="docutils literal"><span class="pre">features.tonotopyExtractor</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="music_feats.utils.model_funcs.html"
+                        title="next chapter">Module: <code class="docutils literal"><span class="pre">utils.model_funcs</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/music_feats.utils.interpdata.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.model_funcs.html" title="Module: utils.model_funcs"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="music_feats.features.tonotopyExtractor.html" title="Module: features.tonotopyExtractor"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+API Reference
+=============
+
+.. toctree::
+
+   music_feats.features.DesignMatrix
+   music_feats.features.extractor
+   music_feats.features.features
+   music_feats.features.tonotopyExtractor
+   music_feats.utils.interpdata
+   music_feats.utils.model_funcs
+   music_feats.utils.response_utils_fi
+   music_feats.utils.stimulus_utils_fi
+   music_feats.utils.viz

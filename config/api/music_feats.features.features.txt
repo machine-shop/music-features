@@ -1,0 +1,269 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+Module: :mod:`features.features`
+================================
+.. automodule:: music_feats.features.features
+
+.. currentmodule:: music_feats.features.features
+.. autosummary::
+
+   music_feats.features.features.STA
+   music_feats.features.features.addnoise
+   music_feats.features.features.applyMask
+   music_feats.features.features.averageDelays
+   music_feats.features.features.boldlike
+   music_feats.features.features.createResponse
+   music_feats.features.features.createVolume
+   music_feats.features.features.dilate_mask
+   music_feats.features.features.expfun
+   music_feats.features.features.expinterp2D
+   music_feats.features.features.gabor_xfm
+   music_feats.features.features.gabor_xfm2D
+   music_feats.features.features.generateTestR
+   music_feats.features.features.interpdata
+   music_feats.features.features.lanczosfun
+   music_feats.features.features.lanczosinterp2D
+   music_feats.features.features.loadShuffledIMS
+   music_feats.features.features.load_mcparams
+   music_feats.features.features.load_response_imagedocs
+   music_feats.features.features.load_response_imagedocs_music_AN
+   music_feats.features.features.load_response_imagedocs_speech_AN
+   music_feats.features.features.load_response_imagedocs_test
+   music_feats.features.features.load_response_imagedocs_tonotopy_AN
+   music_feats.features.features.load_response_imagedocs_tonotopy_LO
+   music_feats.features.features.load_responses
+   music_feats.features.features.load_responses_test
+   music_feats.features.features.retrieveMasks
+   music_feats.features.features.savenewBR
+   music_feats.features.features.scramble
+   music_feats.features.features.scrambleHelper
+   music_feats.features.features.selectROI
+   music_feats.features.features.separate_model_weights
+   music_feats.features.features.separate_voxel_model_weights
+   music_feats.features.features.sincfun
+   music_feats.features.features.sincinterp1D
+   music_feats.features.features.sincinterp2D
+   music_feats.features.features.sincupinterp2D
+   music_feats.features.features.spectralCentroid
+   music_feats.features.features.test_interp
+
+   music_feats.features.features.Features
+   music_feats.features.features.TRFile
+
+STA
+---
+
+.. autofunction:: music_feats.features.features.STA
+
+addnoise
+--------
+
+.. autofunction:: music_feats.features.features.addnoise
+
+applyMask
+---------
+
+.. autofunction:: music_feats.features.features.applyMask
+
+averageDelays
+-------------
+
+.. autofunction:: music_feats.features.features.averageDelays
+
+boldlike
+--------
+
+.. autofunction:: music_feats.features.features.boldlike
+
+createResponse
+--------------
+
+.. autofunction:: music_feats.features.features.createResponse
+
+createVolume
+------------
+
+.. autofunction:: music_feats.features.features.createVolume
+
+dilate_mask
+-----------
+
+.. autofunction:: music_feats.features.features.dilate_mask
+
+expfun
+------
+
+.. autofunction:: music_feats.features.features.expfun
+
+expinterp2D
+-----------
+
+.. autofunction:: music_feats.features.features.expinterp2D
+
+gabor_xfm
+---------
+
+.. autofunction:: music_feats.features.features.gabor_xfm
+
+gabor_xfm2D
+-----------
+
+.. autofunction:: music_feats.features.features.gabor_xfm2D
+
+generateTestR
+-------------
+
+.. autofunction:: music_feats.features.features.generateTestR
+
+interpdata
+----------
+
+.. autofunction:: music_feats.features.features.interpdata
+
+lanczosfun
+----------
+
+.. autofunction:: music_feats.features.features.lanczosfun
+
+lanczosinterp2D
+---------------
+
+.. autofunction:: music_feats.features.features.lanczosinterp2D
+
+loadShuffledIMS
+---------------
+
+.. autofunction:: music_feats.features.features.loadShuffledIMS
+
+load_mcparams
+-------------
+
+.. autofunction:: music_feats.features.features.load_mcparams
+
+load_response_imagedocs
+-----------------------
+
+.. autofunction:: music_feats.features.features.load_response_imagedocs
+
+load_response_imagedocs_music_AN
+--------------------------------
+
+.. autofunction:: music_feats.features.features.load_response_imagedocs_music_AN
+
+load_response_imagedocs_speech_AN
+---------------------------------
+
+.. autofunction:: music_feats.features.features.load_response_imagedocs_speech_AN
+
+load_response_imagedocs_test
+----------------------------
+
+.. autofunction:: music_feats.features.features.load_response_imagedocs_test
+
+load_response_imagedocs_tonotopy_AN
+-----------------------------------
+
+.. autofunction:: music_feats.features.features.load_response_imagedocs_tonotopy_AN
+
+load_response_imagedocs_tonotopy_LO
+-----------------------------------
+
+.. autofunction:: music_feats.features.features.load_response_imagedocs_tonotopy_LO
+
+load_responses
+--------------
+
+.. autofunction:: music_feats.features.features.load_responses
+
+load_responses_test
+-------------------
+
+.. autofunction:: music_feats.features.features.load_responses_test
+
+retrieveMasks
+-------------
+
+.. autofunction:: music_feats.features.features.retrieveMasks
+
+savenewBR
+---------
+
+.. autofunction:: music_feats.features.features.savenewBR
+
+scramble
+--------
+
+.. autofunction:: music_feats.features.features.scramble
+
+scrambleHelper
+--------------
+
+.. autofunction:: music_feats.features.features.scrambleHelper
+
+selectROI
+---------
+
+.. autofunction:: music_feats.features.features.selectROI
+
+separate_model_weights
+----------------------
+
+.. autofunction:: music_feats.features.features.separate_model_weights
+
+separate_voxel_model_weights
+----------------------------
+
+.. autofunction:: music_feats.features.features.separate_voxel_model_weights
+
+sincfun
+-------
+
+.. autofunction:: music_feats.features.features.sincfun
+
+sincinterp1D
+------------
+
+.. autofunction:: music_feats.features.features.sincinterp1D
+
+sincinterp2D
+------------
+
+.. autofunction:: music_feats.features.features.sincinterp2D
+
+sincupinterp2D
+--------------
+
+.. autofunction:: music_feats.features.features.sincupinterp2D
+
+spectralCentroid
+----------------
+
+.. autofunction:: music_feats.features.features.spectralCentroid
+
+test_interp
+-----------
+
+.. autofunction:: music_feats.features.features.test_interp
+
+
+:class:`Features`
+-----------------
+
+
+.. autoclass:: Features
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__
+
+:class:`TRFile`
+---------------
+
+
+.. autoclass:: TRFile
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__

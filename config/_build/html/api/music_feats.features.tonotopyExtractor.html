@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Module: features.tonotopyExtractor &mdash; Music_Feats 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Music_Feats 1.0 documentation" href="../index.html" />
+    <link rel="up" title="API Reference" href="api.html" />
+    <link rel="next" title="Module: utils.interpdata" href="music_feats.utils.interpdata.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.interpdata.html" title="Module: utils.interpdata"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API Reference</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-music_feats.features.tonotopyExtractor">
+<span id="module-features-tonotopyextractor"></span><h1>Module: <code class="xref py py-mod docutils literal"><span class="pre">features.tonotopyExtractor</span></code><a class="headerlink" href="#module-music_feats.features.tonotopyExtractor" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.features.tonotopyExtractor.averageDownsample" title="music_feats.features.tonotopyExtractor.averageDownsample"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.tonotopyExtractor.averageDownsample</span></code></a>(vals)</td>
+<td>Downsample feature matrix by taking a moving window overage of some overlap.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.features.tonotopyExtractor.tonotopy_labels" title="music_feats.features.tonotopyExtractor.tonotopy_labels"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.features.tonotopyExtractor.tonotopy_labels</span></code></a>(fname)</td>
+<td>Use the labels generated when creating the tonotopy stimuli to create a binary feature matrix.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="averagedownsample">
+<h2>averageDownsample<a class="headerlink" href="#averagedownsample" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.tonotopyExtractor.averageDownsample">
+<code class="descclassname">music_feats.features.tonotopyExtractor.</code><code class="descname">averageDownsample</code><span class="sig-paren">(</span><em>vals</em>, <em>newlen=None</em>, <em>overlapsize=1</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.tonotopyExtractor.averageDownsample" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Downsample feature matrix by taking a moving window overage of some overlap. Primarily used</dt>
+<dd>with the tonotopy labels feature.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>vals</strong> : np.ndarray.</p>
+<blockquote>
+<div><p>The values to be downsampled. (size: time x feature num)</p>
+</div></blockquote>
+<p><strong>newlen</strong> : integer.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>The new length the downsampled signal should be.</dt>
+<dd><p class="first last">Default is None, reutrning original values untouched.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>overlapsize: integer.</strong></p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>The amount of overlap when computing the averages.</dt>
+<dd><p class="first last">Default is 1.</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="tonotopy-labels">
+<h2>tonotopy_labels<a class="headerlink" href="#tonotopy-labels" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.features.tonotopyExtractor.tonotopy_labels">
+<code class="descclassname">music_feats.features.tonotopyExtractor.</code><code class="descname">tonotopy_labels</code><span class="sig-paren">(</span><em>fname</em>, <em>fpath='/auto/k8/loganesian/stimuli/tonotopy/uncalibrated_wavs'</em>, <em>numF=10</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.features.tonotopyExtractor.tonotopy_labels" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Use the labels generated when creating the tonotopy stimuli to create a binary feature matrix.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>fname</strong> : the name of the stimulus of which you wish to load the labels.</p>
+<p><strong>fpath</strong> : the path where the tonotopy files are saved.</p>
+<blockquote>
+<div><blockquote>
+<div><p>Default : &#8216;/auto/k8/loganesian/stimuli/tonotopy/uncalibrated_wavs&#8217;</p>
+</div></blockquote>
+<p>numF : the number of tonal centers used in the tonotopy experiment.Default = 10</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>data_matrix</strong> : np.ndarray. [shape=(n, numF)] Binary matrix denoting which</p>
+<blockquote class="last">
+<div><blockquote>
+<div><p>frequency center correponds to which sample.</p>
+</div></blockquote>
+<p>labels : np.ndarray. [shape=(n,)] The actual labels for the sound file.
+freqs : np.ndarray. [shape=(numF,)] The center frequencies used for the localizer.</p>
+<blockquote>
+<div><p>Computed: np.logspace(np.log10(150), np.log10(9600), num=numF)</p>
+</div></blockquote>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Module: <code class="docutils literal"><span class="pre">features.tonotopyExtractor</span></code></a><ul>
+<li><a class="reference internal" href="#averagedownsample">averageDownsample</a></li>
+<li><a class="reference internal" href="#tonotopy-labels">tonotopy_labels</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="music_feats.utils.interpdata.html"
+                        title="next chapter">Module: <code class="docutils literal"><span class="pre">utils.interpdata</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/music_feats.features.tonotopyExtractor.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.interpdata.html" title="Module: utils.interpdata"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

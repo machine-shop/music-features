@@ -1,0 +1,41 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+Module: :mod:`utils.stimulus_utils_fi`
+======================================
+.. automodule:: music_feats.utils.stimulus_utils_fi
+
+.. currentmodule:: music_feats.utils.stimulus_utils_fi
+.. autosummary::
+
+   music_feats.utils.stimulus_utils_fi.load_generic_trfiles
+   music_feats.utils.stimulus_utils_fi.load_generic_trfiles_fi
+   music_feats.utils.stimulus_utils_fi.load_trfiles
+
+   music_feats.utils.stimulus_utils_fi.TRFile
+
+load_generic_trfiles
+--------------------
+
+.. autofunction:: music_feats.utils.stimulus_utils_fi.load_generic_trfiles
+
+load_generic_trfiles_fi
+-----------------------
+
+.. autofunction:: music_feats.utils.stimulus_utils_fi.load_generic_trfiles_fi
+
+load_trfiles
+------------
+
+.. autofunction:: music_feats.utils.stimulus_utils_fi.load_trfiles
+
+
+:class:`TRFile`
+---------------
+
+
+.. autoclass:: TRFile
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__

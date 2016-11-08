@@ -3,14 +3,16 @@ import math
 import librosa
 import numpy as np
 import scipy as sp
-from music.features.util.utils import *
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+from music_feats import *
 
 __all__ = ['rms',
            'zcr',
            'spectralCentroid',
            'spectralSpread',
            'CQT',
-		   'temporalEnvelope',
+           'temporalEnvelope',
            'temporalFlatness',
            'chromagram',
            'tonality',
@@ -18,36 +20,47 @@ __all__ = ['rms',
            'fluctuationEntropy',
            'fluctuationFocus',
            'fluctuationCentroid',
-		   'MPS']
+           'MPS']
 
 def rms(y, sr=44100, n_fft=2048, hop_length=None, pad=None, decomposition=True):
     '''
     Calculate root-mean-square energy from a time-series signal
-        :usage:
-                >>> # Load a file
-                >>> y, sr = librosa.load('file.mp3')
-                >>> # Calculate the RMS of a time-series
-                >>> rms = extractor.rms(y, sr=sr,
-                        win_length=None, hop_length=512, decomposition='True')
+    
+    Parameters
+    ----------
+    y : np.ndarray [shape=(n,)]. 
+        Time series to calculate the RMS of.
+    sr : integer. 
+        sampling rate of the audio file
+    win_length : integer. 
+        The frame length of the music time series
+                (in s) to be considered.  Default 50 ms.
+    hop_length : integer. 
+        The amount of overlap between the frames
+                (in samples).  Default is half the window length.
+    pad : integer. 
+        Amount which to pad by before frame decomposition.
+    decomposition : boolean. 
+        Whether or not to do a framewise analysis of the time series
 
-        :parameters:
-            - y : np.ndarray [shape=(n,)]. Time series to calculate the RMS of.
-            - sr : integer. sampling rate of the audio file
-            - win_length : integer. The frame length of the music time series
-                           (in s) to be considered.  Default 50 ms.
-            - hop_length : integer. The amount of overlap between the frames
-                           (in samples).  Default is half the window length.
-            - pad : integer. Amount which to pad by before frame decomposition.
-            - decomposition : boolean. Whether or not to do a framewise
-                              analysis of the time series
+    Returns
+    -------
+    float
+        A float representing the root-mean-square of the time-series of
+            the signal, if decomposition = 'False':
 
-        :returns:
-            If decomposition = 'False':
-            - A float representing the root-mean-square of the time-series of
-              the signal
-            If decomposition = 'True':
-            - A numpy array representing the root-mean-square of the
-              time-series of the signal per frame.
+    numpy array
+        representing the root-mean-square of the time-series of the signal 
+            per frame, If decomposition = 'True'.
+
+    Examples
+    --------
+    >>> # Load a file
+    >>> y, sr = librosa.load('file.mp3')
+    >>> # Calculate the RMS of a time-series
+    >>> rms = extractor.rms(y, sr=sr,
+            win_length=None, hop_length=512, decomposition='True')
+
     '''
     if decomposition:
         # win_length = sr * win_length
@@ -62,38 +75,50 @@ def rms(y, sr=44100, n_fft=2048, hop_length=None, pad=None, decomposition=True):
 def zcr(y, sr=44100, p='second', d='one', n_fft=2048, hop_length=None,
         pad=None, decomposition=True): # win_length=0.05
     '''
-    Calculate the zero-crossing rate from a time-series signal.
+    Calculate the zero-crossing rate from a time-series signal.               
 
-        :usage:
-                >>> # Load a file
-                >>> y, sr = librosa.load('file.mp3')
-                >>> # Calculate a zero-crossing rate of the time-series of a
-                >>> # signal
-                >>> zcr = extractor.zcr(y, sr=sr, p='second', d='one',
-                                        win_length=0.05, hop_length=None,
-                                        decomposition='True')
-
-        :parameters:
-            - y : np.ndarray [shape=(n,)] Time series of the audio file.
-            - sr : integer. Sampling rate of the audio file.
-            - p : Number of zero crossings either per 'second' or per 'sample'.
+    Parameters
+    ----------            
+    y : np.ndarray [shape=(n,)] 
+        Time series of the audio file.
+    sr : integer. 
+        Sampling rate of the audio file.
+    p : string
+        Number of zero crossings either per 'second' or per 'sample'.
                   Default: 'second'.
-            - d : Number of zero crossings from negative to positive (or
-                  equivalently positive to negative) only using d='one'
-                  (default) or both directions using d='both'.
-            - win_length : integer. The frame length of the music time series
-                   (in s) to be considered.  Default 50 ms.
-            - hop_length : integer. The amount of overlap between the frames
-                    (in samples).  Default is half the window length.
-            - decomposition : boolean. Whether or not to do a framewise
-                    analysis of the time series
+    d : string
+        Number of zero crossings from negative to positive (or
+            equivalently positive to negative) only using d='one'
+            (default) or both directions using d='both'.
+    win_length : integer. 
+        The frame length of the music time series
+            (in s) to be considered.  Default 50 ms.
+    hop_length : integer. 
+        The amount of overlap between the frames
+            (in samples).  Default is half the window length.
+    decomposition : boolean. 
+        Whether or not to do a framewise
+            analysis of the time series
 
-        :returns:
-            If decomposition = 'False':
-            - A float representing the zcr of the time-series of the signal.
-            If decomposition = 'True':
-            - A numpy array representing the zcr of the time-series of the
-              signal per frame.
+    Returns
+    -------
+    float        
+        representing the zcr of the time-series of the signal, 
+            if decomposition = 'False':
+    numpy array
+        representing the zcr of the time-series of the
+            signal per frame, if decomposition = 'True':
+
+    Notes
+    -----
+    >>> # Load a file
+    >>> y, sr = librosa.load('file.mp3')
+    >>> # Calculate a zero-crossing rate of the time-series of a
+    >>> # signal
+    >>> zcr = extractor.zcr(y, sr=sr, p='second', d='one',
+                win_length=0.05, hop_length=None,
+                decomposition='True')
+
     '''
     if decomposition:
         # win_length = sr * win_length
@@ -120,35 +145,45 @@ def spectralCentroid(y, sr=44100, n_fft=2048, hop_length=None,
     Calculate the spectral centroid (mean) of a time-series signal. Commonly
     used as the brightness of a sound.
 
-        :usage:
-                >>> # Load a file
-                >>> y, sr = librosa.load('file.mp3')
-                >>> # Calculate the spectral centroid of a time-series
-                >>> spectralCentroid = extractor.spectralCentroid(y,
-                    sr=sr, win_length=0.05, hop_length=None,
-                    decomposition=True)
-
-        :parameters:
-            - y : A numpy array [shape=(n,)] of time series to calculate the
+    Parameters
+    ----------
+    y : numpy array [shape=(n,)] 
+        numpy array of time series to calculate the
                   spectral centroid of.
-            - sr : Sampling rate of the audio file. (Default = 22050)
-            - win_length : integer. The frame length of the music time series
-              (in s) to be considered.  Default 50 ms.
-            - hop_length : integer. The amount of overlap between the frames
+    sr : integer
+        Sampling rate of the audio file. (Default = 22050)
+    win_length : integer. 
+        The frame length of the music time series (in s) to be considered.  
+        Default 50 ms.
+    hop_length : integer. 
+        The amount of overlap between the frames
               (in samples).  Default is half the window length.
-            - decomposition: boolean. Whether or not to do a framewise
-              analysis of the time-series.
+    decomposition: boolean. 
+        Whether or not to do a framewise analysis of the time-series.
 
-        :returns:
-            If decomposition=False:
-            - A float representing the spectral centroid (mean) of the signal.
-            If decomposition=True:
-            - A numpy array representing the spectral centroid of the signal
-              per frame (window).
+    Returns
+    -------
+    float
+        representing the spectral centroid (mean) of the signal, 
+            if decomposition=False:
+    numpy array
+        representing the spectral centroid of the signal
+              per frame (window), if decomposition = True
 
-        :notes:
-            - Beauchamp J. W., Synthesis by Spectral Amplitude and
+    References
+    ----------
+    .. [1] Beauchamp J. W., Synthesis by Spectral Amplitude and
             'Brightness' Matching of Analyzed Musical Instrument Tones
+
+    Examples
+    --------
+    >>> # Load a file
+    >>> y, sr = librosa.load('file.mp3')
+    >>> # Calculate the spectral centroid of a time-series
+    >>> spectralCentroid = extractor.spectralCentroid(y,
+                sr=sr, win_length=0.05, hop_length=None,
+                decomposition=True)
+
     '''
     if decomposition:
         # win_length = sr * win_length
@@ -170,32 +205,40 @@ def spectralCentroid(y, sr=44100, n_fft=2048, hop_length=None,
 def spectralSpread(y, sr=44100, n_fft=2048, hop_length=None,
                    toWin=True, pad=None, decomposition=True):
     '''
-    Calculate the spectral spread of a time-series signal.
-        :usage:
-                >>> # Load a file
-                >>> y, sr = librosa.load('file.mp3')
-                >>> # Calculate the spectral spread of a time-series
-                >>> spectralSpread = extractor.spectralSpread(y, sr=sr,
-                    win_length=0.05, hop_length=None, decomposition=True)
+    Calculate the spectral spread of a time-series signal. 
 
-        :parameters:
-            - y : A numpy array [shape=(n,)] of time series to calculate the
-              spectral spread of.
-            - sr : Sampling rate of the audio file. (Default = 22050)
-            - win_length : integer. The frame length of the music time series
+    Parameters
+    ----------
+    y : numpy array [shape=(n,)] 
+        a numpy array of time series to calculate the spectral spread of.
+    sr : integer
+        Sampling rate of the audio file. (Default = 22050)
+    win_length : integer. 
+        The frame length of the music time series
               (in s) to be considered.  Default 50 ms.
-            - hop_length : integer. The amount of overlap between the frames
+    hop_length : integer. 
+        The amount of overlap between the frames
               (in s).  Default is half the window length.
-            - decomposition: boolean. Whether or not to do a framewise analysis
-              of the time series.
+    decomposition: boolean. 
+        Whether or not to do a framewise analysis of the time series.
 
-        :returns:
-            If decomposition=False:
-            - A float representing the spectral spread (standard deviation) of
-              the signal.
-            If decomposition=True:
-            - A numpy array representing the spectral spread of the signal per
-              frame
+    Returns
+    -------
+    float
+        representing the spectral spread (standard deviation) of
+            the signal, if decomposition=False:
+    numpy array
+        representing the spectral spread of the signal per
+            frame, if decomposition = True
+
+    Examples
+    --------
+    >>> # Load a file
+    >>> y, sr = librosa.load('file.mp3')
+    >>> # Calculate the spectral spread of a time-series
+    >>> spectralSpread = extractor.spectralSpread(y, sr=sr,
+            win_length=0.05, hop_length=None, decomposition=True)
+
     '''
     if decomposition:
         if hop_length is None:
@@ -225,31 +268,40 @@ def spectralFlatness(y, sr=44100, n_fft=2048, hop_length=None,
                      toWin=True, pad=None, decomposition=True): # win_length=0.05
     '''
     Calculate the spectral flatness from a time-series signal
-        :usage:
-                >>> # Load a file
-                >>> y, sr = librosa.load('file.mp3')
-                >>> # Calculate the spectral flatness of a time-series
-                >>> spectralFlatness = extractor.spectralFlatness(y,
-                                    sr=sr, win_length=0.05,
-                                    hop_length=None, decomposition=True)
 
-        :parameters:
-            - y : np.ndarray [shape=(n,)]. Time series to calculate the
-              spectral flatness of.
-            - sr : integer. sampling rate of the audio file
-            - win_length : integer. The frame length of the music time series
+    Parameters
+    ----------
+    y : numpy array [shape=(n,)] 
+        a numpy array of time series to calculate the
+            spectral flatness of.
+    sr : integer
+        sampling rate of the audio file
+    win_length : integer. 
+        The frame length of the music time series
               (in s) to be considered.  Default 50 ms.
-            - hop_length : integer. The amount of overlap between the frames
+    hop_length : integer. 
+        The amount of overlap between the frames
               (in s).  Default is half the window length.
-            - decomposition : boolean. Whether or not to do a framewise
-              analysis of the time series.
+    decomposition: boolean. 
+        Whether or not to do a framewise analysis of the time series.
 
-        :returns:
-            If decomposition = False:
-            - A float representing the spectral flatness of the signal
-            If decomposition = True:
-            - A numpy array representing the spectral flatness of the signal
-              per frame
+    Returns
+    -------
+    float
+        representing the spectral flatness of the signal,
+        if decomposition=False:
+    numpy array
+        representing the spectral flatness of the signal per frame,
+        if decomposition = True
+
+    Examples
+    --------
+    >>> # Load a file
+    >>> y, sr = librosa.load('file.mp3')
+    >>> # Calculate the spectral flatness of a time-series
+    >>> spectralFlatness = extractor.spectralFlatness(y, sr=sr,
+            win_length=0.05, hop_length=None, decomposition=True)
+
     '''
     if decomposition:
         # win_length = sr * win_length
@@ -272,28 +324,42 @@ def CQT(y, sr=44100, cqt_hop=1024, seconds=2.0, n_bins=30, bins_per_octave=4, fm
     these chunks is frame_length - cqt_hop, where frame_length is the size of the chunks of the
     audiofile. These chunks are necessary because librosa's cqt function can only handle short
     duration audio files in a reasonable amount of time.
-    	:usage:
-    		>>> # Load a file
-    		>>> y, sr = librosa.load('file.mp3')
-    		>>> # Calculate the constant q transform of a time-series
-    		>>> CQTlog = extractor.CQT(y, sr=sr, ...)
 
-    	:parameters:
-    		- cqt_hop : integer. The hop length between adjacent frames for when extracting
-    					the cqt feature.
-    		- seconds : float. The time window to intially chunk the audio file into before
-    					feeding into the librosa cqt function.
-    		- n_bins : integer. The number of cqt frequency bands to extract.
-    		- bins_per_octave : interger. The number of cqt frequency bands that comprise
-    							an octave. The number of octaves is n_bins/float(bins_per_octave).
-    		- fmin : integer. The lowest frequency in the range of frequencies covered by the constant
-    						q transform.
-    		- use_han : boolean. True, window each frame with a hanning window before extracting CQT.
-    					As of 06/22/2016, librosa's util.frame() function already applies a hanning window.
+    Parameters
+    ----------
+    cqt_hop : integer. 
+        The hop length between adjacent frames for when extracting
+            the cqt feature.
+    seconds : float. 
+        The time window to intially chunk the audio file into before
+            feeding into the librosa cqt function.
+    n_bins : integer. 
+        The number of cqt frequency bands to extract.
+    bins_per_octave : interger. 
+        The number of cqt frequency bands that comprise
+            an octave. The number of octaves is n_bins/float(bins_per_octave).
+    fmin : integer. 
+        The lowest frequency in the range of frequencies covered by the constant
+            q transform.
+    use_han : boolean. 
+        True, window each frame with a hanning window before extracting CQT.   
 
-    	:returns:
-    		- CQTlog : np.ndarray [shape=(n_bins, n)]. The time series of the constant-q transform of the
-    				   audio file.
+    Returns
+    -------
+    CQTlog : np.ndarray [shape=(n_bins, n)]
+        The time series of the constant-q transform of the audio file.
+
+    Notes
+    -----
+    As of 06/22/2016, librosa's util.frame() function already applies a hanning window.
+
+    Examples
+    --------
+    >>> # Load a file
+    >>> y, sr = librosa.load('file.mp3')
+    >>> # Calculate the constant q transform of a time-series
+    >>> CQTlog = extractor.CQT(y, sr=sr, ...)
+
     """
     frame_length = seconds * sr
     frame_length = (frame_length//cqt_hop) * cqt_hop
@@ -304,17 +370,17 @@ def CQT(y, sr=44100, cqt_hop=1024, seconds=2.0, n_bins=30, bins_per_octave=4, fm
     y_frames = librosa.util.frame(padded_y, frame_length=frame_length, hop_length=frame_hop)
 
     if use_han:
-    	han_win = signal.hanning(frame_length)
+        han_win = signal.hanning(frame_length)
 
     CQT_frames = []
     for frame in range(y_frames.shape[1]):
-    	if not use_han:
-    		sig = y_frames[:, frame]
-    	else:
-    		sig = y_frames[:, frame] * han_win
-    	CQTf = np.abs(librosa.cqt(sig, sr=sr, n_bins=n_bins, hop_length=cqt_hop,
-    							  bins_per_octave=bins_per_octave, fmin=fmin))
-    	CQT_frames.append(CQTf[:,1:-1])
+        if not use_han:
+            sig = y_frames[:, frame]
+        else:
+            sig = y_frames[:, frame] * han_win
+        CQTf = np.abs(librosa.cqt(sig, sr=sr, n_bins=n_bins, hop_length=cqt_hop,
+                                  bins_per_octave=bins_per_octave, fmin=fmin))
+        CQT_frames.append(CQTf[:,1:-1])
 
     CQT = np.hstack(CQT_frames)
     CQTlog = librosa.logamplitude(CQT**2, ref_power=np.max)
@@ -323,20 +389,26 @@ def CQT(y, sr=44100, cqt_hop=1024, seconds=2.0, n_bins=30, bins_per_octave=4, fm
 def temporalEnvelope(y, sr=44100):
     '''
     Calculate the temporal envelope of the signal.
-        :usage:
-            >>> # Load a file
-            >>> y, sr = librosa.load('file.mp3')
-            >>> # Calculate the temporal envelope of a time-series
-            >>> tempEnv = extractor.temporalEnvelope(y, sr=sr)
 
-        :parameters:
-            - y : np.ndarray [shape=(n,)]. Time series to calculate the
-                temporal envelope of.
-            - sr : integer. sampling rate of the audio file.
+    Parameters
+    ----------
+    y : np.ndarray [shape=(n,)]. 
+        Time series to calculate the temporal envelope of.
+    sr : integer. 
+        sampling rate of the audio file.
 
-        :returns:
-            - ndarray [shape=(n,1)]. The time series of the temporal
-                envelope of the audio file.
+    Returns
+    -------
+    np.ndarray [shape=(n,1)]
+        The time series of the temporal envelope of the audio file.
+
+    Examples
+    --------
+    >>> # Load a file
+    >>> y, sr = librosa.load('file.mp3')
+    >>> # Calculate the temporal envelope of a time-series
+    >>> tempEnv = extractor.temporalEnvelope(y, sr=sr)
+
     '''
     return np.abs(y)
 
@@ -352,25 +424,46 @@ def temporalFlatness(y, sr=44100, n_fft=2048, hop_length=None,
                                     sr=sr, win_length=0.05, hop_length=None,
                                     pad=None, decomposition=True)
 
-        :parameters:
-            - y : np.ndarray [shape=(n,)]. Time series to calculate the
-              temporal flatness of.
-            - sr : integer. sampling rate of the audio file
-            - win_length : integer. The frame length of the music time series
-              (in s) to be considered.  Default 50 ms.
-            - hop_length : integer. The amount of overlap between the frames
-              (in s).  Default is half the window length.
-            - pad : integer. How much to pad audio by (beginning and end)
-              before doing computation
-            - decomposition : boolean. Whether or not to do a framewise
-              analysis of the time series.
-
         :returns:
             If decomposition = False:
             - A float representing the temporal flatness of the signal
             If decomposition = True:
             - A numpy array representing the temporal flatness of the signal
               per frame
+
+    Parameters
+    ----------
+    y : numpy array [shape=(n,)] 
+        a numpy array of time series to calculate the temporal flatness of.
+    sr : integer
+        Sampling rate of the audio file. 
+    win_length : integer. 
+        The frame length of the music time series
+              (in s) to be considered.  Default 50 ms.
+    hop_length : integer. 
+        The amount of overlap between the frames
+              (in s).  Default is half the window length.
+    decomposition: boolean. 
+        Whether or not to do a framewise analysis of the time series.
+
+    Returns
+    -------
+    float
+        representing the temporal flatness of
+            the signal, if decomposition=False:
+    numpy array
+        representing the temporal flatness of the signal per
+            frame, if decomposition = True
+
+    Examples
+    --------
+    >>> # Load a file
+    >>> y, sr = librosa.load('file.mp3')
+    >>> # Calculate the temporal flatness of a time-series
+    >>> temporalFlatness = extractor.temporalFlatness(y,
+                sr=sr, win_length=0.05, hop_length=None,
+                pad=None, decomposition=True)
+
     '''
     if decomposition:
         # win_length = sr * win_length
@@ -389,27 +482,37 @@ def chromagram(y=None, sr=44100, S=None,  norm=np.inf, n_fft=2048,
     """
     Derivation of chromagram from librosa python package. Bins spectrogram
     on a larger frame size than it was originally calculated with.
-        :parameters:
-            - y : np.ndarray. The signal to calculate the chromagram of.
-                Default is None.
-            - sr : integer. The sampling rate of the audiofile. Default is
-                44100 Hz.
-            - S : np.ndarray. The spectrogram from which to calculate
-                the chromagram. Default is None (function calculates
-                    spectrogram first).
-            - norm : float or None. Column-wise normalization. Default np.inf.
-            - n_fft : integer. The window size with which to calculate
+
+    Parameters
+    ----------
+    y : numpy array [shape=(n,)] 
+        a numpy array of time series to calculate the chromagram of.
+        Default is none.
+    sr : integer
+        The sampling rate of the audio file. Default is 44100 Hz. 
+    S : np.ndarray. 
+        The spectrogram from which to calculate the chromagram. 
+        Default is None (function calculates spectrogram first).
+    norm : float or None. 
+        Column-wise normalization. Default np.inf.
+    n_fft : integer. 
+        The window size with which to calculate
                 the spectrogram. Default is 2048.
-            - hop_length : integer. The amount of overlap between frames.
-                Default is half-overlap.
-            - seconds : integer. The amount of seconds to bin the spectrogram
-                into before calculating the chromagram. Default is 4 seconds.
-            - tuning : float in '[-0.5, 0.5]' or None. Deviation from A440
-                tuning in fractional bins. Default is None (automatically
-                estimated)
-            - center : boolean. Whether or not to center the spectrogram
+    hop_length : integer. 
+        The amount of overlap between the frames. 
+        Default is half-overlap.
+    seconds : integer. 
+        The amount of seconds to bin the spectrogram
+            into before calculating the chromagram. Default is 4 seconds.
+    tuning : float in '[-0.5, 0.5]' or None. 
+            Deviation from A440; tuning in fractional bins. 
+            Default is None (automatically estimated)
+    center : boolean. 
+        Whether or not to center the spectrogram
                 before calculating the chromagram. Default is True.
-            - kwargs : the arguments for librosa.filter.chroma()
+    kwargs : array
+        the arguments for librosa.filter.chroma()
+
     """
 
     n_chroma = 12 # defining variable for use below
@@ -456,50 +559,68 @@ def tonality(y, sr=44100, profiles='gomez', n_fft=2048, hop_length=1024,
     '''
     Calculates the average correlation coefficients of different tonalities
     (key & mode)
-        :usage:
-                >>> # Load a file
-                >>> y, sr = librosa.load('file.mp3')
-                >>> # Calculate key strength values and a time-series
-                    analysis of the tonality/modality
-                >>> audio_keys, mode, major, minor, keys =
-                            extractor.tonality(y, sr=sr,
-                            profiles='gomez', n_fft=2048, hop_length=64,
-                            full=True)
-                >>> audio_keys, mode = extractor.tonality(y, sr=sr,
-                            profiles='gomez', n_fft=2048, hop_length=64,
-                            full=False)
 
-        :parameters:
-            - y : np.ndarray [shape=(n,)] Time series of the audio file
-            - sr : integer. sampling rate of the audio file
-            - profiles : default is gomez. The key profiles to be used.
-              Profiles available:
-                - Gomez, 2006; Krumhansl, Cognitive Foundations of Pitch;
-                Temperley The Krumhansl-Schmuckler Key-Finding Algorithm
-                Revisted; Temperley, MIREX; Wei Chai MIT PhD Thesis
-            - n_fft : integer. FFT window size for STFT
-            - hop_length : integer. The amount of overlap between the frames
-              of the STFT (in samples).  Default is half the window length.
-            - seconds : integer. The bin width to bin the spectrogram with
-                before calculating chroma. Number is rounded down to nearest
-                power of 2. (Default is 4 seconds -> ~3 seconds)
-            - center : boolean. For extractor.chromagram(). Whether or not to
-                center the spectrogram before calculating the chromagram.
-                Default is True.
-            - librosa : boolean. Whether to use extractor.chromagram() or
-                librosa.chromagram(). Default is True.
-            - full : boolean. Whether or not to include cumulative information
-              about the tonality (key + mode) for the full song
+    Parameters
+    ----------
+    y : np.ndarray [shape=(n,)] 
+        Time series of the audio file
+    sr : integer
+        The sampling rate of the audio file. 
+    profiles : string
+        default is gomez. The key profiles to be used.
+        Profiles available:
+        - Gomez, 2006; Krumhansl, Cognitive Foundations of Pitch;
+        Temperley The Krumhansl-Schmuckler Key-Finding Algorithm
+        Revisted; Temperley, MIREX; Wei Chai MIT PhD Thesis
+    n_fft : integer. 
+        FFT window size for STFT
+    hop_length : integer. 
+        The amount of overlap between the frames
+        of the STFT (in samples).  Default is half the window length.
+    seconds : integer. 
+       The bin width to bin the spectrogram with
+        before calculating chroma. Number is rounded down to nearest
+        power of 2. (Default is 4 seconds -> ~3 seconds)
+   center : boolean. 
+        For extractor.chromagram(). Whether or not to
+        center the spectrogram before calculating the chromagram.
+        Default is True.
+    librosa : boolean. 
+        Whether to use extractor.chromagram() or
+        librosa.chromagram(). Default is True.
+    full : boolean. 
+        Whether or not to include cumulative information
+        about the tonality (key + mode) for the full song
 
-        :returns:
-            - A numpy array representing the key of the signal per frame
-            - A numpy array representing the mode of the signal per frame
-            If full = True, also include:
-            - A numpy array with the average correlation values for major
-              tonalities
-            - A numpy array with the average correlation values for minor
-              tonalities
-            - An array of keys
+    Returns
+    -------
+    numpy array
+        representing the key of the signal per frame
+    numpy array
+        representing the mode of the signal per frame
+    numpy array
+        with the average correlation values for major
+        tonalities, if full = True
+    numpy array 
+        with the average correlation values for minor
+        tonalities
+    array 
+        keys
+
+    Examples
+    --------
+    >>> # Load a file
+    >>> y, sr = librosa.load('file.mp3')
+    >>> # Calculate key strength values and a time-series
+        analysis of the tonality/modality
+    >>> audio_keys, mode, major, minor, keys =
+        extractor.tonality(y, sr=sr,
+                profiles='gomez', n_fft=2048, hop_length=64,
+                full=True)
+    >>> audio_keys, mode = extractor.tonality(y, sr=sr,
+                    profiles='gomez', n_fft=2048, hop_length=64,
+                    full=False)
+
     '''
 
     major_prof, minor_prof = loadProfiles(name=profiles)
@@ -572,51 +693,66 @@ def fluctuationPatterns(y, sr=44100, n_fft=512, hop_length=512, mel_count=36,
     '''
     Calculates the fluctuation patterns of the piece based on E. Pampalk's
     PhD thesis (2006).
-        :usage:
-                >>> # Load a file
-                >>> y, sr = librosa.load('file.mp3')
-                >>> # Calculate the fluctuation patterns
-                >>> fluctuation_patterns = 
-                        extractor.fluctuationPatterns(y, sr=sr, n_fft=512,
-                                hop_length=512, mel_count=12, seconds=3,
-                                band_num=12, max_freq=10, Pampalk=True,
-                                terhardt=False)
+        
+    Parameters
+    ----------
+    y : np.ndarray [shape=(n,)] 
+        Time series of the audio file
+    sr : integer
+        sampling rate of the audio file. Default 44100. 
+    n_fft : integer. 
+        FFT window size for librosa.feature.melspectrogram() [samples]
+    hop_length : integer. 
+        The amount of overlap [samples] between the frames for librosa.
+        feature.melspectrogram(). Default issame values as n_fft.
+    mel_count : integer. 
+        The number of mel bands to consider when
+        generating the melspectrogram. Default is 36 bands.
+    seconds : integer. 
+        The length of each segment when calculating
+        the fluctuation patterns. Default is 3 seconds.
+    band_num : integer. 
+        The number of bands to consider when calculating
+        the fluctuation patterns. The mel bands resulting from the initial
+        melspectrogram will be combined together to get this many bands.
+        Default is 12 bands.
+    max_freq : integer. 
+        The maximum modulation frequency to be considered.
+        Default is 10 Hz.
+    center : boolean. 
+        Whether or not to center the signal. Default True.
+    padAmt : float. 
+        What factor of the segment_length to pad by.
+        Will pad from left and from right by the same amount. Default is 0.25.
+    Pampalk: boolean. 
+        Whether to use Pampalk's algorithm straight from his
+        thesis (i.e. with the hardcoded gaussian values) or to use an 
+        alternate method involving a built-in gaussian filter. Default is
+        using Pampalk's method.
+    terhardt: boolean. 
+        Whether or not to apply the Terhardt perception model
+        (1979). Default is False.
 
-        :parameters:
-            - y : np.ndarray [shape=(n,)] Time series of the audio file
-            - sr : integer. sampling rate of the audio file. Default 44100.
-            - n_fft : integer. FFT window size for
-                librosa.feature.melspectrogram() [samples]
-            - hop_length : integer. The amount of overlap [samples] between
-                the frames for librosa.feature.melspectrogram(). Default is
-                same values as n_fft.
-            - mel_count : integer. The number of mel bands to consider when
-                generating the melspectrogram. Default is 36 bands.
-            - seconds : integer. The length of each segment when calculating
-                the fluctuation patterns. Default is 3 seconds.
-            - band_num : integer. The number of bands to consider when calculating
-                the fluctuation patterns. The mel bands resulting from the initial
-                melspectrogram will be combined together to get this many bands.
-                Default is 12 bands.
-            - max_freq : integer. The maximum modulation frequency to be considered.
-                Default is 10 Hz.
-            - center : boolean. Whether or not to center the signal. Default True.
-            - padAmt : float. What factor of the segment_length to pad by.
-                Will pad from left and from right by the same amount. Default is 0.25.
-            - Pampalk: boolean. Whether to use Pampalk's algorithm straight from his
-                thesis (i.e. with the hardcoded gaussian values) or to use an 
-                alternate method involving a built-in gaussian filter. Default is
-                using Pampalk's method.
-            - terhardt: boolean. Whether or not to apply the Terhardt perception model
-                (1979). Default is False.
+    Returns
+    -------
+    np.ndarray[shape=(segment_num, band_num*resolution)]
+         Fluctuation patterns. Each row is a segment in time
+        (row 0 being first). Resolution is a value calculated
+        in the function; it corresponds to the resolution of the
+        modulation frequency domain (bin number between 0-max_freq Hz).
+        Note the fluctuation patterns are encoded in vector format.
 
-        :returns:
-            - np.ndarray[shape=(segment_num, band_num*resolution)]:
-                Fluctuation patterns. Each row is a segment in time
-                (row 0 being first). Resolution is a value calculated
-                in the function; it corresponds to the resolution of the
-                modulation frequency domain (bin number between 0-max_freq Hz).
-                Note the fluctuation patterns are encoded in vector format.
+    Examples
+    --------
+    >>> # Load a file
+    >>> y, sr = librosa.load('file.mp3')
+    >>> # Calculate the fluctuation patterns
+    >>> fluctuation_patterns = 
+            extractor.fluctuationPatterns(y, sr=sr, n_fft=512,
+                    hop_length=512, mel_count=12, seconds=3,
+                    band_num=12, max_freq=10, Pampalk=True,
+                    terhardt=False)
+
     '''
 
     # calculate log mel spectrogram
@@ -717,59 +853,76 @@ def fluctuationEntropy(y=None, sr=44100, all_fp=None, decomposition=True,
     Based on computation from V. Alluri (2012) paper, with slight modification.
     Can calculate for either the median fluctuation pattern or for all
     fluctuation patterns.
-        :usage:
-                >>> # Load a file
-                >>> y, sr = librosa.load('file.mp3')
-                >>> # Calculate the fluctuation entropy of an audiofile
-                >>> fp_entropy = extractor.fluctuationEntropy(y, sr=sr,
-                        decomposition=True, n_fft=512, hop_length=512,
-                        mel_count=36, seconds=3, band_num=12, max_freq=10,
-                        Pampalk=True, terhardt=False)
+
+    Parameters
+    ----------
+    y : np.ndarray [shape=(n,)] 
+        Time series of the audio file. Default = None.
+    sr : integer
+        sampling rate of the audio file. Default 44100. 
+    all_fp: np.ndarray[shape=(segment_num, band_num*resolution)]
+        Output of fluctuation_patterns. Default None.
+    decomposition: boolean. 
+        Whether to only consider the median
+        fluctuation pattern or all fluctuation patterns.
+    n_fft : integer. 
+        FFT window size for 
+        librosa.feature.melspectrogram() [samples]. Default 512.
+    hop_length : integer. 
+        The amount of overlap [samples] between
+        the frames for librosa.feature.melspectrogram(). Default is
+        same values as n_fft. Default 512.
+    mel_count : integer. 
+        The number of mel bands to consider when
+        generating the melspectrogram. Default is 36 bands.
+    seconds : integer. 
+        The length of each segment when calculating
+        the fluctuation patterns. Default is 3 seconds.
+    band_num : integer. 
+        The number of bands to consider when calculating
+        the fluctuation patterns. The mel bands resulting from the initial
+        melspectrogram will be combined together to get this many bands.
+        Default is 12 bands.
+    max_freq : integer. 
+        The maximum modulation frequency to be considered.
+        Default is 10 Hz.
+    Pampalk: boolean. 
+        Whether to use Pampalk's algorithm straight from his
+        thesis (i.e. with the hardcoded gaussian values) or to use an 
+        alternate method involving a built-in gaussian filter. Default is
+        using Pampalk's method.
+    terhardt: boolean. 
+        Whether or not to apply the Terhardt perception model
+        (1979). Default is False.
+
+    Returns
+    -------
+    np.ndarray[shape=(num_segments,)]
+        if decomposition == True
+    float
+        if decomposition == False
+
+    Examples
+    --------
+    >>> # Load a file
+    >>> y, sr = librosa.load('file.mp3')
+    >>> # Calculate the fluctuation entropy of an audiofile
+    >>> fp_entropy = extractor.fluctuationEntropy(y, sr=sr,
+            decomposition=True, n_fft=512, hop_length=512,
+            mel_count=36, seconds=3, band_num=12, max_freq=10,
+            Pampalk=True, terhardt=False)
     
-                >>> # Load a file
-                >>> y, sr = librosa.load('file.mp3')
-                >>> fluctuation_patterns = 
-                                    extractor.fluctuationPatterns(y, sr=sr)
-                >>> # Calculate the fluctuation entropy from fp values
-                >>> fp_entropy = 
-                      extractor.fluctuationEntropy(all_fp=fluctuation_patterns)
+    >>> # Load a file
+    >>> y, sr = librosa.load('file.mp3')
+    >>> fluctuation_patterns = 
+            extractor.fluctuationPatterns(y, sr=sr)
+    >>> # Calculate the fluctuation entropy from fp values
+    >>> fp_entropy = 
+            extractor.fluctuationEntropy(all_fp=fluctuation_patterns)
 
-        :parameters:
-            - y : np.ndarray [shape=(n,)] Time series of the audio file.
-                Default None.
-            - sr : integer. sampling rate of the audio file. Default 44100.
-            - all_fp: np.ndarray[shape=(segment_num, band_num*resolution)].
-                Output of fluctuation_patterns. Default None.
-            - decomposition: boolean. Whether to only consider the median
-                fluctuation pattern or all fluctuation patterns.
-            - n_fft : integer. FFT window size for
-                librosa.feature.melspectrogram() [samples]. Default 512.
-            - hop_length : integer. The amount of overlap [samples] between
-                the frames for librosa.feature.melspectrogram(). Default is
-                same values as n_fft. Default 512.
-            - mel_count : integer. The number of mel bands to consider when
-                generating the melspectrogram. Default is 36 bands.
-            - seconds : integer. The length of each segment when calculating
-                the fluctuation patterns. Default is 3 seconds.
-            - band_num : integer. The number of bands to consider when calculating
-                the fluctuation patterns. The mel bands resulting from the initial
-                melspectrogram will be combined together to get this many bands.
-                Default is 12 bands.
-            - max_freq : integer. The maximum modulation frequency to be considered.
-                Default is 10 Hz.
-            - Pampalk: boolean. Whether to use Pampalk's algorithm straight from his
-                thesis (i.e. with the hardcoded gaussian values) or to use an 
-                alternate method involving a built-in gaussian filter. Default is
-                using Pampalk's method.
-            - terhardt: boolean. Whether or not to apply the Terhardt perception model
-                (1979). Default is False.
-
-        :returns:
-            - np.ndarray[shape=(num_segments,)]: if decomposition == True
-            - float: if decomposition == False
     '''
     if all_fp is None and y is None:
-        print 'Invalid paramters: need either audio or fluctuation patterns'
+        print ('Invalid paramters: need either audio or fluctuation patterns')
     if all_fp is None:
         all_fp = fluctuationPatterns(y, sr=sr, n_fft=n_fft, hop_length=hop_length,
                         mel_count=mel_count, seconds=seconds, band_num=band_num,
@@ -803,59 +956,76 @@ def fluctuationFocus(y=None, sr=44100, all_fp=None, n_fft=512, hop_length=512,
     Based on computation from E. Pampalk's PhD thesis (2006) paper.
     Can calculate for either the median fluctuation pattern or for all
     fluctuation patterns.
-        :usage:
-                >>> # Load a file
-                >>> y, sr = librosa.load('file.mp3')
-                >>> # Calculate the fluctuation entropy of an audiofile
-                >>> fp_focus = extractor.fluctuationFocus(y, sr=sr,
-                        decomposition=True, n_fft=512, hop_length=512,
-                        mel_count=36, seconds=3, band_num=12, max_freq=10,
-                        Pampalk=True, terhardt=False)
+
+    Parameters
+    ----------
+    y : np.ndarray [shape=(n,)] 
+        Time series of the audio file. Default = None.
+    sr : integer
+        sampling rate of the audio file. Default 44100. 
+    all_fp: np.ndarray[shape=(segment_num, band_num*resolution)]
+        Output of fluctuation_patterns. Default None.
+    decomposition: boolean. 
+        Whether to only consider the median
+        fluctuation pattern or all fluctuation patterns.
+    n_fft : integer. 
+        FFT window size for 
+        librosa.feature.melspectrogram() [samples]. Default 512.
+    hop_length : integer. 
+        The amount of overlap [samples] between
+        the frames for librosa.feature.melspectrogram(). Default is
+        same values as n_fft. Default 512.
+    mel_count : integer. 
+        The number of mel bands to consider when
+        generating the melspectrogram. Default is 36 bands.
+    seconds : integer. 
+        The length of each segment when calculating
+        the fluctuation patterns. Default is 3 seconds.
+    band_num : integer. 
+        The number of bands to consider when calculating
+        the fluctuation patterns. The mel bands resulting from the initial
+        melspectrogram will be combined together to get this many bands.
+        Default is 12 bands.
+    max_freq : integer. 
+        The maximum modulation frequency to be considered.
+        Default is 10 Hz.
+    Pampalk: boolean. 
+        Whether to use Pampalk's algorithm straight from his
+        thesis (i.e. with the hardcoded gaussian values) or to use an 
+        alternate method involving a built-in gaussian filter. Default is
+        using Pampalk's method.
+    terhardt: boolean. 
+        Whether or not to apply the Terhardt perception model
+        (1979). Default is False.
+
+    Returns
+    -------
+    np.ndarray[shape=(num_segments,)]
+        if decomposition == True
+    float
+        if decomposition == False
+
+    Examples
+    --------
+    >>> # Load a file
+    >>> y, sr = librosa.load('file.mp3')
+    >>> # Calculate the fluctuation entropy of an audiofile
+    >>> fp_focus = extractor.fluctuationFocus(y, sr=sr,
+            decomposition=True, n_fft=512, hop_length=512,
+            mel_count=36, seconds=3, band_num=12, max_freq=10,
+            Pampalk=True, terhardt=False)
     
-                >>> # Load a file
-                >>> y, sr = librosa.load('file.mp3')
-                >>> fluctuation_patterns = 
-                                extractor.fluctuationPatterns(y, sr=sr)
-                >>> # Calculate the fluctuation entropy from fp values
-                >>> fp_focus = 
-                      extractor.fluctuationFocus(all_fp=fluctuation_patterns)
+    >>> # Load a file
+    >>> y, sr = librosa.load('file.mp3')
+    >>> fluctuation_patterns = 
+            extractor.fluctuationPatterns(y, sr=sr)
+    >>> # Calculate the fluctuation entropy from fp values
+    >>> fp_focus = 
+            extractor.fluctuationEntropy(all_fp=fluctuation_patterns)
 
-        :parameters:
-            - y : np.ndarray [shape=(n,)] Time series of the audio file.
-                Default None.
-            - sr : integer. sampling rate of the audio file. Default 44100.
-            - all_fp: np.ndarray[shape=(segment_num, band_num*resolution)].
-                Output of fluctuation_patterns. Default None.
-            - decomposition: boolean. Whether to only consider the median
-                fluctuation pattern or all fluctuation patterns.
-            - n_fft : integer. FFT window size for
-                librosa.feature.melspectrogram() [samples]. Default 512.
-            - hop_length : integer. The amount of overlap [samples] between
-                the frames for librosa.feature.melspectrogram(). Default is
-                same values as n_fft. Default 512.
-            - mel_count : integer. The number of mel bands to consider when
-                generating the melspectrogram. Default is 36 bands.
-            - seconds : integer. The length of each segment when calculating
-                the fluctuation patterns. Default is 3 seconds.
-            - band_num : integer. The number of bands to consider when calculating
-                the fluctuation patterns. The mel bands resulting from the initial
-                melspectrogram will be combined together to get this many bands.
-                Default is 12 bands.
-            - max_freq : integer. The maximum modulation frequency to be considered.
-                Default is 10 Hz.
-            - Pampalk: boolean. Whether to use Pampalk's algorithm straight from his
-                thesis (i.e. with the hardcoded gaussian values) or to use an 
-                alternate method involving a built-in gaussian filter. Default is
-                using Pampalk's method.
-            - terhardt: boolean. Whether or not to apply the Terhardt perception model
-                (1979). Default is False.
-
-        :returns:
-            - np.ndarray[shape=(num_segments,)]: if decomposition == True
-            - float: if decomposition == False
     '''
     if all_fp is None and y is None:
-        print 'Invalid args: need either audio file or fluctuation patterns'
+        print ('Invalid args: need either audio file or fluctuation patterns')
     if all_fp is None:
         all_fp = fluctuationPatterns(y, sr=sr, n_fft=n_fft, hop_length=hop_length,
                         mel_count=mel_count, seconds=seconds, band_num=band_num,
@@ -881,59 +1051,76 @@ def fluctuationCentroid(y=None, sr=44100, all_fp=None, n_fft=512,
     Based on computation from E. Pampalk's PhD thesis (2006) paper.
     Can calculate for either the median fluctuation pattern or for all
     fluctuation patterns.
-        :usage:
-                >>> # Load a file
-                >>> y, sr = librosa.load('file.mp3')
-                >>> # Calculate the fluctuation entropy of an audiofile
-                >>> fp_centroid = extractor.fluctuationCentroid(y, sr=sr,
-                        decomposition=True, n_fft=512, hop_length=512,
-                        mel_count=36, seconds=3, band_num=12, max_freq=10,
-                        Pampalk=True, terhardt=False)
+
+    Parameters
+    ----------
+    y : np.ndarray [shape=(n,)] 
+        Time series of the audio file. Default = None.
+    sr : integer
+        sampling rate of the audio file. Default 44100. 
+    all_fp: np.ndarray[shape=(segment_num, band_num*resolution)]
+        Output of fluctuation_patterns. Default None.
+    decomposition: boolean. 
+        Whether to only consider the median
+        fluctuation pattern or all fluctuation patterns.
+    n_fft : integer. 
+        FFT window size for 
+        librosa.feature.melspectrogram() [samples]. Default 512.
+    hop_length : integer. 
+        The amount of overlap [samples] between
+        the frames for librosa.feature.melspectrogram(). Default is
+        same values as n_fft. Default 512.
+    mel_count : integer. 
+        The number of mel bands to consider when
+        generating the melspectrogram. Default is 36 bands.
+    seconds : integer. 
+        The length of each segment when calculating
+        the fluctuation patterns. Default is 3 seconds.
+    band_num : integer. 
+        The number of bands to consider when calculating
+        the fluctuation patterns. The mel bands resulting from the initial
+        melspectrogram will be combined together to get this many bands.
+        Default is 12 bands.
+    max_freq : integer. 
+        The maximum modulation frequency to be considered.
+        Default is 10 Hz.
+    Pampalk: boolean. 
+        Whether to use Pampalk's algorithm straight from his
+        thesis (i.e. with the hardcoded gaussian values) or to use an 
+        alternate method involving a built-in gaussian filter. Default is
+        using Pampalk's method.
+    terhardt: boolean. 
+        Whether or not to apply the Terhardt perception model
+        (1979). Default is False.
+
+    Returns
+    -------
+    np.ndarray[shape=(num_segments,)]
+        if decomposition == True
+    float
+        if decomposition == False
+
+    Examples
+    --------
+    >>> # Load a file
+    >>> y, sr = librosa.load('file.mp3')
+    >>> # Calculate the fluctuation entropy of an audiofile
+    >>> fp_centroid = extractor.fluctuationCentroid(y, sr=sr,
+            decomposition=True, n_fft=512, hop_length=512,
+            mel_count=36, seconds=3, band_num=12, max_freq=10,
+            Pampalk=True, terhardt=False)
     
-                >>> # Load a file
-                >>> y, sr = librosa.load('file.mp3')
-                >>> fluctuation_patterns =
-                                    extractor.fluctuationPatterns(y, sr=sr)
-                >>> # Calculate the fluctuation entropy from fp values
-                >>> fp_centroid = 
-                    extractor.fluctuationCentroid(all_fp=fluctuation_patterns)
+    >>> # Load a file
+    >>> y, sr = librosa.load('file.mp3')
+    >>> fluctuation_patterns = 
+            extractor.fluctuationPatterns(y, sr=sr)
+    >>> # Calculate the fluctuation entropy from fp values
+    >>> fp_centroid = 
+            extractor.fluctuationEntropy(all_fp=fluctuation_patterns)
 
-        :parameters:
-            - y : np.ndarray [shape=(n,)] Time series of the audio file.
-                Default None.
-            - sr : integer. sampling rate of the audio file. Default 44100.
-            - all_fp: np.ndarray[shape=(segment_num, band_num*resolution)].
-                Output of fluctuation_patterns. Default None.
-            - decomposition: boolean. Whether to only consider the median
-                fluctuation pattern or all fluctuation patterns.
-            - n_fft : integer. FFT window size for
-                librosa.feature.melspectrogram() [samples]. Default 512.
-            - hop_length : integer. The amount of overlap [samples] between
-                the frames for librosa.feature.melspectrogram(). Default is
-                same values as n_fft. Default 512.
-            - mel_count : integer. The number of mel bands to consider when
-                generating the melspectrogram. Default is 36 bands.
-            - seconds : integer. The length of each segment when calculating
-                the fluctuation patterns. Default is 3 seconds.
-            - band_num : integer. The number of bands to consider when calculating
-                the fluctuation patterns. The mel bands resulting from the initial
-                melspectrogram will be combined together to get this many bands.
-                Default is 12 bands.
-            - max_freq : integer. The maximum modulation frequency to be considered.
-                Default is 10 Hz.
-            - Pampalk: boolean. Whether to use Pampalk's algorithm straight from his
-                thesis (i.e. with the hardcoded gaussian values) or to use an 
-                alternate method involving a built-in gaussian filter. Default is
-                using Pampalk's method.
-            - terhardt: boolean. Whether or not to apply the Terhardt perception model
-                (1979). Default is False.
-
-        :returns:
-            - np.ndarray[shape=(num_segments,)]: if decomposition == True
-            - float: if decomposition == False
     '''
     if all_fp is None and y is None:
-        print 'Invalid args: need either audio file or fluctuation patterns'
+        print ('Invalid args: need either audio file or fluctuation patterns')
     if all_fp is None:
         all_fp = fluctuationPatterns(y, sr=sr, n_fft=n_fft, hop_length=hop_length,
                         mel_count=mel_count, seconds=seconds, band_num=band_num,

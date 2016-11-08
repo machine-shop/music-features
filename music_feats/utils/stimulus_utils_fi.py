@@ -3,11 +3,35 @@ import numpy as np
 from collections import defaultdict
 
 
+__all__ = ['TRFile']
+
 class TRFile(object):
+    """
+    Loads data from [trfilename], should be output from stimulus
+    presentation code.
+    
+    Attributes
+    ----------
+    trtimes : trtimes
+    soundstartime : soundstartime
+    soundstoptime : soundstoptime
+    otherlabels : otherlabels
+    expectedtr : expectedtr
+
+
+    Methods
+    -------
+    load_from_file(trfilename)
+        Loads TR data from report with given [trfilename].
+    stimulate(ntrs)
+        Simulates [ntrs] TRs that occur at the expected TR.
+    get_reltriggertimes()
+        Returns the times of all trigger events relative to the sound.
+    avgtr()
+        Returns the average TR for this run.
+
+    """
     def __init__(self, trfilename, expectedtr=2.0045):
-        """Loads data from [trfilename], should be output from stimulus
-        presentation code.
-        """
         self.trtimes = []
         self.soundstarttime = -1
         self.soundstoptime = -1
@@ -19,6 +43,15 @@ class TRFile(object):
 
     def load_from_file(self, trfilename):
         """Loads TR data from report with given [trfilename].
+        Parameters
+        ----------
+        trfilename : str
+            Name of TR file
+
+        Returns
+        -------
+        None
+
         """
         # Read the report file and populate the datastructure
         for ll in open(trfilename):
@@ -52,23 +85,52 @@ class TRFile(object):
 
     def simulate(self, ntrs):
         """Simulates [ntrs] TRs that occur at the expected TR.
+        Parameters
+        ----------
+        ntrs : ntrs
+
+        Returns
+        -------
+        np.ndarray
+
         """
         self.trtimes = list(np.arange(ntrs)*self.expectedtr)
 
     def get_reltriggertimes(self):
         """Returns the times of all trigger events relative to the sound.
+
+        Returns
+        -------
+        np.ndarray
+
         """
+        
         return np.array(self.trtimes)-self.soundstarttime
 
     @property
     def avgtr(self):
         """Returns the average TR for this run.
+
+        Returns
+        -------
+        np.ndarray
+        
         """
         return np.diff(self.trtimes).mean()
 
 # TODO need to update the root default to something relevant
 def load_trfiles(respdict, root="/auto/data/archive/mri/stimreports/"):
-    """Loads a dictionary of TRFiles for the given responses.
+    """Loads a dictionary of TRFiles for the given responses
+    Parameters
+    ----------
+    respdict : dict
+        Response dictionary
+    root : "str"
+
+    Returns
+    -------
+    dict
+
     """
     trdict = dict()
 
@@ -106,7 +168,19 @@ def load_generic_trfiles(respdict,
                          root="/auto/k1/huth/text/story/stimreports/generic"):
     """Loads a dictionary of generic TRFiles (i.e. not specifically from the
     session in which the data was collected.. this should be fine) for the
-    given responses."""
+    given responses
+
+    Parameters
+    ----------
+    respdict : dict
+        Response dictionary
+    root : "str"
+
+    Returns
+    -------
+    dict
+
+    """
     trdict = dict()
 
     for stimulus, resps in respdict.items():
@@ -122,7 +196,20 @@ def load_generic_trfiles(respdict,
 def load_generic_trfiles_fi(stimuli, subject, root="data/trfiles"):
     """Loads a dictionary of generic TRFiles (i.e. not specifically from the
     session in which the data was collected.. this should be fine) for the
-    given stimuli."""
+    given stimuli.
+
+    Parameters
+    ----------
+    respdict : dict
+        Response dictionary
+    subject : subject
+    root : "str"
+
+    Returns
+    -------
+    dict
+
+    """
     trdict = dict()
 
     for stimulus in stimuli:

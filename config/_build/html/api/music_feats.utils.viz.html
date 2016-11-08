@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Module: utils.viz &mdash; Music_Feats 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Music_Feats 1.0 documentation" href="../index.html" />
+    <link rel="up" title="API Reference" href="api.html" />
+    <link rel="prev" title="Module: utils.stimulus_utils_fi" href="music_feats.utils.stimulus_utils_fi.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.stimulus_utils_fi.html" title="Module: utils.stimulus_utils_fi"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API Reference</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-music_feats.utils.viz">
+<span id="module-utils-viz"></span><h1>Module: <code class="xref py py-mod docutils literal"><span class="pre">utils.viz</span></code><a class="headerlink" href="#module-music_feats.utils.viz" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.viz.separate_model_weights" title="music_feats.utils.viz.separate_model_weights"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.viz.separate_model_weights</span></code></a>(...)</td>
+<td>Takes an N x M matrix of voxel weights [vwts] (where N is the total number of features and M is the number of voxels) and separates out the weights for each separate model.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.viz.separate_voxel_model_weights" title="music_feats.utils.viz.separate_voxel_model_weights"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.viz.separate_voxel_model_weights</span></code></a>(...)</td>
+<td>Takes a voxel weight vector [vwt] and separates out the weights for each model.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.viz.undelay_model_weights" title="music_feats.utils.viz.undelay_model_weights"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.viz.undelay_model_weights</span></code></a>(...)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="separate-model-weights">
+<h2>separate_model_weights<a class="headerlink" href="#separate-model-weights" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.viz.separate_model_weights">
+<code class="descclassname">music_feats.utils.viz.</code><code class="descname">separate_model_weights</code><span class="sig-paren">(</span><em>vwts</em>, <em>ndelays</em>, <em>modeldims</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.viz.separate_model_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes an N x M matrix of voxel weights [vwts] (where N is the
+total number of features and M is the number of voxels) and
+separates out the weights for each separate model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>vwt</strong> : np.ndarray</p>
+<blockquote>
+<div><p>weight vector</p>
+</div></blockquote>
+<p><strong>ndelays</strong> : int</p>
+<blockquote>
+<div><p>number of delays</p>
+</div></blockquote>
+<p><strong>modeldims</strong> : modeldims</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote>
+<div><p>List of (D*Ni) x M matrices, where D is the number of</p>
+</div></blockquote>
+<p class="last">delays and Ni is the number of features in model i.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="separate-voxel-model-weights">
+<h2>separate_voxel_model_weights<a class="headerlink" href="#separate-voxel-model-weights" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.viz.separate_voxel_model_weights">
+<code class="descclassname">music_feats.utils.viz.</code><code class="descname">separate_voxel_model_weights</code><span class="sig-paren">(</span><em>vwt</em>, <em>ndelays</em>, <em>modeldims</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.viz.separate_voxel_model_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a voxel weight vector [vwt] and separates out the
+weights for each model. Returns a list of DxNi matrices, where
+D is [ndelays] and Ni is the number of dimensions in model i,
+given in [modeldims].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>vwt</strong> : np.ndarray</p>
+<blockquote>
+<div><p>weight vector</p>
+</div></blockquote>
+<p><strong>ndelays</strong> : int</p>
+<blockquote>
+<div><p>number of delays</p>
+</div></blockquote>
+<p><strong>modeldims</strong> : modeldims</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>List of DxNi matrices</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="undelay-model-weights">
+<h2>undelay_model_weights<a class="headerlink" href="#undelay-model-weights" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.viz.undelay_model_weights">
+<code class="descclassname">music_feats.utils.viz.</code><code class="descname">undelay_model_weights</code><span class="sig-paren">(</span><em>vwts</em>, <em>ndelays</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.viz.undelay_model_weights" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Module: <code class="docutils literal"><span class="pre">utils.viz</span></code></a><ul>
+<li><a class="reference internal" href="#separate-model-weights">separate_model_weights</a></li>
+<li><a class="reference internal" href="#separate-voxel-model-weights">separate_voxel_model_weights</a></li>
+<li><a class="reference internal" href="#undelay-model-weights">undelay_model_weights</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="music_feats.utils.stimulus_utils_fi.html"
+                        title="previous chapter">Module: <code class="docutils literal"><span class="pre">utils.stimulus_utils_fi</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/music_feats.utils.viz.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="music_feats.utils.stimulus_utils_fi.html" title="Module: utils.stimulus_utils_fi"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

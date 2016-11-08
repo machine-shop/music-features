@@ -1,0 +1,1863 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Module: utils &mdash; Music_Feats 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Music_Feats 1.0 documentation" href="../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-music_feats.utils">
+<span id="module-utils"></span><h1>Module: <code class="xref py py-mod docutils literal"><span class="pre">utils</span></code><a class="headerlink" href="#module-music_feats.utils" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.STA" title="music_feats.utils.STA"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.STA</span></code></a>(delRstim,&nbsp;zRresp,&nbsp;...)</td>
+<td>Function estimates model weights using a spike-triggered average model.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.addnoise" title="music_feats.utils.addnoise"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.addnoise</span></code></a>(sig[,&nbsp;std,&nbsp;use_sig])</td>
+<td>Adds noise to a signal</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.applyMask" title="music_feats.utils.applyMask"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.applyMask</span></code></a>(sig,&nbsp;mask[,&nbsp;...])</td>
+<td>Create a full brain response.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.averageDelays" title="music_feats.utils.averageDelays"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.averageDelays</span></code></a>(wt,&nbsp;modeldims)</td>
+<td>Compute the average weight across delays.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.boldlike" title="music_feats.utils.boldlike"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.boldlike</span></code></a>(exp,&nbsp;fname,&nbsp;fpath)</td>
+<td>Creates a response using a feature matrix from a particular stimulus.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.createResponse" title="music_feats.utils.createResponse"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.createResponse</span></code></a>(stim,&nbsp;nVox)</td>
+<td>Creates a response using a feature matrix from a particular stimulus.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.createVolume" title="music_feats.utils.createVolume"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.createVolume</span></code></a>(data,&nbsp;mask,&nbsp;...)</td>
+<td>Helper function for creating a cortex volume for visualization.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.dilate_mask" title="music_feats.utils.dilate_mask"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.dilate_mask</span></code></a>(mask,&nbsp;ktype)</td>
+<td>Dilates the given binary [mask] with the specified type of [kernel], which should be an integer [1, 2, 3] that is passed as the connectivity argument to scipy.ndimage.morphology.generate_binary_structure.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.expfun" title="music_feats.utils.expfun"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.expfun</span></code></a>(theta,&nbsp;t)</td>
+<td>Computes an exponential weighting function for interpolation.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.expinterp2D" title="music_feats.utils.expinterp2D"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.expinterp2D</span></code></a>(data,&nbsp;oldtime,&nbsp;...)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.gabor_xfm" title="music_feats.utils.gabor_xfm"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.gabor_xfm</span></code></a>(data,&nbsp;oldtimes,&nbsp;...)</td>
+<td>Insert description here</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.gabor_xfm2D" title="music_feats.utils.gabor_xfm2D"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.gabor_xfm2D</span></code></a>(ddata,&nbsp;...)</td>
+<td>Insert description here</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.generateTestR" title="music_feats.utils.generateTestR"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.generateTestR</span></code></a>(exp[,&nbsp;...])</td>
+<td>Generate fake data to test pipeline with.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="music_feats.utils.interpdata.html#module-music_feats.utils.interpdata" title="music_feats.utils.interpdata"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.interpdata</span></code></a>(data,&nbsp;oldtime,&nbsp;...)</td>
+<td>Interpolates the columns of [data] to find the values at [newtime],  given that the current values are at [oldtime].</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.lanczosfun" title="music_feats.utils.lanczosfun"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.lanczosfun</span></code></a>(cutoff,&nbsp;t[,&nbsp;window])</td>
+<td>Compute the lanczos function with some cutoff frequency [B] at some time [t].</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.lanczosinterp2D" title="music_feats.utils.lanczosinterp2D"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.lanczosinterp2D</span></code></a>(data,&nbsp;...)</td>
+<td>Interpolates the columns of [data], assuming that the i&#8217;th row of data corresponds to oldtime(i).</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.loadShuffledIMS" title="music_feats.utils.loadShuffledIMS"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.loadShuffledIMS</span></code></a>(exp,&nbsp;action)</td>
+<td>Queries and returns bold responses from docdb, after shuffling them</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.load_generic_trfiles</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.load_generic_trfiles_fi</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.load_mcparams" title="music_feats.utils.load_mcparams"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.load_mcparams</span></code></a>(respdict)</td>
+<td>This function loads motion correction parameter estimates for the listed images.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.load_response_imagedocs" title="music_feats.utils.load_response_imagedocs"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.load_response_imagedocs</span></code></a>(...)</td>
+<td>Loads music responses from the given [experiments].</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.load_response_imagedocs_music_AN" title="music_feats.utils.load_response_imagedocs_music_AN"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.load_response_imagedocs_music_AN</span></code></a>([...])</td>
+<td>Loads response images for AN.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.load_response_imagedocs_speech_AN" title="music_feats.utils.load_response_imagedocs_speech_AN"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.load_response_imagedocs_speech_AN</span></code></a>([...])</td>
+<td>Loads response images for AN.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.load_response_imagedocs_test" title="music_feats.utils.load_response_imagedocs_test"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.load_response_imagedocs_test</span></code></a>(...)</td>
+<td>Loads the fake data for testing pipeline.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.load_response_imagedocs_tonotopy_AN" title="music_feats.utils.load_response_imagedocs_tonotopy_AN"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.load_response_imagedocs_tonotopy_AN</span></code></a>([...])</td>
+<td>Loads response images for AN.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.load_response_imagedocs_tonotopy_LO" title="music_feats.utils.load_response_imagedocs_tonotopy_LO"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.load_response_imagedocs_tonotopy_LO</span></code></a>([...])</td>
+<td>Loads response images for LO</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.load_responses" title="music_feats.utils.load_responses"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.load_responses</span></code></a>(respdict,&nbsp;mask)</td>
+<td>This function caches the responses in an HDF5 file and reads them if the image IDs haven&#8217;t changed.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.load_responses_test" title="music_feats.utils.load_responses_test"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.load_responses_test</span></code></a>(...[,&nbsp;...])</td>
+<td>This is a version of load_responses() from above, modified to work with fake data.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.load_trfiles</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.retrieveMasks" title="music_feats.utils.retrieveMasks"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.retrieveMasks</span></code></a>(subj,&nbsp;xfms,&nbsp;rois)</td>
+<td>Retrieve the ROI mask that will be used</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.savenewBR" title="music_feats.utils.savenewBR"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.savenewBR</span></code></a>(BRnew,&nbsp;fpath,&nbsp;fname)</td>
+<td>Saves the newly created fake bold response</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.scramble" title="music_feats.utils.scramble"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.scramble</span></code></a>(exp,&nbsp;fname,&nbsp;fpath)</td>
+<td>Scramble actual BOLD responses to get fake responses.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.scrambleHelper" title="music_feats.utils.scrambleHelper"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.scrambleHelper</span></code></a>(BR,&nbsp;chunklen)</td>
+<td>Scramble helper does the actually scrambling for scrambled fake data.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.selectROI" title="music_feats.utils.selectROI"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.selectROI</span></code></a>(respdict,&nbsp;ROIS,&nbsp;...)</td>
+<td>Select a particular ROI to do the regression on</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.separate_model_weights" title="music_feats.utils.separate_model_weights"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.separate_model_weights</span></code></a>(...)</td>
+<td>Takes an N x M matrix of voxel weights [vwts] (where N is the total number of features and M is the number of voxels) and separates out the weights for each separate model.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.separate_voxel_model_weights" title="music_feats.utils.separate_voxel_model_weights"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.separate_voxel_model_weights</span></code></a>(...)</td>
+<td>Takes a voxel weight vector [vwt] and separates out the weights for each model.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.sincfun" title="music_feats.utils.sincfun"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.sincfun</span></code></a>(B,&nbsp;t[,&nbsp;window,&nbsp;...])</td>
+<td>Compute the sinc function with some cutoff frequency [B] at some time [t].</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.sincinterp1D" title="music_feats.utils.sincinterp1D"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.sincinterp1D</span></code></a>(data,&nbsp;...[,&nbsp;...])</td>
+<td>Interpolates the one-dimensional signal [data] at the times given by [newtime].</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.sincinterp2D" title="music_feats.utils.sincinterp2D"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.sincinterp2D</span></code></a>(data,&nbsp;...[,&nbsp;...])</td>
+<td>Interpolates the columns of [data], assuming that the i&#8217;th row of data corresponds to oldtime(i).</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.sincupinterp2D" title="music_feats.utils.sincupinterp2D"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.sincupinterp2D</span></code></a>(data,&nbsp;...)</td>
+<td>Uses sinc interpolation to upsample the columns of [data], assuming that the i&#8217;th row of data comes from oldtime[i].</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#music_feats.utils.spectralCentroid" title="music_feats.utils.spectralCentroid"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.spectralCentroid</span></code></a>(W)</td>
+<td>Function used for calculating spectral centroid of the weights.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.test_interp" title="music_feats.utils.test_interp"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.test_interp</span></code></a>(**kwargs)</td>
+<td>Tests sincinterp2D passing it the given [kwargs] and interpolating known signals</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.undelay_model_weights</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#music_feats.utils.TRFile" title="music_feats.utils.TRFile"><code class="xref py py-obj docutils literal"><span class="pre">music_feats.utils.TRFile</span></code></a>(trfilename[,&nbsp;...])</td>
+<td>Loads data from [trfilename], should be output from stimulus presentation code.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="sta">
+<h2>STA<a class="headerlink" href="#sta" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.STA">
+<code class="descclassname">music_feats.utils.</code><code class="descname">STA</code><span class="sig-paren">(</span><em>delRstim</em>, <em>zRresp</em>, <em>delPstims</em>, <em>zPresps</em>, <em>ndelays</em>, <em>modeldims</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.STA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function estimates model weights using a spike-triggered average
+model. Weights are cross-validated and the results returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>delRstim</strong> : np.ndarray</p>
+<blockquote>
+<div><p>training - stimulus feature time series</p>
+</div></blockquote>
+<p><strong>zRresp</strong> : np.ndarray</p>
+<blockquote>
+<div><p>training - voxel responses</p>
+</div></blockquote>
+<p><strong>delPstims</strong> : list of np.ndarry</p>
+<blockquote>
+<div><p>validation - stimulus feature time series</p>
+</div></blockquote>
+<p><strong>zPresps</strong> : list of np.ndarray</p>
+<blockquote>
+<div><p>validation - voxel responses</p>
+</div></blockquote>
+<p><strong>ndelays</strong> : python list of ints</p>
+<blockquote>
+<div><p>number of delays to use in the model</p>
+</div></blockquote>
+<p><strong>modeldims</strong> : python list of ints,</p>
+<blockquote>
+<div><p>dimensions of the submodels as a list</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray, np.ndarray, list, list</p>
+<blockquote class="last">
+<div><p>STA_W : estimated weights, valcorr_STA : validation correlation values (full model)
+submodelwts_STA : wts for each submodel, valmodelcorr_STA : list of prediction correlcation
+values for each submodel</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="addnoise">
+<h2>addnoise<a class="headerlink" href="#addnoise" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.addnoise">
+<code class="descclassname">music_feats.utils.</code><code class="descname">addnoise</code><span class="sig-paren">(</span><em>sig</em>, <em>std=None</em>, <em>use_sig=False</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.addnoise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds noise to a signal</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>sig</strong> : np.ndarray</p>
+<blockquote>
+<div><p>A signal to add noise to.</p>
+</div></blockquote>
+<p><strong>std</strong> : float</p>
+<blockquote>
+<div><p>Standard deviation of the gaussian noise. Default is None.</p>
+</div></blockquote>
+<p><strong>use_sig</strong> : bool</p>
+<blockquote>
+<div><p>Whether or not to use the input signal&#8217;s standard 
+deviation value. Default is False.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>Signal with noise</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="applymask">
+<h2>applyMask<a class="headerlink" href="#applymask" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.applyMask">
+<code class="descclassname">music_feats.utils.</code><code class="descname">applyMask</code><span class="sig-paren">(</span><em>sig</em>, <em>mask</em>, <em>std=1.0</em>, <em>ave=0.0</em>, <em>zdim=30</em>, <em>ydim=100</em>, <em>xdim=100</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.applyMask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a full brain response.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>sig</strong> : np.ndarray</p>
+<blockquote>
+<div><p>Neural response to go into a ROI.
+Correlated to a weighted version of a feature matrix.
+mask : np.ndarray</p>
+<blockquote>
+<div><p>Mask of the ROI where the signal will be going into.</p>
+</div></blockquote>
+</div></blockquote>
+<p><strong>std</strong> : float</p>
+<blockquote>
+<div><p>The standard deviation of the gaussian noise in
+the baseline neural activity. Default is 1.0.</p>
+</div></blockquote>
+<p><strong>ave</strong> : float</p>
+<blockquote>
+<div><p>The average of the gaussian noise in the baseline neural
+activity. Default is 0.0</p>
+</div></blockquote>
+<p><strong>zdim</strong> : int</p>
+<blockquote>
+<div><p>Z dimension size of the BOLD activity. Default is 30.</p>
+</div></blockquote>
+<p><strong>ydim</strong> : int</p>
+<blockquote>
+<div><p>Y dimension size of the BOLD activity. Default is 100.</p>
+</div></blockquote>
+<p><strong>xdim</strong> : int</p>
+<blockquote>
+<div><p>X dimension size of the BOLD activity. Default is 100.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>Full brain response</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="averagedelays">
+<h2>averageDelays<a class="headerlink" href="#averagedelays" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.averageDelays">
+<code class="descclassname">music_feats.utils.</code><code class="descname">averageDelays</code><span class="sig-paren">(</span><em>wt</em>, <em>modeldims</em>, <em>delays=4</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.averageDelays" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the average weight across delays. Assumes there are wt.shape[0]/delays
+features overall (sub-models of dimension 1). Used for tonotopy analysis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>wt</strong> : np.ndarray</p>
+<blockquote>
+<div><p>[(num_channels*delays, num_voxels)]. Delayed model weights.</p>
+</div></blockquote>
+<p><strong>modeldims: list</strong></p>
+<blockquote>
+<div><p>List of submodel dimensions (should be list of all 1s).</p>
+</div></blockquote>
+<p><strong>delays</strong> : int</p>
+<blockquote>
+<div><p>Number of delays used. Default: 4.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">int</p>
+<blockquote class="last">
+<div><p>Average of delays</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="boldlike">
+<h2>boldlike<a class="headerlink" href="#boldlike" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.boldlike">
+<code class="descclassname">music_feats.utils.</code><code class="descname">boldlike</code><span class="sig-paren">(</span><em>exp, fname, fpath, rois=['V1'], featurematrices=None, valreps=2, valind=0, subj='S1', xfms='fullhead', wts=None, rho=0.8, std=1.0, ave=0.0, norm=True</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.boldlike" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Creates a response using a feature matrix from a particular stimulus. Puts activity</dt>
+<dd>in a particular ROI of a noisy brain.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>exp</strong> : str</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Experiment name. Used to name output files</dt>
+<dd><p class="first last">or to query bold responses in the scramble method.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>fname</strong> : str</p>
+<blockquote>
+<div><p>The name to save the NIFTI files as. Default is None.</p>
+</div></blockquote>
+<p><strong>fpath</strong> : str</p>
+<blockquote>
+<div><p>The path where to store the resulting NIFTI files.</p>
+</div></blockquote>
+<p><strong>rois</strong> : str[]</p>
+<blockquote>
+<div><p>All the ROIs where the fake activity should 
+be happening. Default is [&#8216;V1&#8217;].</p>
+</div></blockquote>
+<p><strong>featurematrices</strong> : list of feature matrices</p>
+<blockquote>
+<div><p>The feature matrices to use when creating the fake responses 
+(e.g feature matrix of each stimuli). Default is None.</p>
+</div></blockquote>
+<p><strong>valreps</strong> : int</p>
+<blockquote>
+<div><p>The number of validation responses to create. Default 
+is 2 responses.</p>
+</div></blockquote>
+<p><strong>valind</strong> : int</p>
+<blockquote>
+<div><p>The index of the feature matrix in featurematrices 
+that corresponds to the validation stimuli. Default 
+is 0.</p>
+</div></blockquote>
+<p><strong>subj</strong> : str</p>
+<blockquote>
+<div><p>The subject whose flatmap (in pycortex) to use.
+Default is &#8216;S1&#8217;</p>
+</div></blockquote>
+<p><strong>xfms</strong> : str</p>
+<blockquote>
+<div><p>The pycortex transform to use. Default is &#8216;fullhead.&#8217;</p>
+</div></blockquote>
+<p><strong>wts</strong> : np.ndarray</p>
+<blockquote>
+<div><p>The weights used to construct the fake response.
+Default is None.</p>
+</div></blockquote>
+<p><strong>rho</strong> : float</p>
+<blockquote>
+<div><p>Correlation amount between the expected and actual 
+response in the fake data. Default is 0.8.</p>
+</div></blockquote>
+<p><strong>std</strong> : float</p>
+<blockquote>
+<div><p>The standard deviation of the gaussian noise in the 
+brain outside the ROI of activity. Default is 1.0.</p>
+</div></blockquote>
+<p><strong>ave</strong> : float</p>
+<blockquote>
+<div><p>The average of the gaussian noise in the brain 
+outside the ROI of activity. Default is 0.0</p>
+</div></blockquote>
+<p><strong>norm</strong> : bool</p>
+<blockquote>
+<div><p>Indicates whether or not to normalize the 
+activity created inthe ROI.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray, np.ndarray</p>
+<blockquote class="last">
+<div><p>Bold responses and weight vectors used for response</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<p>Source provided by Mark L; also referenced his source code 
+for generating fake data. github.com/marklescroart/fakedata</p>
+</dd></dl>
+
+</div>
+<div class="section" id="createresponse">
+<h2>createResponse<a class="headerlink" href="#createresponse" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.createResponse">
+<code class="descclassname">music_feats.utils.</code><code class="descname">createResponse</code><span class="sig-paren">(</span><em>stim</em>, <em>nVox</em>, <em>wts=None</em>, <em>rho=0.8</em>, <em>norm=True</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.createResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a response using a feature matrix from a particular stimulus.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>stim</strong> : np.ndarray</p>
+<blockquote>
+<div><p>Feature matrix.
+nVox : int</p>
+<blockquote>
+<div><p>The number of voxels the response needs to be.</p>
+</div></blockquote>
+</div></blockquote>
+<p><strong>wts</strong> : np.ndarray</p>
+<blockquote>
+<div><p>The weights used to linearly combine the features 
+(i.e. columns) of stim. Default is randomly generated weights.</p>
+</div></blockquote>
+<p><strong>rho</strong> : float</p>
+<blockquote>
+<div><p>The correlation value between expected and 
+actual signal. Default is 0.8.</p>
+</div></blockquote>
+<p><strong>norm</strong> : bool</p>
+<blockquote>
+<div><p>Indicates whether or not to normalize the neural
+activity. Default is True.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray, np.ndarray</p>
+<blockquote class="last">
+<div><p>Response and weight</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="createvolume">
+<h2>createVolume<a class="headerlink" href="#createvolume" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.createVolume">
+<code class="descclassname">music_feats.utils.</code><code class="descname">createVolume</code><span class="sig-paren">(</span><em>data</em>, <em>mask</em>, <em>surface</em>, <em>xfms</em>, <em>vmin=None</em>, <em>vmax=None</em>, <em>factor=0.95</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.createVolume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function for creating a cortex volume for visualization.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : np.ndarray</p>
+<blockquote>
+<div><p>The data to visualize.</p>
+</div></blockquote>
+<p><strong>mask</strong> : np.ndarray</p>
+<blockquote>
+<div><p>Mask to use to transform.</p>
+</div></blockquote>
+<p><strong>surface</strong> : TYPE</p>
+<blockquote>
+<div><p>surface to use.</p>
+</div></blockquote>
+<p><strong>xfms</strong> :  TYPE</p>
+<blockquote>
+<div><p>transform to use.</p>
+</div></blockquote>
+<p><strong>vmin</strong> : float</p>
+<blockquote>
+<div><p>Default: Min of data.</p>
+</div></blockquote>
+<p><strong>vmax</strong> : float</p>
+<blockquote>
+<div><p>Default: Max of data.</p>
+</div></blockquote>
+<p><strong>factor</strong> : float</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Factor of vmax to use for visualization purposes.</dt>
+<dd><p class="first last">Default 0.95.</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">cortex volume</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="dilate-mask">
+<h2>dilate_mask<a class="headerlink" href="#dilate-mask" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.dilate_mask">
+<code class="descclassname">music_feats.utils.</code><code class="descname">dilate_mask</code><span class="sig-paren">(</span><em>mask</em>, <em>ktype</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.dilate_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dilates the given binary [mask] with the specified type of [kernel],
+which should be an integer [1, 2, 3] that is passed as the connectivity
+argument to scipy.ndimage.morphology.generate_binary_structure.</p>
+<p>See the docs of that function for details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>mask</strong> : mask</p>
+<p><strong>kytpe</strong> : ktype</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">returntype</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="expfun">
+<h2>expfun<a class="headerlink" href="#expfun" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.expfun">
+<code class="descclassname">music_feats.utils.</code><code class="descname">expfun</code><span class="sig-paren">(</span><em>theta</em>, <em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.expfun" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes an exponential weighting function for interpolation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>theta</strong> : theta</p>
+<p><strong>t</strong> : t</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">float</p>
+<blockquote class="last">
+<div><p>val</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="expinterp2d">
+<h2>expinterp2D<a class="headerlink" href="#expinterp2d" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.expinterp2D">
+<code class="descclassname">music_feats.utils.</code><code class="descname">expinterp2D</code><span class="sig-paren">(</span><em>data</em>, <em>oldtime</em>, <em>newtime</em>, <em>theta</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.expinterp2D" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="gabor-xfm">
+<h2>gabor_xfm<a class="headerlink" href="#gabor-xfm" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.gabor_xfm">
+<code class="descclassname">music_feats.utils.</code><code class="descname">gabor_xfm</code><span class="sig-paren">(</span><em>data</em>, <em>oldtimes</em>, <em>newtimes</em>, <em>freqs</em>, <em>sigma</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.gabor_xfm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert description here</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : np.ndarray</p>
+<blockquote>
+<div><p>data</p>
+</div></blockquote>
+<p><strong>oldtime</strong> : oldtime</p>
+<blockquote>
+<div><p>oldtime</p>
+</div></blockquote>
+<p><strong>newtime</strong> : newtime</p>
+<blockquote>
+<div><p>newtime</p>
+</div></blockquote>
+<p><strong>freqs</strong> : freqs</p>
+<blockquote>
+<div><p>freqs</p>
+</div></blockquote>
+<p><strong>sigma</strong> : sigma</p>
+<blockquote>
+<div><p>sigma</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>np.ndarray</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="gabor-xfm2d">
+<h2>gabor_xfm2D<a class="headerlink" href="#gabor-xfm2d" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.gabor_xfm2D">
+<code class="descclassname">music_feats.utils.</code><code class="descname">gabor_xfm2D</code><span class="sig-paren">(</span><em>ddata</em>, <em>oldtimes</em>, <em>newtimes</em>, <em>freqs</em>, <em>sigma</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.gabor_xfm2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert description here</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : np.ndarray</p>
+<blockquote>
+<div><p>data</p>
+</div></blockquote>
+<p><strong>oldtime</strong> : oldtime</p>
+<blockquote>
+<div><p>oldtime</p>
+</div></blockquote>
+<p><strong>newtime</strong> : newtime</p>
+<blockquote>
+<div><p>newtime</p>
+</div></blockquote>
+<p><strong>freqs</strong> : freqs</p>
+<blockquote>
+<div><p>freqs</p>
+</div></blockquote>
+<p><strong>sigma</strong> : sigma</p>
+<blockquote>
+<div><p>sigma</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>np.ndarray</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="generatetestr">
+<h2>generateTestR<a class="headerlink" href="#generatetestr" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.generateTestR">
+<code class="descclassname">music_feats.utils.</code><code class="descname">generateTestR</code><span class="sig-paren">(</span><em>exp</em>, <em>method='boldlike'</em>, <em>fname=None</em>, <em>fpath='/auto/k7/lucine/projects/music/tmp'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.generateTestR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate fake data to test pipeline with. Will call a sub function to
+generate fake data in a particular way.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>exp</strong> : str</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Experiment name. Used to name output files</dt>
+<dd><p class="first last">or to query bold responses in the scramble method.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>method</strong> : str</p>
+<blockquote>
+<div><p>Options:
+-&#8216;boldlike&#8217; uses weights to create fake data from</p>
+<blockquote>
+<div><p>feature matrices. Calls boldlike(). Default.
+-&#8216;scramble&#8217; scrambles existing bold responses.
+calls scramble()</p>
+</div></blockquote>
+</div></blockquote>
+<p><strong>fname</strong> : str</p>
+<blockquote>
+<div><p>The name to save the NIFTI files as. Default is None.</p>
+</div></blockquote>
+<p><strong>fpath</strong> : str</p>
+<blockquote>
+<div><p>The path where to store the resulting NIFTI files.</p>
+</div></blockquote>
+<p><strong>kwargs :</strong></p>
+<blockquote>
+<div><p>The arguments for boldlike() or scramble(), depending on
+which method is used</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>Fake data to test pipeline with</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="interpdata">
+<h2>interpdata<a class="headerlink" href="#interpdata" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.interpdata">
+<code class="descclassname">music_feats.utils.</code><code class="descname">interpdata</code><span class="sig-paren">(</span><em>data</em>, <em>oldtime</em>, <em>newtime</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.interpdata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interpolates the columns of [data] to find the values at [newtime], 
+given that the current values are at [oldtime].</p>
+<p>[oldtime] must have 
+the same number of elements as [data] has rows.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : np.ndarray</p>
+<blockquote>
+<div><p>data</p>
+</div></blockquote>
+<p><strong>oldtime</strong> : oldtime</p>
+<blockquote>
+<div><p>oldtime</p>
+</div></blockquote>
+<p><strong>newtime</strong> : newtime</p>
+<blockquote>
+<div><p>newtime</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>Interpolted data</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="lanczosfun">
+<h2>lanczosfun<a class="headerlink" href="#lanczosfun" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.lanczosfun">
+<code class="descclassname">music_feats.utils.</code><code class="descname">lanczosfun</code><span class="sig-paren">(</span><em>cutoff</em>, <em>t</em>, <em>window=3</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.lanczosfun" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the lanczos function with some cutoff frequency [B] at some time [t].
+[t] can be a scalar or any shaped numpy array.
+If given a [window], only the lowest-order [window] lobes of the sinc function
+will be non-zero.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>cutoff</strong> : int</p>
+<blockquote>
+<div><p>Cutoff frequency</p>
+</div></blockquote>
+<p><strong>t</strong> : t</p>
+<blockquote>
+<div><p>time</p>
+</div></blockquote>
+<p><strong>window</strong> : int</p>
+<blockquote>
+<div><p>Lowest order lobe of the sinc function. Default at 3</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">float</p>
+<blockquote class="last">
+<div><p>lanczos function value</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="lanczosinterp2d">
+<h2>lanczosinterp2D<a class="headerlink" href="#lanczosinterp2d" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.lanczosinterp2D">
+<code class="descclassname">music_feats.utils.</code><code class="descname">lanczosinterp2D</code><span class="sig-paren">(</span><em>data</em>, <em>oldtime</em>, <em>newtime</em>, <em>window=3</em>, <em>cutoff_mult=1.0</em>, <em>rectify=False</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.lanczosinterp2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interpolates the columns of [data], assuming that the i&#8217;th row of data corresponds to
+oldtime(i). A new matrix with the same number of columns and a number of rows given
+by the length of [newtime] is returned.</p>
+<p>The time points in [newtime] are assumed to be evenly spaced, and their frequency will
+be used to calculate the low-pass cutoff of the interpolation filter.</p>
+<p>[window] lobes of the sinc function will be used. [window] should be an integer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : np.ndarray</p>
+<p><strong>oldtime</strong> : oldtime</p>
+<p><strong>newtime</strong> : new time</p>
+<p><strong>window</strong> : int</p>
+<blockquote>
+<div><p>Lowest order lobe of the sinc function.</p>
+</div></blockquote>
+<p><strong>cutoff_multi</strong> : int</p>
+<blockquote>
+<div><p>Cutoff frequency. Default at 1</p>
+</div></blockquote>
+<p><strong>rectify</strong> : bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>new matrix</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="loadshuffledims">
+<h2>loadShuffledIMS<a class="headerlink" href="#loadshuffledims" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.loadShuffledIMS">
+<code class="descclassname">music_feats.utils.</code><code class="descname">loadShuffledIMS</code><span class="sig-paren">(</span><em>exp</em>, <em>action</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.loadShuffledIMS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Queries and returns bold responses from docdb, after shuffling them</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>exp</strong> : str</p>
+<blockquote>
+<div><p>Which experiment to query.</p>
+</div></blockquote>
+<p><strong>action</strong> : str</p>
+<blockquote>
+<div><p>Which action to use in the query.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Array of bold responses</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-generic-trfiles">
+<h2>load_generic_trfiles<a class="headerlink" href="#load-generic-trfiles" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="load-generic-trfiles-fi">
+<h2>load_generic_trfiles_fi<a class="headerlink" href="#load-generic-trfiles-fi" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="load-mcparams">
+<h2>load_mcparams<a class="headerlink" href="#load-mcparams" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.load_mcparams">
+<code class="descclassname">music_feats.utils.</code><code class="descname">load_mcparams</code><span class="sig-paren">(</span><em>respdict</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.load_mcparams" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function loads motion correction parameter estimates for the listed
+images.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>respdict</strong> : dict</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-response-imagedocs">
+<h2>load_response_imagedocs<a class="headerlink" href="#load-response-imagedocs" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.load_response_imagedocs">
+<code class="descclassname">music_feats.utils.</code><code class="descname">load_response_imagedocs</code><span class="sig-paren">(</span><em>experiments</em>, <em>fromaction='DetrendSGolay'</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.load_response_imagedocs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads music responses from the given [experiments]. All images generated
+by the action [fromaction] will be used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>experiments</strong> : experiments</p>
+<blockquote>
+<div><p>Experiment name. Used to name output files
+or to query bold responses in the scramble method.</p>
+</div></blockquote>
+<p><strong>fromaction</strong> : str</p>
+<blockquote>
+<div><p>Action that will be used. Defaulted at &#8220;DetrendGolay&#8221;</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
+<blockquote class="last">
+<div><p>dictionary of (song name : list of responses)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-response-imagedocs-music-an">
+<h2>load_response_imagedocs_music_AN<a class="headerlink" href="#load-response-imagedocs-music-an" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.load_response_imagedocs_music_AN">
+<code class="descclassname">music_feats.utils.</code><code class="descname">load_response_imagedocs_music_AN</code><span class="sig-paren">(</span><em>sessions=1</em>, <em>usesg=True</em>, <em>unwarp=False</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.load_response_imagedocs_music_AN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads response images for AN.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>session</strong> : int</p>
+<p><strong>usesg</strong> : bool</p>
+<p><strong>unwarp</strong> : bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
+<blockquote class="last">
+<div><p>dictionary of (song name : list of responses)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-response-imagedocs-speech-an">
+<h2>load_response_imagedocs_speech_AN<a class="headerlink" href="#load-response-imagedocs-speech-an" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.load_response_imagedocs_speech_AN">
+<code class="descclassname">music_feats.utils.</code><code class="descname">load_response_imagedocs_speech_AN</code><span class="sig-paren">(</span><em>sessions=1</em>, <em>usesg=True</em>, <em>unwarp=False</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.load_response_imagedocs_speech_AN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads response images for AN.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>session</strong> : int</p>
+<p><strong>usesg</strong> : bool</p>
+<p><strong>unwarp</strong> : bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
+<blockquote class="last">
+<div><p>dictionary of (song name : list of responses)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-response-imagedocs-test">
+<h2>load_response_imagedocs_test<a class="headerlink" href="#load-response-imagedocs-test" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.load_response_imagedocs_test">
+<code class="descclassname">music_feats.utils.</code><code class="descname">load_response_imagedocs_test</code><span class="sig-paren">(</span><em>reading_dir</em>, <em>fnames</em>, <em>validation=None</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.load_response_imagedocs_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the fake data for testing pipeline.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="load-response-imagedocs-tonotopy-an">
+<h2>load_response_imagedocs_tonotopy_AN<a class="headerlink" href="#load-response-imagedocs-tonotopy-an" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.load_response_imagedocs_tonotopy_AN">
+<code class="descclassname">music_feats.utils.</code><code class="descname">load_response_imagedocs_tonotopy_AN</code><span class="sig-paren">(</span><em>sessions=1</em>, <em>usesg=True</em>, <em>unwarp=False</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.load_response_imagedocs_tonotopy_AN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads response images for AN.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>session</strong> : int</p>
+<p><strong>usesg</strong> : bool</p>
+<p><strong>unwarp</strong> : bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
+<blockquote class="last">
+<div><p>dictionary of (song name : list of responses)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-response-imagedocs-tonotopy-lo">
+<h2>load_response_imagedocs_tonotopy_LO<a class="headerlink" href="#load-response-imagedocs-tonotopy-lo" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.load_response_imagedocs_tonotopy_LO">
+<code class="descclassname">music_feats.utils.</code><code class="descname">load_response_imagedocs_tonotopy_LO</code><span class="sig-paren">(</span><em>sessions=1</em>, <em>usesg=True</em>, <em>unwarp=False</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.load_response_imagedocs_tonotopy_LO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads response images for LO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>session</strong> : int</p>
+<p><strong>usesg</strong> : bool</p>
+<p><strong>unwarp</strong> : bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
+<blockquote class="last">
+<div><p>dictionary of (song name : list of responses)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-responses">
+<h2>load_responses<a class="headerlink" href="#load-responses" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.load_responses">
+<code class="descclassname">music_feats.utils.</code><code class="descname">load_responses</code><span class="sig-paren">(</span><em>respdict</em>, <em>mask</em>, <em>cachedir='/auto/k8/loganesian/respcache/'</em>, <em>force_reload=True</em>, <em>multiseries='mean'</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.load_responses" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function caches the responses in an HDF5 file and reads them if the
+image IDs haven&#8217;t changed.</p>
+<p>If there are multiple image series for a given stimulus, the images will
+either be averaged, if [multiseries] is &#8220;mean&#8221;, or concatenated, if
+[multiseries] is &#8220;cat&#8221;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>respdict</strong> : dict</p>
+<p><strong>mask</strong> : mask</p>
+<p><strong>cachedir</strong> : str</p>
+<blockquote>
+<div><p>Cache directory</p>
+</div></blockquote>
+<p><strong>force_readlload</strong> : bool</p>
+<p><strong>multiseries</strong> : str</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-responses-test">
+<h2>load_responses_test<a class="headerlink" href="#load-responses-test" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.load_responses_test">
+<code class="descclassname">music_feats.utils.</code><code class="descname">load_responses_test</code><span class="sig-paren">(</span><em>respdict</em>, <em>mask</em>, <em>cachedir='/auto/k8/loganesian/respcache/'</em>, <em>force_reload=True</em>, <em>multiseries='mean'</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.load_responses_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a version of load_responses() from above, modified to work with
+fake data. Only difference is that experimentnames is omitted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>respdict</strong> : dict</p>
+<p><strong>mask</strong> : mask</p>
+<p><strong>cachedir</strong> : str</p>
+<blockquote>
+<div><p>Cache directory</p>
+</div></blockquote>
+<p><strong>force_readlload</strong> : bool</p>
+<p><strong>multiseries</strong> : str</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="load-trfiles">
+<h2>load_trfiles<a class="headerlink" href="#load-trfiles" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="retrievemasks">
+<h2>retrieveMasks<a class="headerlink" href="#retrievemasks" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.retrieveMasks">
+<code class="descclassname">music_feats.utils.</code><code class="descname">retrieveMasks</code><span class="sig-paren">(</span><em>subj</em>, <em>xfms</em>, <em>rois</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.retrieveMasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the ROI mask that will be used</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>subj</strong> : str</p>
+<blockquote>
+<div><p>Which subject&#8217;s pycortex surface.</p>
+</div></blockquote>
+<p><strong>xfms</strong> : str</p>
+<blockquote>
+<div><p>Which transforms for that subject.</p>
+</div></blockquote>
+<p><strong>rois</strong> : list of str</p>
+<blockquote>
+<div><p>Which ROI masks to retrieve.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">ROI mask</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="savenewbr">
+<h2>savenewBR<a class="headerlink" href="#savenewbr" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.savenewBR">
+<code class="descclassname">music_feats.utils.</code><code class="descname">savenewBR</code><span class="sig-paren">(</span><em>BRnew</em>, <em>fpath</em>, <em>fname</em>, <em>cnt=None</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.savenewBR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the newly created fake bold response</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>BRnew</strong> : np.ndarray</p>
+<blockquote>
+<div><p>Fake bold data.</p>
+</div></blockquote>
+<p><strong>fpath</strong> : str</p>
+<blockquote>
+<div><p>Directory to save fake data.</p>
+</div></blockquote>
+<p><strong>fname</strong> : str</p>
+<blockquote>
+<div><p>Filename to save fake data under.</p>
+</div></blockquote>
+<p><strong>cnt: int</strong></p>
+<blockquote>
+<div><p>If filenames are numbered. Default is None.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>New bold response</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="scramble">
+<h2>scramble<a class="headerlink" href="#scramble" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.scramble">
+<code class="descclassname">music_feats.utils.</code><code class="descname">scramble</code><span class="sig-paren">(</span><em>exp</em>, <em>fname</em>, <em>fpath</em>, <em>chunklen=1</em>, <em>action='DetrendSGolay'</em>, <em>validation=None</em>, <em>valreps=2</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.scramble" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scramble actual BOLD responses to get fake responses.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>exp</strong> : str</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Experiment name. Used to name output files</dt>
+<dd><p class="first last">or to query bold responses in the scramble method.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>fname</strong> : str</p>
+<blockquote>
+<div><p>The name to save the NIFTI files as. Default is None.</p>
+</div></blockquote>
+<p><strong>fpath</strong> : str</p>
+<blockquote>
+<div><p>The path where to store the resulting NIFTI files.</p>
+</div></blockquote>
+<p><strong>chunklen</strong> : int</p>
+<blockquote>
+<div><p>The chunk size (in TRs) to scramble around. 
+Default is 1 TR.</p>
+</div></blockquote>
+<p><strong>action</strong> : str</p>
+<blockquote>
+<div><p>Which action to query the original bold responses.
+Default is &#8216;DetrendSGolay&#8217;</p>
+</div></blockquote>
+<p><strong>validation: str</strong></p>
+<blockquote>
+<div><p>The stimulus/stimuli used to create the validation responses. 
+Default is None.</p>
+</div></blockquote>
+<p><strong>valreps</strong> : int</p>
+<blockquote>
+<div><p>The number of validation responses to create.
+Default is 2 responses.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>Scrambled bold responses</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="scramblehelper">
+<h2>scrambleHelper<a class="headerlink" href="#scramblehelper" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.scrambleHelper">
+<code class="descclassname">music_feats.utils.</code><code class="descname">scrambleHelper</code><span class="sig-paren">(</span><em>BR</em>, <em>chunklen</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.scrambleHelper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scramble helper does the actually scrambling for scrambled fake data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>BR</strong> : np.ndarray</p>
+<blockquote>
+<div><p>Bold response to scramble.</p>
+</div></blockquote>
+<p><strong>chunklen</strong> : int</p>
+<blockquote>
+<div><p>The chunk size (in TRs) to scramble around. 
+Default is 1 TR.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>Scrambled data</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="selectroi">
+<h2>selectROI<a class="headerlink" href="#selectroi" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.selectROI">
+<code class="descclassname">music_feats.utils.</code><code class="descname">selectROI</code><span class="sig-paren">(</span><em>respdict</em>, <em>ROIS</em>, <em>surface</em>, <em>experiment</em>, <em>mask</em>, <em>multiseries='mean'</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.selectROI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select a particular ROI to do the regression on</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>respdict</strong> : dict</p>
+<blockquote>
+<div><p>response image documents</p>
+</div></blockquote>
+<p><strong>ROIS</strong> : ROIS</p>
+<p><strong>surface</strong> : surface</p>
+<p><strong>experiment</strong> : experiment</p>
+<p><strong>mask</strong> : mask</p>
+<p><strong>multiseries</strong> : str</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
+<blockquote class="last">
+<div><p>actiual response data</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="separate-model-weights">
+<h2>separate_model_weights<a class="headerlink" href="#separate-model-weights" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.separate_model_weights">
+<code class="descclassname">music_feats.utils.</code><code class="descname">separate_model_weights</code><span class="sig-paren">(</span><em>vwts</em>, <em>ndelays</em>, <em>modeldims</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.separate_model_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes an N x M matrix of voxel weights [vwts] (where N is the
+total number of features and M is the number of voxels) and
+separates out the weights for each separate model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>vwt</strong> : np.ndarray</p>
+<blockquote>
+<div><p>weight vector</p>
+</div></blockquote>
+<p><strong>ndelays</strong> : int</p>
+<blockquote>
+<div><p>number of delays</p>
+</div></blockquote>
+<p><strong>modeldims</strong> : modeldims</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote>
+<div><p>List of (D*Ni) x M matrices, where D is the number of</p>
+</div></blockquote>
+<p class="last">delays and Ni is the number of features in model i.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="separate-voxel-model-weights">
+<h2>separate_voxel_model_weights<a class="headerlink" href="#separate-voxel-model-weights" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.separate_voxel_model_weights">
+<code class="descclassname">music_feats.utils.</code><code class="descname">separate_voxel_model_weights</code><span class="sig-paren">(</span><em>vwt</em>, <em>ndelays</em>, <em>modeldims</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.separate_voxel_model_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a voxel weight vector [vwt] and separates out the
+weights for each model. Returns a list of DxNi matrices, where
+D is [ndelays] and Ni is the number of dimensions in model i,
+given in [modeldims].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>vwt</strong> : np.ndarray</p>
+<blockquote>
+<div><p>weight vector</p>
+</div></blockquote>
+<p><strong>ndelays</strong> : int</p>
+<blockquote>
+<div><p>number of delays</p>
+</div></blockquote>
+<p><strong>modeldims</strong> : modeldims</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>List of DxNi matrices</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="sincfun">
+<h2>sincfun<a class="headerlink" href="#sincfun" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.sincfun">
+<code class="descclassname">music_feats.utils.</code><code class="descname">sincfun</code><span class="sig-paren">(</span><em>B</em>, <em>t</em>, <em>window=inf</em>, <em>causal=False</em>, <em>renorm=True</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.sincfun" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the sinc function with some cutoff frequency [B] at some time [t].
+[t] can be a scalar or any shaped numpy array.</p>
+<p>If given a [window], only the lowest-order [window] lobes of the sinc function
+will be non-zero.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>B</strong> : int</p>
+<blockquote>
+<div><p>Cutoff frequency</p>
+</div></blockquote>
+<p><strong>t</strong> : t</p>
+<blockquote>
+<div><p>time</p>
+</div></blockquote>
+<p><strong>window</strong> : int</p>
+<blockquote>
+<div><p>Lowest order lobe of the sinc function.</p>
+</div></blockquote>
+<p><strong>casual</strong> : bool</p>
+<blockquote>
+<div><p>True if past values have non-zero weights. Default is False</p>
+</div></blockquote>
+<p><strong>renorm</strong> : bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">float</p>
+<blockquote class="last">
+<div><p>sinc function value</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="sincinterp1d">
+<h2>sincinterp1D<a class="headerlink" href="#sincinterp1d" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.sincinterp1D">
+<code class="descclassname">music_feats.utils.</code><code class="descname">sincinterp1D</code><span class="sig-paren">(</span><em>data</em>, <em>oldtime</em>, <em>newtime</em>, <em>cutoff_mult=1.0</em>, <em>window=1</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.sincinterp1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interpolates the one-dimensional signal [data] at the times given by [newtime].</p>
+<p>Assumes that each sample in [data] was collected at the corresponding time in [oldtime]. Clearly,
+[oldtime] and [data] must have the same length, but [newtime] can have any length.</p>
+<p>This function will assume that the time points in [newtime] are evenly spaced and will use
+that frequency multipled by [cutoff_mult] as the cutoff frequency of the sinc filter.</p>
+<p>The sinc function will be computed with [window] lobes.  With [window]=1, this will
+effectively compute the Lanczos filter.</p>
+<p>This is a very simplistic filtering algorithm, so will take O(N*M) time, where N is the
+length of [oldtime] and M is the length of [newtime].</p>
+<p>This filter is non-causal.</p>
+<p>[oldtime] must have 
+the same number of elements as [data] has rows.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : np.ndarray</p>
+<blockquote>
+<div><p>data</p>
+</div></blockquote>
+<p><strong>oldtime</strong> : oldtime</p>
+<blockquote>
+<div><p>oldtime</p>
+</div></blockquote>
+<p><strong>newtime</strong> : newtime</p>
+<blockquote>
+<div><p>newtime</p>
+</div></blockquote>
+<p><strong>cutoff_mult</strong> : float</p>
+<blockquote>
+<div><p>cutoff_mult</p>
+</div></blockquote>
+<p><strong>window</strong> : int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>Interpolted data</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="sincinterp2d">
+<h2>sincinterp2D<a class="headerlink" href="#sincinterp2d" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.sincinterp2D">
+<code class="descclassname">music_feats.utils.</code><code class="descname">sincinterp2D</code><span class="sig-paren">(</span><em>data</em>, <em>oldtime</em>, <em>newtime</em>, <em>cutoff_mult=1.0</em>, <em>window=1</em>, <em>causal=False</em>, <em>renorm=True</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.sincinterp2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interpolates the columns of [data], assuming that the i&#8217;th row of data corresponds to
+oldtime(i).  A new matrix with the same number of columns and a number of rows given
+by the length of [newtime] is returned.  If [causal], only past time points will be used
+to computed the present value, and future time points will be ignored.</p>
+<p>The time points in [newtime] are assumed to be evenly spaced, and their frequency will
+be used to calculate the low-pass cutoff of the sinc interpolation filter.</p>
+<p>[window] lobes of the sinc function will be used.  [window] should be an integer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : np.ndarray</p>
+<p><strong>oldtime</strong> : oldtime</p>
+<p><strong>newtime</strong> : new time</p>
+<p><strong>cutoff_multi</strong> : int</p>
+<blockquote>
+<div><p>Cutoff frequency. Default at 1</p>
+</div></blockquote>
+<p><strong>window</strong> : int</p>
+<blockquote>
+<div><p>Lowest order lobe of the sinc function.</p>
+</div></blockquote>
+<p><strong>casual</strong> : bool</p>
+<p><strong>renorm</strong> : bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>new matrix</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="sincupinterp2d">
+<h2>sincupinterp2D<a class="headerlink" href="#sincupinterp2d" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.sincupinterp2D">
+<code class="descclassname">music_feats.utils.</code><code class="descname">sincupinterp2D</code><span class="sig-paren">(</span><em>data</em>, <em>oldtime</em>, <em>newtimes</em>, <em>cutoff</em>, <em>window=1</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.sincupinterp2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses sinc interpolation to upsample the columns of [data], assuming that the i&#8217;th
+row of data comes from oldtime[i].  A new matrix with the same number of columns
+and a number of rows given by the length of [newtime] is returned.</p>
+<p>The times points in [oldtime] are assumed to be evenly spaced, and their frequency
+will be used to calculate the low-pass cutoff of the sinc interpolation filter.</p>
+<p>[window] lobes of the sinc function will be used.  [window] should be an integer.
+Setting [window] to 1 yields a Lanczos filter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : np.ndarray</p>
+<p><strong>oldtime</strong> : oldtime</p>
+<p><strong>newtime</strong> : new time</p>
+<p><strong>cutoff</strong> : int</p>
+<blockquote>
+<div><p>Cutoff frequency</p>
+</div></blockquote>
+<p><strong>window</strong> : int</p>
+<blockquote>
+<div><p>Lowest order lobe of the sinc function.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np.ndarray</p>
+<blockquote class="last">
+<div><p>new matrix</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="spectralcentroid">
+<h2>spectralCentroid<a class="headerlink" href="#spectralcentroid" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.spectralCentroid">
+<code class="descclassname">music_feats.utils.</code><code class="descname">spectralCentroid</code><span class="sig-paren">(</span><em>W</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.spectralCentroid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function used for calculating spectral centroid of the weights. Computes the
+centroid of the weights (rows) for each voxel (column). Frequency approximated
+by index of the weights.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>W</strong> : np.ndarray</p>
+<blockquote>
+<div><p>[(num_channels, num_voxels)].</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">np,ndarray,</p>
+<blockquote class="last">
+<div><p>SC :[(num_voxels)] One value per voxel correspond to the
+centroid of frequency indices.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="test-interp">
+<h2>test_interp<a class="headerlink" href="#test-interp" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="music_feats.utils.test_interp">
+<code class="descclassname">music_feats.utils.</code><code class="descname">test_interp</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.test_interp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests sincinterp2D passing it the given [kwargs] and interpolating known signals 
+between the two time domains</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>kwargs</strong> : kwargs</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">newtime, interpdata</p>
+<blockquote class="last">
+<div><p>newtime, interpdata</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="undelay-model-weights">
+<h2>undelay_model_weights<a class="headerlink" href="#undelay-model-weights" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="trfile">
+<h2><a class="reference internal" href="#music_feats.utils.TRFile" title="music_feats.utils.TRFile"><code class="xref py py-class docutils literal"><span class="pre">TRFile</span></code></a><a class="headerlink" href="#trfile" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="music_feats.utils.TRFile">
+<em class="property">class </em><code class="descclassname">music_feats.utils.</code><code class="descname">TRFile</code><span class="sig-paren">(</span><em>trfilename</em>, <em>expectedtr=2.0045</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.TRFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Loads data from [trfilename], should be output from stimulus
+presentation code.</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="46%" />
+<col width="54%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>trtimes</td>
+<td>(trtimes)</td>
+</tr>
+<tr class="row-even"><td>soundstartime</td>
+<td>(soundstartime)</td>
+</tr>
+<tr class="row-odd"><td>soundstoptime</td>
+<td>(soundstoptime)</td>
+</tr>
+<tr class="row-even"><td>otherlabels</td>
+<td>(otherlabels)</td>
+</tr>
+<tr class="row-odd"><td>expectedtr</td>
+<td>(expectedtr)</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>load_from_file(trfilename)</td>
+<td>Loads TR data from report with given [trfilename].</td>
+</tr>
+<tr class="row-even"><td>stimulate(ntrs)</td>
+<td>Simulates [ntrs] TRs that occur at the expected TR.</td>
+</tr>
+<tr class="row-odd"><td>get_reltriggertimes()</td>
+<td>Returns the times of all trigger events relative to the sound.</td>
+</tr>
+<tr class="row-even"><td>avgtr()</td>
+<td>Returns the average TR for this run.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="music_feats.utils.TRFile.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>trfilename</em>, <em>expectedtr=2.0045</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.TRFile.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="music_feats.utils.TRFile.avgtr">
+<code class="descname">avgtr</code><a class="headerlink" href="#music_feats.utils.TRFile.avgtr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the average TR for this run.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="music_feats.utils.TRFile.get_reltriggertimes">
+<code class="descname">get_reltriggertimes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.TRFile.get_reltriggertimes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the times of all trigger events relative to the sound.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="music_feats.utils.TRFile.load_from_file">
+<code class="descname">load_from_file</code><span class="sig-paren">(</span><em>trfilename</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.TRFile.load_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads TR data from report with given [trfilename].
+Parameters
+&#8212;&#8212;&#8212;-
+trfilename : str</p>
+<blockquote>
+<div>Name of TR file</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="music_feats.utils.TRFile.simulate">
+<code class="descname">simulate</code><span class="sig-paren">(</span><em>ntrs</em><span class="sig-paren">)</span><a class="headerlink" href="#music_feats.utils.TRFile.simulate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulates [ntrs] TRs that occur at the expected TR.
+Parameters
+&#8212;&#8212;&#8212;-
+ntrs : ntrs</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Module: <code class="docutils literal"><span class="pre">utils</span></code></a><ul>
+<li><a class="reference internal" href="#sta">STA</a></li>
+<li><a class="reference internal" href="#addnoise">addnoise</a></li>
+<li><a class="reference internal" href="#applymask">applyMask</a></li>
+<li><a class="reference internal" href="#averagedelays">averageDelays</a></li>
+<li><a class="reference internal" href="#boldlike">boldlike</a></li>
+<li><a class="reference internal" href="#createresponse">createResponse</a></li>
+<li><a class="reference internal" href="#createvolume">createVolume</a></li>
+<li><a class="reference internal" href="#dilate-mask">dilate_mask</a></li>
+<li><a class="reference internal" href="#expfun">expfun</a></li>
+<li><a class="reference internal" href="#expinterp2d">expinterp2D</a></li>
+<li><a class="reference internal" href="#gabor-xfm">gabor_xfm</a></li>
+<li><a class="reference internal" href="#gabor-xfm2d">gabor_xfm2D</a></li>
+<li><a class="reference internal" href="#generatetestr">generateTestR</a></li>
+<li><a class="reference internal" href="#interpdata">interpdata</a></li>
+<li><a class="reference internal" href="#lanczosfun">lanczosfun</a></li>
+<li><a class="reference internal" href="#lanczosinterp2d">lanczosinterp2D</a></li>
+<li><a class="reference internal" href="#loadshuffledims">loadShuffledIMS</a></li>
+<li><a class="reference internal" href="#load-generic-trfiles">load_generic_trfiles</a></li>
+<li><a class="reference internal" href="#load-generic-trfiles-fi">load_generic_trfiles_fi</a></li>
+<li><a class="reference internal" href="#load-mcparams">load_mcparams</a></li>
+<li><a class="reference internal" href="#load-response-imagedocs">load_response_imagedocs</a></li>
+<li><a class="reference internal" href="#load-response-imagedocs-music-an">load_response_imagedocs_music_AN</a></li>
+<li><a class="reference internal" href="#load-response-imagedocs-speech-an">load_response_imagedocs_speech_AN</a></li>
+<li><a class="reference internal" href="#load-response-imagedocs-test">load_response_imagedocs_test</a></li>
+<li><a class="reference internal" href="#load-response-imagedocs-tonotopy-an">load_response_imagedocs_tonotopy_AN</a></li>
+<li><a class="reference internal" href="#load-response-imagedocs-tonotopy-lo">load_response_imagedocs_tonotopy_LO</a></li>
+<li><a class="reference internal" href="#load-responses">load_responses</a></li>
+<li><a class="reference internal" href="#load-responses-test">load_responses_test</a></li>
+<li><a class="reference internal" href="#load-trfiles">load_trfiles</a></li>
+<li><a class="reference internal" href="#retrievemasks">retrieveMasks</a></li>
+<li><a class="reference internal" href="#savenewbr">savenewBR</a></li>
+<li><a class="reference internal" href="#scramble">scramble</a></li>
+<li><a class="reference internal" href="#scramblehelper">scrambleHelper</a></li>
+<li><a class="reference internal" href="#selectroi">selectROI</a></li>
+<li><a class="reference internal" href="#separate-model-weights">separate_model_weights</a></li>
+<li><a class="reference internal" href="#separate-voxel-model-weights">separate_voxel_model_weights</a></li>
+<li><a class="reference internal" href="#sincfun">sincfun</a></li>
+<li><a class="reference internal" href="#sincinterp1d">sincinterp1D</a></li>
+<li><a class="reference internal" href="#sincinterp2d">sincinterp2D</a></li>
+<li><a class="reference internal" href="#sincupinterp2d">sincupinterp2D</a></li>
+<li><a class="reference internal" href="#spectralcentroid">spectralCentroid</a></li>
+<li><a class="reference internal" href="#test-interp">test_interp</a></li>
+<li><a class="reference internal" href="#undelay-model-weights">undelay_model_weights</a></li>
+<li><a class="reference internal" href="#trfile"><code class="docutils literal"><span class="pre">TRFile</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/music_feats.utils.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Music_Feats 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>
