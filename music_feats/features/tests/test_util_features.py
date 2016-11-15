@@ -14,6 +14,8 @@ n_fft = 2048
 
 percentError = 0.1 # percentage error within MIR value
 
+test_data_path = pjoin(os.path.dirname(__file__), 'data')
+
 # Toy signal: Sampled at 1000 Hz that is composed of a f=6 Hz, f=10 Hz, f=13
 # Hz components.
 t = np.linspace(0, 1, 1000)
