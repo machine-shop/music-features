@@ -255,6 +255,7 @@ class TestTonotopyLabelExtractor:
     def test_tonotopyExtractor(self):
         pass
         #val = tonotopyExtractor.
+
 ####### UTIL FUNCTIONS #######
 def calculateZcorr(x, y):
     """Returns the correlation coefficient between two arrays."""
