@@ -1,7 +1,7 @@
 from __future__ import division
 import numpy as np
 from math import ceil, floor, log
-# import librosa
+import librosa
 
 __all__ = ['TRFile',
 	  	   'prevPow',
@@ -189,7 +189,8 @@ def framewise(func, y, win_length, hop_length, padAmt=None, **kwargs):
             - A numpy array with the result of function 'func' applied to each
               frame.
     '''
-    assert len(y) >= win_length, 'win_length may not be less than the length of time series'
+    assert len(y) >= win_length, \
+        'win_length may not be less than the length of time series'
     # padding to prevent loss of information
     if padAmt is None:
         if len(y) % hop_length != 0:

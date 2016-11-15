@@ -14,24 +14,6 @@ n_fft = 2048
 
 percentError = 0.1 # percentage error within MIR value
 
-# first 2 lines are just when debugging on computer - DELETE
-# test_data_path = pjoin(os.getcwd(), 'music', 'features', 'tests', 'data')
-# test_data_path = pjoin(os.getcwd(), 'data')
-test_data_path = pjoin(os.path.dirname(__file__), 'data')
-
-# load beethoven test file
-beet, sr = librosa.load(pjoin(test_data_path,
-                     'Beethoven_Op031No2-03_002_20090916-SMD.mp3'), sr=sr)
-# load test.wav file
-# pure tone 100Hz (pretty sure, but based off of after the fact calculations)
-test, sr = librosa.load(pjoin(test_data_path,
-                      'test.wav'), sr=sr)
-
-# load test_1000,350,350,0,1000.wav
-# alternating tones of [1000, 350, 350, 0, 1000] Hz
-test_alt, sr = librosa.load(pjoin(test_data_path,
-                        'test_1000,350,350,0,1000.wav'), sr=sr)
-
 # Toy signal: Sampled at 1000 Hz that is composed of a f=6 Hz, f=10 Hz, f=13
 # Hz components.
 t = np.linspace(0, 1, 1000)
@@ -53,52 +35,21 @@ signal3 = np.sin(2*np.pi*f*t)
 
 class TestRMS:
 
-    def test_ones(self):
-        npt.assert_equal(extractor.rms(np.ones(100),
+    def test_constant(self):
+        npt.assert_equal(extractor.rms(np.ones(10**6),
                                           decomposition=False), 1)
 
-    def test_simple_array(self):
-        val = extractor.rms(np.array([1, 2, 3, 4, 5]), decomposition=False)
-        npt.assert_equal(val, 3.3166247903554)
+    def test_sawtooth(self):
+        val = extractor.rms(np.linspace(0, 1, 10**6), decomposition=False)
+        npt.assert_approx_equal(val, 1/np.sqrt(3), significant=4)
 
-    def test_againstMIR_beethoven(self):
-        val = extractor.rms(beet, decomposition=False)
-        npt.assert_almost_equal(val, 0.073394, decimal=4,
-                err_msg='Returned value not within 4 decimal places of MIR output')
+    def test_sine(self):
+        val = extractor.rms(np.sin(np.linspace(0, 2*np.pi, 10**6)), decomposition=False)
+        npt.assert_approx_equal(val, 1/np.sqrt(2), significant=4)
 
-    # def test_againstMIR_test(self):
-    #     val = extractor.rms(test, decomposition=False)
-    #     npt.assert_almost_equal(val, 0.70711, decimal=4,
-    #             err_msg='Returned value not within 4 decimal places of MIR output')
-
-    def test_againstMIR_testalt(self):
-        val = extractor.rms(test_alt, decomposition=False)
-        npt.assert_almost_equal(val, 0.61381, decimal=4,
-                err_msg='Returned value not within 4 decimal places of MIR output')
-
-    def test_againstLIBROSA_beethoven(self):
-        my_val = extractor.rms(beet, n_fft=n_fft, sr=sr, decomposition=True)
-        lib_val = librosa.feature.rmse(y=beet, n_fft=n_fft, hop_length=n_fft/2)
-        corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
-        assert corr >= 0.95 # assert 95% correlation b/w zscores
-
-    # def test_againstLIBROSA_test(self):
-    #     my_val = extractor.rms(test, n_fft=n_fft, sr=sr, decomposition=True)
-    #     lib_val = librosa.feature.rmse(y=test, n_fft=n_fft, hop_length=n_fft/2)
-    #     corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
-    #     assert corr >= 0.95 # assert 95% correlation b/w zscores
-
-    def test_againstLIBROSA_testalt(self):
-        my_val = extractor.rms(test_alt, n_fft=n_fft, sr=sr, decomposition=True)
-        lib_val = librosa.feature.rmse(y=test_alt, n_fft=n_fft, hop_length=n_fft/2)
-        corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
-        assert corr >= 0.95 # assert 95% correlation b/w zscores
-
-    def test_againstLIBROSA_testToySig3Pure(self):
-        my_val = extractor.rms(signal3, n_fft=n_fft, sr=sr, decomposition=True)
-        lib_val = librosa.feature.rmse(y=signal3, n_fft=n_fft, hop_length=n_fft/2)
-        corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
-        assert corr >= 0.95 # assert 95% correlation b/w zscores
+    def test_sines(self):
+        val = extractor.rms(np.sin(np.linspace(0, 10*np.pi, 10**6)), win_length=10**5/sr, hop_length=10**5/sr/5, decomposition=True)
+        npt.assert_allclose(val, 1/np.sqrt(2)*np.ones(46), 1e-4)
 
 class TestZCR:
 
@@ -316,36 +267,3 @@ def retrieveLibrosaValue(libval):
     retrieve the actual array value from what librosa spits out."""
     # currently it returns values as an array with the first element as value
     return libval[0]
-
-####### DEPRECATED CODE #######
-
-class TestKeyStrength:
-
-    a_major = np.matrix([[1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-                         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                         [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-                         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                         [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-                         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                         [1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-                         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                         [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-                         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                         [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0]])
-
-    krumhanslProf_major = np.matrix([6.35, 2.23, 3.48, 2.33, 4.38, 4.09,
-                                     2.52, 5.19, 2.39, 3.66, 2.29, 2.88])
-    Tmajor = a_major * np.transpose(krumhanslProf_major)
-    Tmajor_normed = np.array(np.transpose(Tmajor[:, 0]))[0] / max(
-        np.array(np.transpose(Tmajor[:, 0]))[0])
-
-    def test_gomezprof_major(self):
-        # FIXME: undefined name Tmajor_normed
-        # npt.assert_equal(Tmajor_normed, gomezProf_major)
-        pass
-
-    def check_gomezprof_minor(self):
-        # FIXME: undefined name Tmajor_normed
-        # npt.assert_equal(Tminor_normed, gomezProf_minor)
-        pass
