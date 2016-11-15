@@ -20,7 +20,8 @@ __all__ = ['rms',
            'fluctuationCentroid',
 		   'MPS']
 
-def rms(y, sr=44100, n_fft=2048, hop_length=None, pad=None, decomposition=True):
+def rms(y, sr=44100, win_length=0.05, hop_length=None,
+    pad=None, decomposition=True):
     '''
     Calculate root-mean-square energy from a time-series signal
         :usage:
@@ -36,7 +37,7 @@ def rms(y, sr=44100, n_fft=2048, hop_length=None, pad=None, decomposition=True):
             - win_length : integer. The frame length of the music time series
                            (in s) to be considered.  Default 50 ms.
             - hop_length : integer. The amount of overlap between the frames
-                           (in samples).  Default is half the window length.
+                           (in s).  Default is half the window length.
             - pad : integer. Amount which to pad by before frame decomposition.
             - decomposition : boolean. Whether or not to do a framewise
                               analysis of the time series
@@ -50,13 +51,13 @@ def rms(y, sr=44100, n_fft=2048, hop_length=None, pad=None, decomposition=True):
               time-series of the signal per frame.
     '''
     if decomposition:
-        # win_length = sr * win_length
         if hop_length is None:
-            # hop_length = int(win_length / 2)
-            hop_length = int(n_fft/2)
-        return framewise(rms, y, n_fft, hop_length, padAmt=pad, decomposition=False) #win_length
+            hop_length = win_length/2
+        win_length, hop_length = int(win_length*sr), int(hop_length*sr)
+        return framewise(rms, y, win_length, hop_length,
+            padAmt=pad, decomposition=False)
     else:
-        return math.sqrt(y.dot(y)/len(y))
+        return np.sqrt(np.sum(y**2)/len(y))
 
 
 def zcr(y, sr=44100, p='second', d='one', n_fft=2048, hop_length=None,
