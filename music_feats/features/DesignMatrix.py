@@ -2,8 +2,8 @@ from __future__ import division
 import numpy as np
 from scipy import signal
 from math import floor
-from music.features.util import interpdata
-from music.features.util.utils import *
+from music_feats.features.util import interpdata
+from music_feats.features.util.utils import *
 
 __all__ = ['DesignMatrix']
 
@@ -23,7 +23,7 @@ class DesignMatrix(object):
                         Currently only one option, 'lanczos' (also default value).
                 - [kwargs] are passed to the interpolation function.
                         window : integer. Lobs of  sinc function to be used.
-                            Default is 3.  
+                            Default is 3.
                         cutoff_mult : float. Associated with cutoff frequency.
                             Default is 1.0 (Nyquist). <1.0 is low-pass filter.
                         rectify : boolean. Default is False.
@@ -115,7 +115,7 @@ class DesignMatrix(object):
             :parameters:
                 - oldlen : integer. The length of a feature generated
                     (i.e. the length of a feature extracted by extractor)
-                - audiolen : integer. 
+                - audiolen : integer.
                 - method : string. The downsampling method to be used when downsampling
                     the design matrix.
                 - feature_matrix : np.ndarray. Feature_matrix. Rows correspond
@@ -389,7 +389,7 @@ class DesignMatrix(object):
         """
         # TODO: find a way to integrate this with the pre-existing downsampling stuff,
         # (maybe via variables/parameters)
-        
+
         # compute framelength, the same way computed in cqt based off cqt extraction params
         frame_length = seconds * sr
         frame_length = (frame_length//cqt_hop) * cqt_hop

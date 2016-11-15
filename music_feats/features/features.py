@@ -1,8 +1,8 @@
 from __future__ import division
 import librosa
 import numpy as np
-from music.features import extractor
-from music.features.util.utils import *
+from music_feats.features import extractor
+from music_feats.features.util.utils import *
 
 __all__ = ['Features']
 
@@ -38,7 +38,7 @@ class Features(object):
         self.pad = pad
 
     def load_audio(self, sr=44100):
-        """ 
+        """
         Load the audio file using librosa's load function.
             :parameters:
                 - sr : integer. Sampling rate to be used.
@@ -119,7 +119,7 @@ class Features(object):
     def insertExtractionParameters(self, feature, params):
         """
         Inserts the set of extraction parameters used for this feature into the
-        featureParams dictionary 
+        featureParams dictionary
             :parameters:
                 - feature : string. The feature whose extraction parameters
                                     we are inserting.
@@ -130,7 +130,7 @@ class Features(object):
         """
         params['sr'] = self.sr
         params['audio_len_samples'] = len(self.audio)
-        self.featureParams[feature] = params	
+        self.featureParams[feature] = params
 
     ### LOUDNESS FEATURES ###
     def rms(self, use_librosa=False, decomposition=True, hop_length=None,
@@ -179,7 +179,7 @@ class Features(object):
 
         self.all_features['temporalEnv'] = \
                             extractor.temporalEnvelope(self.audio)
-		
+
         self.insertExtractionParameters('temporalEnv', dict(librosa=False))
         return self.all_features['temporalEnv']
 
@@ -205,7 +205,7 @@ class Features(object):
             extractor.temporalFlatness(self.audio, sr=self.sr,
                 n_fft=n_fft, hop_length=hop_length, pad=self.pad,
                 decomposition=decomposition)
-        
+
         self.insertFeature(tmp, 'temporalFlatness', hop_length, full=not decomposition)
         self.insertExtractionParameters('temporalFlatness',
                                         dict(hop_length=hop_length,
@@ -256,7 +256,7 @@ class Features(object):
             self.insertFeature(tmp, 'ZCR', hop_length, full=not decomposition)
             self.insertExtractionParameters('ZCR',
                                             dict(hop_length=hop_length,
-											decomposition=decomposition, 
+											decomposition=decomposition,
 											n_fft=n_fft, per=p, direction=d,
 											pad=self.pad, librosa=use_librosa))
         return tmp
@@ -497,7 +497,7 @@ class Features(object):
             - dB : boolean. Whether or not to output power spectrogram.
                 Default is True.
             - n_fft : integer. The window length [samples]. For using with
-                librosa. Default 2048 [samples]. 
+                librosa. Default 2048 [samples].
             - hop_length : integer. The amount of overlap between windows.
                 in [samples]. Default is half overlap.
         """
@@ -514,7 +514,7 @@ class Features(object):
                                         dict(dB=dB, hop_length=hop_length, n_fft=n_fft,
 										librosa=True, decomposition=True))
         return S
-    
+
     def CQT(self, cqt_hop=None, seconds=2.0, n_bins=30, bins_per_octave=4, fmin=27.5,
         	use_han=False):
         """
@@ -544,7 +544,7 @@ class Features(object):
                                         bins_per_octave=bins_per_octave, fmin=fmin, librosa=True,
         								decomposition=True, use_han=use_han))
         return CQTlog
-				
+
     ### TONAL FEATURES ###
     def chromagram(self, stft=True, S=None, n_fft=None, hop_length=None,
                         norm=np.inf, n_octaves=7, tuning=None, seconds=4,
@@ -554,7 +554,7 @@ class Features(object):
         :parameters:
             - stft : boolean. Whether to calculate chroma using the short
                 time fourier transform or constant-q. Default is True.
-            - S : np.ndarray. Spectrogram output (to calculate from here), 
+            - S : np.ndarray. Spectrogram output (to calculate from here),
                 rather than from audiofile. Only for STFT based method.
                 Default is None.
             - n_fft : integer. The window length [samples] of the STFT.
@@ -590,7 +590,7 @@ class Features(object):
                         tuning=tuning, **kwargs)
             else:
                 chroma = \
-                    extractor.chromagram(y=self.audio, sr=self.sr, S=S, 
+                    extractor.chromagram(y=self.audio, sr=self.sr, S=S,
                         norm=norm, n_fft=n_fft, hop_length=None,
                         seconds=seconds, tuning=None, center=center,
                         **kwargs)

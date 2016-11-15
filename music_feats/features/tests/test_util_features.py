@@ -1,6 +1,6 @@
 from __future__ import division
-from music.features import extractor
-from music.features import tonotopyExtractor
+from music_feats.features import extractor
+from music_feats.features import tonotopyExtractor
 import numpy as np
 import scipy as sp
 import numpy.testing as npt
@@ -77,25 +77,25 @@ class TestRMS:
                 err_msg='Returned value not within 4 decimal places of MIR output')
 
     def test_againstLIBROSA_beethoven(self):
-        my_val = extractor.rms(beet, win_length=n_fft / sr, decomposition=True)
+        my_val = extractor.rms(beet, n_fft=n_fft, sr=sr, decomposition=True)
         lib_val = librosa.feature.rmse(y=beet, n_fft=n_fft, hop_length=n_fft/2)
         corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
         assert corr >= 0.95 # assert 95% correlation b/w zscores
 
     # def test_againstLIBROSA_test(self):
-    #     my_val = extractor.rms(test, win_length=n_fft / sr, decomposition=True)
+    #     my_val = extractor.rms(test, n_fft=n_fft, sr=sr, decomposition=True)
     #     lib_val = librosa.feature.rmse(y=test, n_fft=n_fft, hop_length=n_fft/2)
     #     corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
     #     assert corr >= 0.95 # assert 95% correlation b/w zscores
 
     def test_againstLIBROSA_testalt(self):
-        my_val = extractor.rms(test_alt, win_length=n_fft / sr, decomposition=True)
+        my_val = extractor.rms(test_alt, n_fft=n_fft, sr=sr, decomposition=True)
         lib_val = librosa.feature.rmse(y=test_alt, n_fft=n_fft, hop_length=n_fft/2)
         corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
         assert corr >= 0.95 # assert 95% correlation b/w zscores
 
     def test_againstLIBROSA_testToySig3Pure(self):
-        my_val = extractor.rms(signal3, win_length=n_fft / sr, decomposition=True)
+        my_val = extractor.rms(signal3, n_fft=n_fft, sr=sr, decomposition=True)
         lib_val = librosa.feature.rmse(y=signal3, n_fft=n_fft, hop_length=n_fft/2)
         corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
         assert corr >= 0.95 # assert 95% correlation b/w zscores
@@ -164,28 +164,28 @@ class TestZCR:
         assert np.abs(val-MIRVAL) <= percentError * MIRVAL
 
     def test_againstLIBROSA_beethoven(self):
-        my_val = extractor.zcr(beet, win_length=n_fft / sr, decomposition=True)
+        my_val = extractor.zcr(beet, n_fft=n_fft, sr=sr, decomposition=True)
         lib_val = librosa.feature.zero_crossing_rate(y=beet,
                 frame_length=n_fft, hop_length=n_fft/2)
         corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
         assert corr >= 0.95 # assert 95% correlation b/w zscores
 
     # def test_againstLIBROSA_test(self):
-    #     my_val = extractor.zcr(test, win_length=n_fft / sr, decomposition=True)
+    #     my_val = extractor.zcr(test, n_fft=n_fft, sr=sr, decomposition=True)
     #     lib_val = librosa.feature.zero_crossing_rate(y=test,
     #             frame_length=n_fft, hop_length=n_fft/2)
     #     corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
     #     assert corr >= 0.95 # assert 95% correlation b/w zscores
 
     def test_againstLIBROSA_testalt(self):
-        my_val = extractor.zcr(test_alt, win_length=n_fft / sr, decomposition=True)
+        my_val = extractor.zcr(test_alt, n_fft=n_fft, sr=sr, decomposition=True)
         lib_val = librosa.feature.zero_crossing_rate(y=test_alt,
                 frame_length=n_fft, hop_length=n_fft/2)
         corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
         assert corr >= 0.95 # assert 95% correlation b/w zscores
 
     def test_againstLIBROSA_testToySig3Pure(self):
-        my_val = extractor.zcr(signal3, win_length=n_fft / sr, decomposition=True)
+        my_val = extractor.zcr(signal3, n_fft=n_fft, sr=sr, decomposition=True)
         lib_val = librosa.feature.zero_crossing_rate(y=signal3,
                 frame_length=n_fft, hop_length=n_fft/2)
         corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
@@ -212,25 +212,25 @@ class TestSpectralCentroid:
         assert np.abs(val-MIRVAL) <= percentError * MIRVAL
 
     def test_againstLIBROSA_beethoven(self):
-        my_val = extractor.spectralCentroid(beet, win_length=n_fft / sr, decomposition=True)
+        my_val = extractor.spectralCentroid(beet, n_fft=n_fft, sr=sr, decomposition=True)
         lib_val = librosa.feature.spectral_centroid(y=beet, n_fft=n_fft, hop_length=n_fft/2)
         corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
         assert corr >= 0.95 # assert 95% correlation b/w zscores
 
     # def test_againstLIBROSA_test(self):
-    #     my_val = extractor.spectralCentroid(test, win_length=n_fft / sr, decomposition=True)
+    #     my_val = extractor.spectralCentroid(test, n_fft=n_fft, sr=sr, decomposition=True)
     #     lib_val = librosa.feature.spectral_centroid(y=test, n_fft=n_fft, hop_length=n_fft/2)
     #     corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
     #     assert corr >= 0.95 # assert 95% correlation b/w zscores
 
     def test_againstLIBROSA_test_alt(self):
-        my_val = extractor.spectralCentroid(test_alt, win_length=n_fft / sr, decomposition=True)
+        my_val = extractor.spectralCentroid(test_alt, n_fft=n_fft, sr=sr, decomposition=True)
         lib_val = librosa.feature.spectral_centroid(y=test_alt, n_fft=n_fft, hop_length=n_fft/2)
         corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
         assert corr >= 0.95 # assert 95% correlation b/w zscores
 
     def test_againstLIBROSA_testToySig3Pure(self):
-        my_val = extractor.spectralCentroid(signal3, win_length=n_fft / sr, decomposition=True)
+        my_val = extractor.spectralCentroid(signal3, n_fft=n_fft, sr=sr, decomposition=True)
         lib_val = librosa.feature.spectral_centroid(y=signal3, n_fft=n_fft, hop_length=n_fft/2)
         corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
         assert corr >= 0.95 # assert 95% correlation b/w zscores
@@ -253,25 +253,25 @@ class TestSpectralSpread:
         assert np.abs(val-MIRVAL) <= 0.15 * MIRVAL
 
     def test_againstLIBROSA_beethoven(self):
-        my_val = extractor.spectralSpread(beet, win_length=n_fft / sr, decomposition=True)
+        my_val = extractor.spectralSpread(beet, n_fft=n_fft, sr=sr, decomposition=True)
         lib_val = librosa.feature.spectral_bandwidth(y=beet, n_fft=n_fft, hop_length=n_fft/2)
         corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
         assert corr >= 0.95 # assert 95% correlation b/w zscores
 
     # def test_againstLIBROSA_test(self):
-    #     my_val = extractor.spectralSpread(test, win_length=n_fft / sr, decomposition=True)
+    #     my_val = extractor.spectralSpread(test, n_fft=n_fft, sr=sr, decomposition=True)
     #     lib_val = librosa.feature.spectral_bandwidth(y=test, n_fft=n_fft, hop_length=n_fft/2)
     #     corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
     #     assert corr >= 0.95 # assert 95% correlation b/w zscores
 
     def test_againstLIBROSA_test_alt(self):
-        my_val = extractor.spectralSpread(test_alt, win_length=n_fft / sr, decomposition=True)
+        my_val = extractor.spectralSpread(test_alt, n_fft=n_fft, sr=sr, decomposition=True)
         lib_val = librosa.feature.spectral_bandwidth(y=test_alt, n_fft=n_fft, hop_length=n_fft/2)
         corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
         assert corr >= 0.95 # assert 95% correlation b/w zscores
 
     def test_againstLIBROSA_testToySig3Pure(self):
-        my_val = extractor.spectralSpread(signal3, win_length=n_fft / sr, decomposition=True)
+        my_val = extractor.spectralSpread(signal3, n_fft=n_fft, sr=sr, decomposition=True)
         lib_val = librosa.feature.spectral_bandwidth(y=signal3, n_fft=n_fft, hop_length=n_fft/2)
         corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
         assert corr >= 0.95 # assert 95% correlation b/w zscores
@@ -300,7 +300,7 @@ class TestTonotopyLabelExtractor:
 
 	#TODO: complete this test
     def test_tonotopyExtractor(self):
-		pass
+        pass
         #val = tonotopyExtractor.
 ####### UTIL FUNCTIONS #######
 def calculateZcorr(x, y):
