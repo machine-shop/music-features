@@ -161,9 +161,9 @@ def spectralCentroid(y, sr=44100, n_fft=2048, hop_length=None,
                          decomposition=False) #win_length
     else:
         Y = np.fft.fft(y)
-        magns = np.abs(Y[:np.ceil(len(Y)/2)])
+        magns = np.abs(Y[:np.int(np.ceil(len(Y)/2))])
         # Calculate the frequency bin values
-        freqs = np.fft.fftfreq(len(Y), 1/sr)[:np.ceil(len(Y)/2)]
+        freqs = np.fft.fftfreq(len(Y), 1/sr)[:np.int(np.ceil(len(Y)/2))]
         # freqs = np.linspace(0, 1, len(Y))[:len(Y)/2] * sr
         return np.dot(freqs, magns) / np.sum(magns)
 
@@ -207,16 +207,16 @@ def spectralSpread(y, sr=44100, n_fft=2048, hop_length=None,
     else:
         # Calculate the spectrum
         Y = np.fft.fft(y)
-        magns = np.abs(Y[:np.ceil(len(Y))/2])
+        magns = np.abs(Y[:np.int(np.ceil(len(Y)/2))])
         # Calculate the frequency bin values
         freqs = np.fft.fftfreq(len(Y), 1/sr)
         # freqs = np.linspace(0, 1, len(Y)) * sr
         # Calculate SC
-        SC = np.dot(freqs[:np.ceil(len(Y)/2)], magns) / np.sum(magns)
+        SC = np.dot(freqs[:np.int(np.ceil(len(Y)/2))], magns) / np.sum(magns)
         scs = np.ones(len(Y))*SC
         # Calculate the squared deviation from the spectral centroid
         spread = (freqs - scs)**2
-        return np.sqrt(np.dot(spread[:len(Y)/2], magns) / np.sum(magns))
+        return np.sqrt(np.dot(spread[:np.int(np.ceil(len(Y)/2))], magns) / np.sum(magns))
         # bins_var = np.linspace(0,1,len(Y)) * sr - np.ones(len(Y)) * SC
         # bins_var = bins_var ** 2
         # temp = np.dot(bins_var[:len(Y)/2], abs(Y[:len(Y)/2]))
@@ -262,7 +262,7 @@ def spectralFlatness(y, sr=44100, n_fft=2048, hop_length=None,
                          decomposition=False) # win_length
     else:
         Y = np.fft.fft(y)
-        Y_abs = abs(Y[:len(Y)/2])
+        Y_abs = abs(Y[:np.int(len(Y)/2)])
         return sp.stats.mstats.gmean(Y_abs) / np.mean(Y_abs)
 
 def CQT(y, sr=44100, cqt_hop=1024, seconds=2.0, n_bins=30, bins_per_octave=4, fmin=27.5,
