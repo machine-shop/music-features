@@ -9,7 +9,7 @@ def tonotopy_labels(fname, fpath='/auto/k8/loganesian/stimuli/tonotopy/uncalibra
 	Use the labels generated when creating the tonotopy stimuli to create a binary feature matrix.
 		:parameters:
             - fname : the name of the stimulus of which you wish to load the labels.
-			- fpath : the path where the tonotopy files are saved. 
+			- fpath : the path where the tonotopy files are saved.
 				Default : '/auto/k8/loganesian/stimuli/tonotopy/uncalibrated_wavs'
 			- numF : the number of tonal centers used in the tonotopy experiment.
 		:returns:
@@ -41,7 +41,7 @@ def averageDownsample(vals, newlen=None, overlapsize=1):
                            Default is 1.
         """
         if newlen is None:
-            print 'New length value not provided, will not average and downsample...'
+            print('New length value not provided, will not average and downsample...')
             return vals
         newarr = np.zeros((newlen, vals.shape[1]))
         winsize = vals.shape[0]//newlen + overlapsize

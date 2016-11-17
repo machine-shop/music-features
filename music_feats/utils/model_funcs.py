@@ -1,7 +1,7 @@
 import numpy as np
 import cortex
 from regression_code.huth.npp import mcorr
-from music.utils.viz import separate_model_weights
+from music_feats.utils.viz import separate_model_weights
 
 def STA(delRstim, zRresp, delPstims, zPresps, ndelays, modeldims):
     """Function estimates model weights using a spike-triggered average
@@ -21,13 +21,13 @@ def STA(delRstim, zRresp, delPstims, zPresps, ndelays, modeldims):
                submodelwts_STA : python list of wts for each sub-model
                valmodelcorr_STA : python list of prediction correlcation values
                                   for each submodel"""
-    
+
     STA_W = np.dot(delRstim.T, zRresp)
     STA_valpreds = [np.dot(delPstim, STA_W) for delPstim in delPstims]
-    
+
     valcorr_STA = np.vstack([mcorr(np.dot(delPstim, STA_W), zPresp)
                              for (delPstim, zPresp) in zip(delPstims, zPresps)])
-    
+
     submodelwts_STA = separate_model_weights(STA_W, ndelays, modeldims)
     valmodelcorr_STA = []
 
@@ -71,14 +71,14 @@ def createVolume(data, mask, surface, xfms, vmin=None, vmax=None, factor=0.95):
     """
     volData = np.zeros(mask.shape)
     volData[mask>0] = data
-    
+
     if vmin is None:
         vmin = np.min(volData)
     if vmax is None:
         vmax = np.max(volData) * factor
     else:
         vmax = factor * vmax
-    
+
     return cortex.Volume(volData, surface, xfms, vmin=vmin, vmax=vmax)
 
 def averageDelays(wt, modeldims, delays=4):
@@ -91,7 +91,7 @@ def averageDelays(wt, modeldims, delays=4):
             delays : interger. Number of delays used. Default: 4.
     """
     sep_fullwts = separate_model_weights(wt, delays, modeldims)
-    
+
     avesubmdlwts = []
 
     for k in range(len(sep_fullwts)):

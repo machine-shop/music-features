@@ -189,15 +189,20 @@ def framewise(func, y, win_length, hop_length, padAmt=None, **kwargs):
             - A numpy array with the result of function 'func' applied to each
               frame.
     '''
-    if padAmt is None:
-        padAmt = int(win_length / 2)
-    vals = []
+    assert len(y) >= win_length, \
+        'win_length may not be less than the length of time series'
     # padding to prevent loss of information
-    y = np.pad(y, padAmt, mode='reflect')
-    y_frames = librosa.util.frame(y, frame_length=win_length,
-                                  hop_length=hop_length)
-    for i in range(np.shape(y_frames)[1]):
-        vals.append(func(y_frames[:, i], **kwargs))
+    if padAmt is None:
+        if len(y) % hop_length != 0:
+            padAmt = hop_length - len(y) % hop_length
+        else:
+            padAmt = 0
+    y = np.pad(y, (padAmt//2, padAmt - padAmt//2), mode='reflect')
+    windows = np.lib.stride_tricks.as_strided(
+        y,
+        shape=(1+(len(y)-win_length)//hop_length, win_length),
+        strides=(hop_length*y.itemsize, y.itemsize))
+    vals = [func(window, **kwargs) for window in windows]
     return np.array(vals)
 
 def encodeKey(vals):

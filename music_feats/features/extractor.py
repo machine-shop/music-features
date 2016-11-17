@@ -3,7 +3,7 @@ import math
 import librosa
 import numpy as np
 import scipy as sp
-from music.features.util.utils import *
+from music_feats.features.util.utils import *
 
 __all__ = ['rms',
            'zcr',
@@ -20,7 +20,8 @@ __all__ = ['rms',
            'fluctuationCentroid',
 		   'MPS']
 
-def rms(y, sr=44100, n_fft=2048, hop_length=None, pad=None, decomposition=True):
+def rms(y, sr=44100, win_length=0.05, hop_length=None,
+    pad=None, decomposition=True):
     '''
     Calculate root-mean-square energy from a time-series signal
         :usage:
@@ -36,7 +37,7 @@ def rms(y, sr=44100, n_fft=2048, hop_length=None, pad=None, decomposition=True):
             - win_length : integer. The frame length of the music time series
                            (in s) to be considered.  Default 50 ms.
             - hop_length : integer. The amount of overlap between the frames
-                           (in samples).  Default is half the window length.
+                           (in s).  Default is half the window length.
             - pad : integer. Amount which to pad by before frame decomposition.
             - decomposition : boolean. Whether or not to do a framewise
                               analysis of the time series
@@ -50,13 +51,13 @@ def rms(y, sr=44100, n_fft=2048, hop_length=None, pad=None, decomposition=True):
               time-series of the signal per frame.
     '''
     if decomposition:
-        # win_length = sr * win_length
         if hop_length is None:
-            # hop_length = int(win_length / 2)
-            hop_length = int(n_fft/2)
-        return framewise(rms, y, n_fft, hop_length, padAmt=pad, decomposition=False) #win_length
+            hop_length = win_length/2
+        win_length, hop_length = int(win_length*sr), int(hop_length*sr)
+        return framewise(rms, y, win_length, hop_length,
+            padAmt=pad, decomposition=False)
     else:
-        return math.sqrt(y.dot(y)/len(y))
+        return np.sqrt(np.sum(y**2)/len(y))
 
 
 def zcr(y, sr=44100, p='second', d='one', n_fft=2048, hop_length=None,
@@ -419,17 +420,17 @@ def chromagram(y=None, sr=44100, S=None,  norm=np.inf, n_fft=2048,
         S = np.abs(librosa.stft(y, n_fft=n_fft, hop_length=hop_length))**2
     else:
         n_fft = 2 * (S.shape[0] - 1)
-    
+
     if tuning is None:
         tuning = librosa.estimate_tuning(S=S, sr=sr, bins_per_octave=n_chroma)
-        
+
     if 'A440' not in kwargs:
         kwargs['A440'] = 440.0 * 2.0**(float(tuning) / n_chroma)
 
     chromafb = librosa.filters.chroma(sr, n_fft, **kwargs)
-    
+
     segment_length = sr * seconds / hop_length # n_fft??
-    
+
     # make it a power of two
     segment_length = 2**prevPow(segment_length) #alt: nextPow()
     if center:
@@ -443,7 +444,7 @@ def chromagram(y=None, sr=44100, S=None,  norm=np.inf, n_fft=2048,
     for i in range(int(num_segments)):
         start, end = calculateStartEnd(segment_length / 2, segment_length, iterV=i)
         bin_S[:,i] = np.mean(S[:, start:end], axis=1)
-        
+
     # Compute raw chroma
     raw_chroma = np.dot(chromafb, bin_S)
 
@@ -576,7 +577,7 @@ def fluctuationPatterns(y, sr=44100, n_fft=512, hop_length=512, mel_count=36,
                 >>> # Load a file
                 >>> y, sr = librosa.load('file.mp3')
                 >>> # Calculate the fluctuation patterns
-                >>> fluctuation_patterns = 
+                >>> fluctuation_patterns =
                         extractor.fluctuationPatterns(y, sr=sr, n_fft=512,
                                 hop_length=512, mel_count=12, seconds=3,
                                 band_num=12, max_freq=10, Pampalk=True,
@@ -604,7 +605,7 @@ def fluctuationPatterns(y, sr=44100, n_fft=512, hop_length=512, mel_count=36,
             - padAmt : float. What factor of the segment_length to pad by.
                 Will pad from left and from right by the same amount. Default is 0.25.
             - Pampalk: boolean. Whether to use Pampalk's algorithm straight from his
-                thesis (i.e. with the hardcoded gaussian values) or to use an 
+                thesis (i.e. with the hardcoded gaussian values) or to use an
                 alternate method involving a built-in gaussian filter. Default is
                 using Pampalk's method.
             - terhardt: boolean. Whether or not to apply the Terhardt perception model
@@ -622,7 +623,7 @@ def fluctuationPatterns(y, sr=44100, n_fft=512, hop_length=512, mel_count=36,
     # calculate log mel spectrogram
     S = librosa.feature.melspectrogram(y=y, sr=sr, n_fft=n_fft,
                             hop_length=hop_length, n_mels=mel_count)
-    log_S = librosa.core.logamplitude(S, ref_power=np.max) 
+    log_S = librosa.core.logamplitude(S, ref_power=np.max)
 
     # apply auditory perception weights
     # Terhardt perception model (1979)
@@ -653,7 +654,7 @@ def fluctuationPatterns(y, sr=44100, n_fft=512, hop_length=512, mel_count=36,
                                         (segment_length/2) + 1)
     # Calculate the number of frequency bins from 0 to maxfreq
     resolution = math.ceil(max_freq / (sr / n_fft) * segment_length)
-    
+
     f = np.linspace(0, sr/n_fft, num=segment_length)
     tmp = 1 / (f[1:2+resolution] / 4 + 4 / f[1:2+resolution])
     flux = np.tile(tmp, (band_num, 1)) # band_num used to originally be 12: hardcode??
@@ -661,7 +662,7 @@ def fluctuationPatterns(y, sr=44100, n_fft=512, hop_length=512, mel_count=36,
     # Creating filters following method in Pampalk PhD Thesis (2006)
     if Pampalk:
         vals = [0.05, 0.1, 0.25, 0.5, 1, 0.5, 0.25, 0.1, 0.05]
-        filt_one = sp.signal.convolve2d(np.identity(band_num), 
+        filt_one = sp.signal.convolve2d(np.identity(band_num),
                                     np.tile(vals[::-1],(1,1)), mode='same')
         tmp = np.transpose(np.tile(np.sum(filt_one, axis=1),(1,1)))
         filt_one = np.divide(filt_one, np.tile(tmp, (1,band_num)))
@@ -672,7 +673,7 @@ def fluctuationPatterns(y, sr=44100, n_fft=512, hop_length=512, mel_count=36,
 
     t = np.zeros(mel_count)
 
-    # Combine freq. bands of melspectrogram 
+    # Combine freq. bands of melspectrogram
     # Combine according to values from Pampalk Thesis (2006)
     step = np.concatenate((np.array([1,1,2,2,2,2,2,2]), np.arange(4,20)))
     cur_ind, i, curr = 0, 0, 0
@@ -680,7 +681,7 @@ def fluctuationPatterns(y, sr=44100, n_fft=512, hop_length=512, mel_count=36,
         t[cur_ind:cur_ind+step[i]] = curr
         cur_ind += step[i]
         curr += 1
-        i += 1    
+        i += 1
     log_S_merged = np.zeros((band_num, np.shape(log_S)[1]))
     for i in range(band_num):
         log_S_merged[i, :] = np.sum(log_S[t==i,:], 0)
@@ -713,7 +714,7 @@ def fluctuationEntropy(y=None, sr=44100, all_fp=None, decomposition=True,
                         band_num=12, max_freq=10, Pampalk=True,
                         terhardt=False):
     '''
-    Calculates the entropy of the fluctuation patterns of the audio piece. 
+    Calculates the entropy of the fluctuation patterns of the audio piece.
     Based on computation from V. Alluri (2012) paper, with slight modification.
     Can calculate for either the median fluctuation pattern or for all
     fluctuation patterns.
@@ -725,13 +726,13 @@ def fluctuationEntropy(y=None, sr=44100, all_fp=None, decomposition=True,
                         decomposition=True, n_fft=512, hop_length=512,
                         mel_count=36, seconds=3, band_num=12, max_freq=10,
                         Pampalk=True, terhardt=False)
-    
+
                 >>> # Load a file
                 >>> y, sr = librosa.load('file.mp3')
-                >>> fluctuation_patterns = 
+                >>> fluctuation_patterns =
                                     extractor.fluctuationPatterns(y, sr=sr)
                 >>> # Calculate the fluctuation entropy from fp values
-                >>> fp_entropy = 
+                >>> fp_entropy =
                       extractor.fluctuationEntropy(all_fp=fluctuation_patterns)
 
         :parameters:
@@ -758,7 +759,7 @@ def fluctuationEntropy(y=None, sr=44100, all_fp=None, decomposition=True,
             - max_freq : integer. The maximum modulation frequency to be considered.
                 Default is 10 Hz.
             - Pampalk: boolean. Whether to use Pampalk's algorithm straight from his
-                thesis (i.e. with the hardcoded gaussian values) or to use an 
+                thesis (i.e. with the hardcoded gaussian values) or to use an
                 alternate method involving a built-in gaussian filter. Default is
                 using Pampalk's method.
             - terhardt: boolean. Whether or not to apply the Terhardt perception model
@@ -769,7 +770,7 @@ def fluctuationEntropy(y=None, sr=44100, all_fp=None, decomposition=True,
             - float: if decomposition == False
     '''
     if all_fp is None and y is None:
-        print 'Invalid paramters: need either audio or fluctuation patterns'
+        print('Invalid paramters: need either audio or fluctuation patterns')
     if all_fp is None:
         all_fp = fluctuationPatterns(y, sr=sr, n_fft=n_fft, hop_length=hop_length,
                         mel_count=mel_count, seconds=seconds, band_num=band_num,
@@ -799,7 +800,7 @@ def fluctuationFocus(y=None, sr=44100, all_fp=None, n_fft=512, hop_length=512,
                         mel_count=36, seconds=3, band_num=12, max_freq=10,
                         Pampalk=True, terhardt=False, decomposition=True):
     '''
-    Calculates the focus of the fluctuation patterns of the audio piece. 
+    Calculates the focus of the fluctuation patterns of the audio piece.
     Based on computation from E. Pampalk's PhD thesis (2006) paper.
     Can calculate for either the median fluctuation pattern or for all
     fluctuation patterns.
@@ -811,13 +812,13 @@ def fluctuationFocus(y=None, sr=44100, all_fp=None, n_fft=512, hop_length=512,
                         decomposition=True, n_fft=512, hop_length=512,
                         mel_count=36, seconds=3, band_num=12, max_freq=10,
                         Pampalk=True, terhardt=False)
-    
+
                 >>> # Load a file
                 >>> y, sr = librosa.load('file.mp3')
-                >>> fluctuation_patterns = 
+                >>> fluctuation_patterns =
                                 extractor.fluctuationPatterns(y, sr=sr)
                 >>> # Calculate the fluctuation entropy from fp values
-                >>> fp_focus = 
+                >>> fp_focus =
                       extractor.fluctuationFocus(all_fp=fluctuation_patterns)
 
         :parameters:
@@ -844,7 +845,7 @@ def fluctuationFocus(y=None, sr=44100, all_fp=None, n_fft=512, hop_length=512,
             - max_freq : integer. The maximum modulation frequency to be considered.
                 Default is 10 Hz.
             - Pampalk: boolean. Whether to use Pampalk's algorithm straight from his
-                thesis (i.e. with the hardcoded gaussian values) or to use an 
+                thesis (i.e. with the hardcoded gaussian values) or to use an
                 alternate method involving a built-in gaussian filter. Default is
                 using Pampalk's method.
             - terhardt: boolean. Whether or not to apply the Terhardt perception model
@@ -855,7 +856,7 @@ def fluctuationFocus(y=None, sr=44100, all_fp=None, n_fft=512, hop_length=512,
             - float: if decomposition == False
     '''
     if all_fp is None and y is None:
-        print 'Invalid args: need either audio file or fluctuation patterns'
+        print('Invalid args: need either audio file or fluctuation patterns')
     if all_fp is None:
         all_fp = fluctuationPatterns(y, sr=sr, n_fft=n_fft, hop_length=hop_length,
                         mel_count=mel_count, seconds=seconds, band_num=band_num,
@@ -877,7 +878,7 @@ def fluctuationCentroid(y=None, sr=44100, all_fp=None, n_fft=512,
                         max_freq=10, Pampalk=True, terhardt=False,
                         decomposition=True):
     '''
-    Calculates the centroid of the fluctuation patterns of the audio piece. 
+    Calculates the centroid of the fluctuation patterns of the audio piece.
     Based on computation from E. Pampalk's PhD thesis (2006) paper.
     Can calculate for either the median fluctuation pattern or for all
     fluctuation patterns.
@@ -889,13 +890,13 @@ def fluctuationCentroid(y=None, sr=44100, all_fp=None, n_fft=512,
                         decomposition=True, n_fft=512, hop_length=512,
                         mel_count=36, seconds=3, band_num=12, max_freq=10,
                         Pampalk=True, terhardt=False)
-    
+
                 >>> # Load a file
                 >>> y, sr = librosa.load('file.mp3')
                 >>> fluctuation_patterns =
                                     extractor.fluctuationPatterns(y, sr=sr)
                 >>> # Calculate the fluctuation entropy from fp values
-                >>> fp_centroid = 
+                >>> fp_centroid =
                     extractor.fluctuationCentroid(all_fp=fluctuation_patterns)
 
         :parameters:
@@ -922,7 +923,7 @@ def fluctuationCentroid(y=None, sr=44100, all_fp=None, n_fft=512,
             - max_freq : integer. The maximum modulation frequency to be considered.
                 Default is 10 Hz.
             - Pampalk: boolean. Whether to use Pampalk's algorithm straight from his
-                thesis (i.e. with the hardcoded gaussian values) or to use an 
+                thesis (i.e. with the hardcoded gaussian values) or to use an
                 alternate method involving a built-in gaussian filter. Default is
                 using Pampalk's method.
             - terhardt: boolean. Whether or not to apply the Terhardt perception model
@@ -933,12 +934,12 @@ def fluctuationCentroid(y=None, sr=44100, all_fp=None, n_fft=512,
             - float: if decomposition == False
     '''
     if all_fp is None and y is None:
-        print 'Invalid args: need either audio file or fluctuation patterns'
+        print('Invalid args: need either audio file or fluctuation patterns')
     if all_fp is None:
         all_fp = fluctuationPatterns(y, sr=sr, n_fft=n_fft, hop_length=hop_length,
                         mel_count=mel_count, seconds=seconds, band_num=band_num,
                         max_freq=max_freq, Pampalk=Pampalk, terhardt=terhardt)
-    # Make segment length a power of two; use same method as fluctuation patterns    
+    # Make segment length a power of two; use same method as fluctuation patterns
     segment_length = 2**prevPow(sr * seconds / n_fft)  # alt: nextPow()
     # Calculate the number of frequency bins from 0 to maxfreq
     resolution = math.ceil(max_freq / (sr / n_fft) * segment_length)
