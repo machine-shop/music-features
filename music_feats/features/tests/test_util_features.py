@@ -16,6 +16,19 @@ percentError = 0.1 # percentage error within MIR value
 
 test_data_path = pjoin(os.path.dirname(__file__), 'data')
 
+# load beethoven test file
+#beet, sr = librosa.load(pjoin(test_data_path,
+                     #'Beethoven_Op031No2-03_002_20090916-SMD.mp3'), sr=sr)
+# load test.wav file
+# pure tone 100Hz (pretty sure, but based off of after the fact calculations)
+#test, sr = librosa.load(pjoin(test_data_path,
+#                      'test.wav'), sr=sr)
+
+# load test_1000,350,350,0,1000.wav
+# alternating tones of [1000, 350, 350, 0, 1000] Hz
+#test_alt, sr = librosa.load(pjoin(test_data_path,
+#                        'test_1000,350,350,0,1000.wav'), sr=sr)
+
 # Toy signal: Sampled at 1000 Hz that is composed of a f=6 Hz, f=10 Hz, f=13
 # Hz components.
 t = np.linspace(0, 1, 1000)
@@ -41,9 +54,36 @@ class TestRMS:
         npt.assert_equal(extractor.rms(np.ones(10**6),
                                           decomposition=False), 1)
 
-    def test_sawtooth(self):
-        val = extractor.rms(np.linspace(0, 1, 10**6), decomposition=False)
-        npt.assert_approx_equal(val, 1/np.sqrt(3), significant=4)
+    def test_simple_array(self):
+        val = extractor.rms(np.array([1, 2, 3, 4, 5]), decomposition=False)
+        npt.assert_equal(val, 3.3166247903554)
+
+    def test_againstMIR_beethoven(self):
+        val = extractor.rms(beet, decomposition=False)
+        npt.assert_almost_equal(val, 0.073394, decimal=4,
+                err_msg='Returned value not within 4 decimal places of MIR output')
+
+    # def test_againstMIR_test(self):
+    #     val = extractor.rms(test, decomposition=False)
+    #     npt.assert_almost_equal(val, 0.70711, decimal=4,
+    #             err_msg='Returned value not within 4 decimal places of MIR output')
+
+    def test_againstMIR_testalt(self):
+        val = extractor.rms(test_alt, decomposition=False)
+        npt.assert_almost_equal(val, 0.61381, decimal=4,
+                err_msg='Returned value not within 4 decimal places of MIR output')
+
+    def test_againstLIBROSA_beethoven(self):
+        my_val = extractor.rms(beet, n_fft=n_fft, sr=sr, decomposition=True)
+        lib_val = librosa.feature.rmse(y=beet, n_fft=n_fft, hop_length=n_fft/2)
+        corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
+        assert corr >= 0.95 # assert 95% correlation b/w zscores
+
+    # def test_againstLIBROSA_test(self):
+    #     my_val = extractor.rms(test, n_fft=n_fft, sr=sr, decomposition=True)
+    #     lib_val = librosa.feature.rmse(y=test, n_fft=n_fft, hop_length=n_fft/2)
+    #     corr = calculateZcorr(my_val, retrieveLibrosaValue(lib_val))
+    #     assert corr >= 0.95 # assert 95% correlation b/w zscores
 
     def test_sine(self):
         val = extractor.rms(np.sin(np.linspace(0, 2*np.pi, 10**6)), decomposition=False)

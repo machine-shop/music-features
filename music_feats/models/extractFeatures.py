@@ -113,7 +113,7 @@ for i in range(len(stimuli)):
     feature_gen.fluctuationFocus(n_fft=FP_nfft, hop_length=FP_hop, seconds=seconds)
     feature_gen.fluctuationEntropy(n_fft=FP_nfft, hop_length=FP_hop, seconds=seconds)
 
-    print 'Saving extracted features for {0}...'.format(stimuli[i])
+    print ('Saving extracted features for {0}...'.format(stimuli[i]))
     feature_gen.saveObject(fpath=output_dir, name=stimuli[i])
 
-print 'Saved features for all songs...'
+print ('Saved features for all songs...')

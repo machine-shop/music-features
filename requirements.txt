@@ -3,3 +3,4 @@ scipy
 librosa
 coverage
 pytest
+Sphinx==1.3.1

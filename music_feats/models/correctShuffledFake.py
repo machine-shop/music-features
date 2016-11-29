@@ -12,11 +12,11 @@ valreps = 2
 
 source = os.path.join(fpath,fname.format(0))
 orig = ni.load(source).get_data()
-print 'Loaded original validation data'
+print ('Loaded original validation data')
 for i in range(1,valreps):
-	print 'Adding noise...'
+	print ('Adding noise...')
 	newVal = gtr.addnoise(orig)
-	print 'Added noise, now saving...'
+	print ('Added noise, now saving...')
 	BRnewI = ni.Nifti1Image(newVal, np.eye(4))
 	BRnewI.to_filename(os.path.join(fpath, fname.format(i)))
-	print 'Saved.'
+	print ('Saved.')
