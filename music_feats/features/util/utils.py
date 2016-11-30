@@ -8,6 +8,7 @@ __all__ = ['TRFile',
 	   	   'nextPow',
 	   	   'loadProfiles',
 	   	   'framewise',
+           'spectrogram',
 	   	   'calculateStartEnd',
 	   	   'calculateSegLen',
 	   	   'encodeMode',
@@ -175,7 +176,7 @@ def calculateStartEnd(hop_length, segment_length, iterV=None):
     end = segment_length + hop_length * iterV
     return start, end
 
-def framewise(func, y, win_length, hop_length, padAmt=None, **kwargs):
+def framewise(func, y, win_length, hop_length, pad=None, **kwargs):
     '''
     Internal helper function to be used in all feature decomposition functions.
     Computes feature according to frames.
@@ -185,6 +186,8 @@ def framewise(func, y, win_length, hop_length, padAmt=None, **kwargs):
             - y : np.ndarray [shape=(n,)]. Time series to calculate the RMS of.
             - win_length : integer. Length (in samples) of each frame.
             - hop_length : integer. Overlapping samples between each frame
+            - pad: float. The time in seconds that the signal is to be padded
+                by. The start and end will be padded equally by a reflection.
         :returns:
             - A numpy array with the result of function 'func' applied to each
               frame.
@@ -192,18 +195,48 @@ def framewise(func, y, win_length, hop_length, padAmt=None, **kwargs):
     assert len(y) >= win_length, \
         'win_length may not be less than the length of time series'
     # padding to prevent loss of information
-    if padAmt is None:
+    if pad is None:
         if len(y) % hop_length != 0:
-            padAmt = hop_length - len(y) % hop_length
+            pad = hop_length - len(y) % hop_length
         else:
-            padAmt = 0
-    y = np.pad(y, (padAmt//2, padAmt - padAmt//2), mode='reflect')
+            pad = 0
+    y = np.pad(y, (pad//2, pad - pad//2), mode='reflect')
     windows = np.lib.stride_tricks.as_strided(
         y,
         shape=(1+(len(y)-win_length)//hop_length, win_length),
         strides=(hop_length*y.itemsize, y.itemsize))
     vals = [func(window, **kwargs) for window in windows]
     return np.array(vals)
+
+def spectrogram(y, sr=44100, thresh=0.01):
+    """
+    Calculate the spectrogram of a waveform.
+
+        :usage:
+            >>> # Load a file
+            >>> y, sr = librosa.load('file.mp3')
+            >>> # Calculate the spectrogram of a time-series
+            >>> freqs, ampls = utils.spectrogram(y, sr=44100, thresh=0.01)
+
+        :parameters:
+            - y : np.ndarray [shape=(n,)]. Time series to calculate the
+                spectrogram of.
+            - sr : integer. Sampling rate of the audio file.
+            - thresh : float. Cutoff for amplitudes as a fraction of the
+                maximum amplitude.
+
+        :returns:
+            - A 1D frequency numpy array, and a corresponding 1D amplitude
+                numpy array.
+    """
+    # Get Fourier decomposition and frequencies
+    # Get amplitudes, ignore phase
+    ampls = np.abs(np.fft.rfft(y))
+    # Apply threshold
+    thresh_val = max(ampls)*thresh
+    ampls = [ampl if ampl >= thresh_val else 0 for ampl in ampls]
+    freqs = np.fft.rfftfreq(len(y), 1/sr)
+    return freqs, ampls
 
 def encodeKey(vals):
     """
