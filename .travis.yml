@@ -6,8 +6,13 @@ python:
 install:
   - sudo apt-get install ffmpeg
   - "pip install -r requirements.txt"
+  - pip install numpydoc
 
 #command to run tests
 script: nosetests --exe --with-coverage --cover-package=music_feats
+
+#command to build sphinx documentations
+script: sphinx-build -n -b html -c ./config -d _build/doctrees . _build/html
+#script: python -m sphinx -n -b html -c ./config -d _build/doctrees . _build/html
 
 sudo: required

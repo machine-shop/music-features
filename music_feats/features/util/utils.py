@@ -80,16 +80,19 @@ class TRFile(object):
 def nextPow(x):
     """
     Calculate the nearest power of two that is greater than this number.
-        :usage:
-            >>> ans = 2 ** nextPow(flt)
+
+    Examples
+    --------
+    >>> ans = 2 ** nextPow(flt)
     """
     return ceil(log(x, 2))
 
 def prevPow(x):
     """
     Calculate the nearest power of two that is less than this number.
-        :usage:
-            >>> ans = 2 ** nextPow(flt)
+    Examples
+    --------
+    >>> ans = 2 ** nextPow(flt)
     """
     return floor(log(x, 2))
 
@@ -165,11 +168,16 @@ def calculateStartEnd(hop_length, segment_length, iterV=None):
     '''
     Functino used to calculate the start and end indices when taking
     chunks from a long array.
-        :parameters:
-            - hop_length : integer. The amount of overlap between frames.
-            - segment_length : integer. Frame length.
-            - iterV : integer. Which iteration of a for loop or which chunck
-                currently on. Default is None.
+
+    Parameters
+    ----------
+    hop_length : integer. 
+        The amount of overlap between frames.
+    segment_length : integer. 
+        Frame length.
+    iterV : integer. 
+        Which iteration of a for loop or which chunck
+        currently on. Default is None.
     '''
     start = hop_length * iterV
     end = segment_length + hop_length * iterV
@@ -179,15 +187,24 @@ def framewise(func, y, win_length, hop_length, padAmt=None, **kwargs):
     '''
     Internal helper function to be used in all feature decomposition functions.
     Computes feature according to frames.
-        :parameters:
-            - func : function name. Feacture extraction function to be applied
-                     to each frame.
-            - y : np.ndarray [shape=(n,)]. Time series to calculate the RMS of.
-            - win_length : integer. Length (in samples) of each frame.
-            - hop_length : integer. Overlapping samples between each frame
-        :returns:
-            - A numpy array with the result of function 'func' applied to each
-              frame.
+
+    Parameters
+    ----------
+    func : function name. 
+        Feacture extraction function to be applied
+        to each frame.
+    y : np.ndarray [shape=(n,)]. 
+        Time series to calculate the RMS of.
+    win_length : integer. 
+        Length (in samples) of each frame.
+    hop_length : integer. 
+        Overlapping samples between each frame
+    
+    Returns
+    -------
+    numpy array 
+        The result of function 'func' applied to each frame.
+
     '''
     assert len(y) >= win_length, \
         'win_length may not be less than the length of time series'
@@ -211,8 +228,12 @@ def encodeKey(vals):
     feature extraction object (features.py).
     code = {'C':0, 'C#':1, 'D':2, 'D#':3, 'E':4, 'F':5,
             'F#':6, 'G':7, 'G#':8, 'A':9, 'A#':10, 'B':11}
-        :parameters:
-            - vals : np.ndarray. The key values to encode.
+    
+    Parameters
+    ----------
+    vals : np.ndarray. 
+        The key values to encode.
+
     """
     code = {'C':0, 'C#':1, 'D':2, 'D#':3, 'E':4, 'F':5,
             'F#':6, 'G':7, 'G#':8, 'A':9, 'A#':10, 'B':11}
@@ -226,8 +247,12 @@ def encodeMode(vals):
     Encode mode values; switch from string to integer. Used by
     feature extraction object (features.py).
     code = {'Major':0, 'Minor':1}
-        :parameters:
-            - vals : np.ndarray. The mode values to encode.
+
+    Parameters
+    ----------
+    vals : np.ndarray. 
+        The mode values to encode.
+
     """
     code = {'Major':0, 'Minor':1}
     newvals = np.empty(len(vals))
@@ -239,16 +264,21 @@ def calculateSegLen(sr, seconds, ds_rate, use='prev'):
     """
     Calculates the segment length, corresponding to secondary
     window length. Used with MPS and FP in features.py.
-        :parameters:
-            - sr : integer. The sampling rate used.
-            - second : float. The number of seconds the secondary
-                window is supposed to be.
-            - ds_rate : float. The chunking used in the middle step.
-                (i.e hop_length) (TBD if hop_length more accurate than
-                n_fft)
-            - use : string. Whether or not to use either prevPow or nextPow
-                in the calculations. Default is 'prev'.
-                Choices: 'prev', 'next', None.
+    
+    Parameters
+    ----------
+    sr : integer. 
+        The sampling rate used.
+    second : float. 
+        The number of seconds the secondary window is supposed to be.
+    ds_rate : float. 
+        The chunking used in the middle step.
+        (i.e hop_length) (TBD if hop_length more accurate than n_fft)
+    use : string. 
+        Whether or not to use either prevPow or nextPow
+        in the calculations. Default is 'prev'.
+        Choices: 'prev', 'next', None.
+        
     """
     tmp = sr * seconds / ds_rate
     if use == 'prev':
